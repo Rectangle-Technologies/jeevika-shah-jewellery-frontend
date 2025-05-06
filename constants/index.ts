@@ -49,3 +49,11 @@ export const jewelleryItems: Item[] = [
         image_url: '/assets/landing-page/jewellery-1.jpg',
     }
 ]
+
+
+export const jewelleryCategories: { title: string, image_url: string }[] = [
+    { title: 'Bracelet', image_url: '/assets/landing-page/bracelet.webp' },
+    { title: 'Necklace', image_url: '/assets/landing-page/necklace.webp' },
+    { title: 'Earrings', image_url: '/assets/landing-page/earrings.webp' },
+    { title: 'Rings', image_url: '/assets/landing-page/rings.webp' },
+];

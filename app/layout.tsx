@@ -5,6 +5,7 @@ import Navbar from "@/components/common/Navbar";
 import { StoreProvider } from "@/contexts/storeProvider";
 import ScrollToTop from "@/components/landing-page/ScrollToTop";
 import WhatsAppFloatingButton from "@/components/landing-page/WhatsAppFloatingButton";
+import Footer from "@/components/common/Footer";
 
 const poppins = Poppins({
 	subsets: ["latin"],
@@ -29,6 +30,7 @@ export default function RootLayout({
 					<Navbar />
 				</StoreProvider>
 				{children}
+				<Footer />
 				<WhatsAppFloatingButton />
 				<ScrollToTop />
 			</body>
