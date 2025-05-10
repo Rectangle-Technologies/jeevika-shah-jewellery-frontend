@@ -24,9 +24,16 @@ function Navbar() {
 			<div>
 				<NavbarSheet />
 			</div>
-			<Image src="/assets/logo-primary.png" alt="Jeevika Shah Jewellery logo" width={50} height={50} />
+			<div className="relative w-[60px] h-[60px] md:w-[100px] md:h-[100px]">
+				<Image
+					src="/assets/logo-primary.png"
+					alt="Jeevika Shah Jewellery logo"
+					fill
+					className="object-contain"
+				/>
+			</div>
 			<div className="flex items-center gap-2">
-				<ShoppingBagIcon className="text-white"/>
+				<ShoppingBagIcon className={`${scrolled ? "text-black" : "text-white"}`} />
 				<span className="bg-black text-white rounded-full w-7 h-7 flex items-center justify-center">{getCartLength()}</span>
 			</div>
 		</nav>

@@ -39,7 +39,7 @@ function ContactUsForm() {
 		console.log(values);
 	}
 	return (
-		<div className="w-full mx-auto p-3 flex flex-col items-center">
+		<div className="w-full md:w-1/2 mx-auto p-3 flex flex-col items-center">
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full my-10 px-2">
 					<FormField
@@ -95,7 +95,7 @@ function ContactUsForm() {
 						)}
 					/>
 
-					<Button type="submit" className="w-full cursor-pointer py-2">
+					<Button type="submit" className="w-full md:w-auto mx-auto cursor-pointer py-2">
 						SEND MESSAGE
 					</Button>
 				</form>

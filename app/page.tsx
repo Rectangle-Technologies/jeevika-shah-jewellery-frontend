@@ -12,7 +12,7 @@ export default function Home() {
 			<Banner />
 			<JewelleryGrid />
 			<JewelleryCategory />
-			<p className="text-center text-xl text-gray-700 mt-6">Timeless Pieces You'll Reach for Everyday</p>
+			<p className="text-center text- md:text-3xl text-gray-700 mt-6">Timeless Pieces You'll Reach for Everyday</p>
 			<JewelleryGrid />
 			<ChatWithUs />
 			<PersonalisedPieces />
