@@ -34,7 +34,7 @@ function Navbar() {
 					<Image src="/assets/logo-primary.png" alt="Jeevika Shah Jewellery logo" fill className="object-contain" />
 				</div>
 				<div className="flex items-center justify-end gap-2 md:gap-3 md:w-1/4">
-					<Link href={"/account"}>
+					<Link href={"/account"} className="hidden md:flex">
 						<UserCircleIcon className="cursor-pointer" />
 					</Link>
 					<Link href={"/cart"}>
