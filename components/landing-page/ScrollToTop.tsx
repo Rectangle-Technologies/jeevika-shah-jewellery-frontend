@@ -22,7 +22,7 @@ function ScrollToTop() {
 	};
 
 	return (
-		<div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} onClick={handleScrollToTop} className={`${scrolled ? "flex" : "hidden"} fixed bottom-4 right-4 z-50 bg-white shadow-lg rounded-full w-10 h-10 items-center justify-center cursor-pointer overflow-hidden`}>
+		<div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} onClick={handleScrollToTop} className={`${scrolled ? "flex" : "hidden"} fixed bottom-4 right-4 md:bottom-10 md:right-13 z-50 bg-white shadow-lg rounded-full w-10 h-10 items-center justify-center cursor-pointer overflow-hidden`}>
 			{/* Icon container */}
 			<div className="relative w-5 h-5 flex items-center justify-center">
 				<ChevronUpIcon className={`absolute transition-all duration-300 ${hover ? "opacity-0 scale-90" : "opacity-100 scale-100"}`} />

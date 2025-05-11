@@ -19,7 +19,7 @@ function Footer() {
 		},
 	];
 	return (
-		<footer className="flex flex-col items-center justify-center py-2 bg-[#767676] text-white px-4">
+		<footer className="w-full flex flex-col items-center justify-center py-2 bg-[#767676] text-white px-4 md:px-10">
 			<Image src="/assets/logo-primary.png" alt="Jeevika Shah Jewellery logo" width={150} height={150} />
 			<div className="flex items-center gap-2 text-md">
 				{footerOptions.map((option, index) => (
@@ -36,7 +36,7 @@ function Footer() {
 					<InstagramIcon />
 				</Link>
 			</div>
-			<div className="">© 2025 All rights reserved</div>
+			<div className="py-4">© 2025 All rights reserved</div>
 		</footer>
 	);
 }

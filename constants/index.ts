@@ -57,3 +57,18 @@ export const jewelleryCategories: { title: string, image_url: string }[] = [
     { title: 'Earrings', image_url: '/assets/landing-page/earrings.webp' },
     { title: 'Rings', image_url: '/assets/landing-page/rings.webp' },
 ];
+
+
+export const navbarLinks = [
+    {
+        title: "Collections", link: "/collections", subLinks: [
+            { title: "Bracelet", link: "/collections/bracelet" },
+            { title: "Necklace", link: "/collections/necklace" },
+            { title: "Earrings", link: "/collections/earrings" },
+            { title: "Rings", link: "/collections/rings" },
+            { title: "Shop All", link: "/collections" },
+        ]
+    },
+    { title: "About Us", link: "/about-us" },
+]
+

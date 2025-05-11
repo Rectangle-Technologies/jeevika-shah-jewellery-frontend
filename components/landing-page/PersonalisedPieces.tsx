@@ -11,7 +11,7 @@ function PersonalisedPieces() {
 			<p className="text-center text-xl font-semibold text-gray-700 mt-6">Personalized Pieces</p>
 			<p className="text-center text-lg text-gray-700 mt-2">Elevate your style with Personalized Bracelets, Earrings, Rings & Necklaces, adorned with your name.</p>
 
-			<div className="relative w-full md:w-[300px] h-[400px] mt-4 cursor-pointer" onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
+			<div className="relative w-full md:w-[300px] h-[400px] md:h-[350px] mt-4 cursor-pointer" onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
 				{/* Base Image */}
 				<Image src="/assets/landing-page/personalised_piece.webp" alt="Personalised Pieces" fill className={`object-cover transition-opacity duration-500 ${hovered ? "opacity-0" : "opacity-100"}`} />
 
