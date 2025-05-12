@@ -4,6 +4,7 @@ export const jewelleryItems: Item[] = [
         name: 'Emerald Scattered Gems Bracelet',
         price: 100,
         quantity: 1,
+        primary_image_url: '/assets/landing-page/jewellery-1-primary.webp',
         image_url: '/assets/landing-page/jewellery-1.jpg',
     },
     {
@@ -11,6 +12,7 @@ export const jewelleryItems: Item[] = [
         name: 'Emerald Scattered Gems Bracelet 2',
         price: 200,
         quantity: 1,
+        primary_image_url: '/assets/landing-page/jewellery-1-primary.webp',
         image_url: '/assets/landing-page/jewellery-1.jpg',
     },
     {
@@ -18,6 +20,7 @@ export const jewelleryItems: Item[] = [
         name: 'Jewellery 3',
         price: 300,
         quantity: 1,
+        primary_image_url: '/assets/landing-page/jewellery-1-primary.webp',
         image_url: '/assets/landing-page/jewellery-1.jpg',
     },
     {
@@ -25,6 +28,7 @@ export const jewelleryItems: Item[] = [
         name: 'Jewellery 4',
         price: 400,
         quantity: 1,
+        primary_image_url: '/assets/landing-page/jewellery-1-primary.webp',
         image_url: '/assets/landing-page/jewellery-1.jpg',
     },
     {
@@ -32,6 +36,7 @@ export const jewelleryItems: Item[] = [
         name: 'Jewellery 5',
         price: 500,
         quantity: 1,
+        primary_image_url: '/assets/landing-page/jewellery-1-primary.webp',
         image_url: '/assets/landing-page/jewellery-1.jpg',
     },
     {
@@ -39,6 +44,7 @@ export const jewelleryItems: Item[] = [
         name: 'Jewellery 6',
         price: 600,
         quantity: 1,
+        primary_image_url: '/assets/landing-page/jewellery-1-primary.webp',
         image_url: '/assets/landing-page/jewellery-1.jpg',
     },
     {
@@ -46,6 +52,7 @@ export const jewelleryItems: Item[] = [
         name: 'Jewellery 7',
         price: 700,
         quantity: 1,
+        primary_image_url: '/assets/landing-page/jewellery-1-primary.webp',
         image_url: '/assets/landing-page/jewellery-1.jpg',
     }
 ]
@@ -69,6 +76,6 @@ export const navbarLinks = [
             { title: "Shop All", link: "/collections" },
         ]
     },
-    { title: "About Us", link: "/about-us" },
+    { title: "Brand Journey", link: "/brand-journey" },
 ]
 

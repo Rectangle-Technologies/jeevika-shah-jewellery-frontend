@@ -11,7 +11,7 @@ function Banner() {
 				variant="outline"
 				className={`
 					text-xl bg-transparent text-white py-3 px-6 h-12 rounded-full z-30 cursor-pointer
-					opacity-0 translate-y-8 animate-fade-in-up
+					opacity-0 translate-y-8 animate-fade-in-up font-light
 				`}
 			>
 				Shop Now

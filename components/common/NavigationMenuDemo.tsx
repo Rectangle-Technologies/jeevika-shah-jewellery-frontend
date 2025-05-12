@@ -9,7 +9,7 @@ import { navbarLinks } from "@/constants";
 export default function NavigationMenuDemo() {
 	return (
 		<NavigationMenu>
-			<NavigationMenuList>
+			<NavigationMenuList className="gap-4">
 				{navbarLinks.map((link) => {
 					if (link.subLinks) {
 						return (
@@ -17,10 +17,11 @@ export default function NavigationMenuDemo() {
 								<NavigationMenuTrigger
 									className={`
                                         ${navigationMenuTriggerStyle()}
-                                        relative bg-inherit! text-inherit! cursor-pointer px-0 flex items-center
+                                        relative bg-inherit! text-inherit! cursor-pointer px-0 pb-0 flex items-center
                                         before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0
                                         before:bg-current before:transition-all before:duration-300
                                         hover:before:w-full
+										font-normal
                                     `}
 								>
 									{link.title}
@@ -45,12 +46,13 @@ export default function NavigationMenuDemo() {
 								<NavigationMenuLink
 									href={link.link}
 									className={`
-                                                ${navigationMenuTriggerStyle()}
-                                                relative inline-block bg-inherit hover:bg-inherit hover:text-inherit
-                                                before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0
-                                                before:bg-current before:transition-all before:duration-300
-                                                hover:before:w-full pb-0 px-0 mx-3
-                                                `}
+                                        ${navigationMenuTriggerStyle()}
+                                        relative bg-inherit! text-inherit! cursor-pointer px-0 pb-0 flex items-center
+                                        before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0
+                                        before:bg-current before:transition-all before:duration-300
+                                        hover:before:w-full
+										font-normal
+                                    `}
 								>
 									{link.title}
 								</NavigationMenuLink>
@@ -68,8 +70,8 @@ const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWit
 		<li>
 			<NavigationMenuLink asChild>
 				<a ref={ref} className={cn("block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground", className)} {...props}>
-					<div className="text-sm font-medium leading-none">{title}</div>
-					<p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{children}</p>
+					<div className="text-sm font-medium leading-none text-black">{title}</div>
+					<p className="line-clamp-2 text-sm leading-snug  text-black">{children}</p>
 				</a>
 			</NavigationMenuLink>
 		</li>
