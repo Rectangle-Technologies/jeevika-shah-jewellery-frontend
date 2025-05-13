@@ -8,7 +8,7 @@ function ChatWithUs() {
 			<div className="z-30 h-full w-full flex flex-col items-center justify-center gap-4 text-center md:text-2xl md:font-semibold ">
 				<p>LET'S SHARE THE PASSION & HELP YOU CREATE A PIECE.</p>
 				<p>JUST FOR YOU.</p>
-				<Button type="button" className="rounded-none border border-white hover:bg-white hover:text-black py-5 px-6 bg-transparent text-xl cursor-pointer mt-10">CHAT WITH US</Button>
+				<Button type="button" className="rounded-none border border-white hover:bg-white hover:text-black p-6 bg-transparent text-xl cursor-pointer mt-10">CHAT WITH US</Button>
 			</div>
 		</div>
 	);

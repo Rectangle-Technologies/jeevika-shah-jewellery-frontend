@@ -19,7 +19,7 @@ function PersonalisedPieces() {
 				<Image src="/assets/landing-page/personalised_piece_hovered.webp" alt="Personalised Pieces Hovered" fill className={`object-cover transition-opacity duration-500 ${hovered ? "opacity-100" : "opacity-0"}`} />
 			</div>
 			<p className="text-center text-lg text-gray-700 mt-2">Mother of Pearl Initial Ring with Diamonds</p>
-            <Button className="px-4 py-2 font-normal cursor-pointer">Customise via WhatsApp</Button>
+            <Button className="p-6 mt-2 font-normal cursor-pointer">Customise via WhatsApp</Button>
 		</div>
 	);
 }

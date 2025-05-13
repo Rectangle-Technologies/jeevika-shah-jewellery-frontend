@@ -11,7 +11,7 @@ function JewelleryGrid() {
 					return <JewelleryCard key={item.id} jewelleryItem={item} />;
 				})}
 			</div>
-			<Button className="w-[200px] cursor-pointer">VIEW ALL</Button>
+			<Button className="p-6 w-[200px] cursor-pointer">VIEW ALL</Button>
 		</div>
 	);
 }

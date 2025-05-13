@@ -95,7 +95,7 @@ function ContactUsForm() {
 						)}
 					/>
 
-					<Button type="submit" className="w-full md:w-auto mx-auto cursor-pointer py-2">
+					<Button type="submit" className="w-full md:w-auto mx-auto cursor-pointer p-6">
 						SEND MESSAGE
 					</Button>
 				</form>
