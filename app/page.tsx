@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 		title: "Jeevika Shah Jewellery | Timeless Designs",
 		description: "Explore handcrafted, personalised jewellery pieces that blend timeless beauty with everyday versatility.",
 		url: process.env.DOMAIN,
-		siteName: "Your Brand Name",
+		siteName: "Jeevika Shah Jewellery",
 		images: [
 			{
 				url: `${process.env.DOMAIN}/assets/logo-primary.png`,
@@ -33,7 +33,6 @@ export const metadata: Metadata = {
 		title: "Jeevika Shah Jewellery | Timeless Designs",
 		description: "Curated handmade jewellery that’s perfect for gifting or personal style — unique, elegant, and made with care.",
 		images: [`${process.env.DOMAIN}/assets/logo-primary.png`],
-		site: `@${process.env.TWITTER_HANDLE}`,
 	},
 	metadataBase: new URL(process.env.DOMAIN!),
 	robots: {
@@ -56,8 +55,8 @@ export default function Home() {
 			<Banner />
 			<JewelleryGrid />
 			<JewelleryCategory />
-			<p className="text-center md:text-3xl text-gray-700 mt-6">Timeless Pieces You'll Reach for Everyday</p>
-			<JewelleryGrid />
+			{/* <p className="text-center md:text-3xl text-gray-700 mt-6">Timeless Pieces You'll Reach for Everyday</p> */}
+			{/* <JewelleryGrid /> */}
 			<ChatWithUs />
 			<PersonalisedPieces />
 			<WhyWeAreHere />

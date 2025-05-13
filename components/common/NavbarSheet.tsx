@@ -1,9 +1,9 @@
 import React from "react";
-import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetFooter, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { AlignLeftIcon } from "lucide-react";
+import { navbarLinks } from "@/constants";
+import Link from "next/link";
 
 function NavbarSheet() {
 	return (
@@ -14,28 +14,31 @@ function NavbarSheet() {
 				</Button>
 			</SheetTrigger>
 			<SheetContent>
-				<SheetHeader>
-					<SheetTitle>Edit profile</SheetTitle>
-					<SheetDescription>Make changes to your profile here. Click save when you're done.</SheetDescription>
-				</SheetHeader>
-				<div className="grid gap-4 py-4">
-					<div className="grid grid-cols-4 items-center gap-4">
-						<Label htmlFor="name" className="text-right">
-							Name
-						</Label>
-						<Input id="name" value="Pedro Duarte" className="col-span-3" />
-					</div>
-					<div className="grid grid-cols-4 items-center gap-4">
-						<Label htmlFor="username" className="text-right">
-							Username
-						</Label>
-						<Input id="username" value="@peduarte" className="col-span-3" />
-					</div>
+				<div className="flex flex-col h-full items-center justify-center gap-4 p-4">
+					{navbarLinks.map((link) => {
+						if (link.subLinks) {
+							return (
+								<div key={link.title}>
+									<p>{link.title}</p>
+									<ul className="list-disc pl-5">
+										{link.subLinks.map((subLink) => (
+											<li className="my-3" key={subLink.title}>
+												<Link href={subLink.link}>{subLink.title}</Link>
+											</li>
+										))}
+									</ul>
+								</div>
+							);
+						} else {
+							return (
+								<Link href={link.link} key={link.title}>
+									{link.title}
+								</Link>
+							);
+						}
+					})}
 				</div>
 				<SheetFooter>
-					<SheetClose asChild>
-						<Button type="submit">Save changes</Button>
-					</SheetClose>
 				</SheetFooter>
 			</SheetContent>
 		</Sheet>

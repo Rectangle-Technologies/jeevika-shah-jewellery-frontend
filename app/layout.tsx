@@ -6,6 +6,7 @@ import { StoreProvider } from "@/contexts/storeProvider";
 import ScrollToTop from "@/components/landing-page/ScrollToTop";
 import WhatsAppFloatingButton from "@/components/landing-page/WhatsAppFloatingButton";
 import Footer from "@/components/common/Footer";
+import Script from "next/script";
 
 const poppins = Poppins({
 	subsets: ["latin"],
@@ -16,6 +17,11 @@ const poppins = Poppins({
 export const metadata: Metadata = {
 	title: "Jeevika Shah Jewellery",
 	description: "Discover jewelry that you will be proud to wear, exactly the way you want them",
+	icons: {
+		icon: "/favicon.ico",
+		apple: "/apple-touch-icon.png",
+	},
+	manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({
@@ -25,7 +31,30 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`${poppins.variable} ${poppins.variable} antialiased`}>
+			<head>
+				<meta name="viewport" content="width=device-width, initial-scale=1" />
+				<meta name="theme-color" content="#ffffff" />
+				<meta name="mobile-web-app-capable" content="yes" />
+				<meta name="apple-mobile-web-app-title" content="Jeevika Shah Jewellery" />
+				<Script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify({
+							"@context": "https://schema.org",
+							"@type": "Organization",
+							name: "Jeevika Shah Jewellery",
+							url: process.env.DOMAIN,
+							logo: `${process.env.DOMAIN}/assets/logo-primary.png`,
+							description: "Curated handmade jewellery for all occasions.",
+							founder: {
+								"@type": "Person",
+								name: "Jeevika Shah",
+							},
+						}),
+					}}
+				/>
+			</head>
+			<body className={`${poppins.variable} antialiased`}>
 				<StoreProvider>
 					<Navbar />
 				</StoreProvider>

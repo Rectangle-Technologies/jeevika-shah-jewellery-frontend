@@ -28,8 +28,8 @@ export default function NavigationMenuDemo() {
 								</NavigationMenuTrigger>
 
 								{link.subLinks && (
-									<NavigationMenuContent className="">
-										<ul className="">
+									<NavigationMenuContent className="p-0">
+										<ul className="p-0">
 											{link.subLinks.map((subLink) => (
 												<ListItem key={subLink.title} href={subLink.link}>
 													{subLink.title}
@@ -69,7 +69,7 @@ const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWit
 	return (
 		<li>
 			<NavigationMenuLink asChild>
-				<a ref={ref} className={cn("block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground", className)} {...props}>
+				<a ref={ref} className={cn("block select-none rounded-md leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground px-4 py-2", className)} {...props}>
 					<div className="text-sm font-medium leading-none text-black">{title}</div>
 					<p className="line-clamp-2 text-sm leading-snug  text-black">{children}</p>
 				</a>

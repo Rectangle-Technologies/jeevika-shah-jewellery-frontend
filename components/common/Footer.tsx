@@ -6,8 +6,8 @@ import React from "react";
 function Footer() {
 	const footerOptions: { title: string; link: string }[] = [
 		{
-			title: "About Us",
-			link: "/about-us",
+			title: "Brand Journey",
+			link: "/brand-journey",
 		},
 		{
 			title: "Exchange & Refund Policy",
@@ -29,10 +29,10 @@ function Footer() {
 				))}
 			</div>
 			<div className="flex items-center justify-center pb-8 gap-2 my-5 border-b-2 border-white w-full">
-				<Link href="https://www.facebook.com/jeevikashahjewellery/" className="hover:underline py-1">
+				<Link href={process.env.NEXT_PUBLIC_FACEBOOK_LINK!} className="hover:underline py-1">
 					<FacebookIcon />
 				</Link>
-				<Link href="https://www.instagram.com/jeevikashahjewellery/" className="hover:underline py-1">
+				<Link href={process.env.NEXT_PUBLIC_INSTAGRAM_LINK!} className="hover:underline py-1">
 					<InstagramIcon />
 				</Link>
 			</div>
