@@ -16,10 +16,10 @@ function JewelleryCard({ jewelleryItem }: JewelleryCardProps) {
 					<div className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${hovered ? "opacity-0" : "opacity-100"}`} style={{ backgroundImage: `url(${jewelleryItem.primary_image_url})` }}></div>
 
 					{/* Hover image */}
-					<div className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ease-in delay-100 ${hovered ? "opacity-100" : "opacity-0"}`} style={{ backgroundImage: `url(${jewelleryItem.image_url})` }}></div>
+					<div className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ease-in delay-100 ${hovered ? "opacity-100" : "opacity-0"} ${hovered ? "cursor-pointer" : ""}`} style={{ backgroundImage: `url(${jewelleryItem.image_url})` }}></div>
 
 					{/* Button */}
-					{hovered && <Button className="relative z-10 cursor-pointer">Explore Options</Button>}
+					{hovered && <Button className="relative z-10 cursor-pointer p-4">Explore Options</Button>}
 				</div>
 
 				<div className="p-3">
