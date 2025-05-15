@@ -10,6 +10,7 @@ import NavigationMenuDemo from "./NavigationMenuDemo";
 function Navbar() {
 	const { getCartLength } = React.useContext(StoreContext)!;
 	const [scrolled, setScrolled] = React.useState(false);
+	const [hovered, setHovered] = React.useState(false);
 
 	React.useEffect(() => {
 		const handleScroll = () => {
@@ -22,7 +23,7 @@ function Navbar() {
 	}, []);
 
 	return (
-		<nav className={` ${scrolled ? "bg-white text-black shadow-md" : "bg-transparent text-white"} z-50 fixed w-full  top-0 transition-colors duration-300`}>
+		<nav onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className={` ${scrolled || hovered ? "bg-white text-black shadow-md" : "bg-transparent text-white"} z-50 fixed w-full  top-0 transition-colors duration-300`}>
 			<div className="flex items-center justify-between py-2 px-4 md:w-[90%] mx-auto">
 				<div className="flex md:hidden">
 					<NavbarSheet />
