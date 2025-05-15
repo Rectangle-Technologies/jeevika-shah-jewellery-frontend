@@ -1,8 +1,22 @@
-interface Item {
-    id: string;
-    name: string;
-    price: number;
-    quantity: number;
-    primary_image_url: string;
-    image_url: string;
+
+interface Item{
+    name: string,
+    description: string,
+    category: string,
+    images: string[],
+    sizes: {
+        displayName: string,
+        weightOfMetal: number
+    }[],
+    karatOfGold: number,
+    weightOfGold: number,
+    karatOfDiamond: number,
+    costOfDiamond: number,
+    costOfLabour: number,
+    miscellaneousCost: number,
+    isCentralisedDiamond: boolean,
+    isNaturalDiamond: boolean,
+    isLabDiamond: boolean,
+    isActive: boolean
 }
+

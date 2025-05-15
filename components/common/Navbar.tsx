@@ -6,46 +6,61 @@ import { ShoppingBagIcon, UserCircleIcon } from "lucide-react";
 import { StoreContext } from "@/contexts/storeProvider";
 import Link from "next/link";
 import NavigationMenuDemo from "./NavigationMenuDemo";
+import { usePathname } from "next/navigation";
 
 function Navbar() {
-	const { getCartLength } = React.useContext(StoreContext)!;
-	const [scrolled, setScrolled] = React.useState(false);
-	const [hovered, setHovered] = React.useState(false);
+  const { getCartLength } = React.useContext(StoreContext)!;
+  const path = usePathname();
+  const [scrolled, setScrolled] = React.useState(false);
+  const [hovered, setHovered] = React.useState(false);
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 100);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
-	React.useEffect(() => {
-		const handleScroll = () => {
-			setScrolled(window.scrollY > 100);
-		};
-		window.addEventListener("scroll", handleScroll);
-		return () => {
-			window.removeEventListener("scroll", handleScroll);
-		};
-	}, []);
-
-	return (
-		<nav onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className={` ${scrolled || hovered ? "bg-white text-black shadow-md" : "bg-transparent text-white"} z-50 fixed w-full  top-0 transition-colors duration-300`}>
-			<div className="flex items-center justify-between py-2 px-4 md:w-[90%] mx-auto">
-				<div className="flex md:hidden">
-					<NavbarSheet />
-				</div>
-				<div className="hidden md:flex items-center gap-4 md:w-1/4">
-					<NavigationMenuDemo />
-				</div>
-				<div className="relative w-[60px] h-[60px] md:w-[100px] md:h-[100px]">
-					<Image src="/assets/logo-primary.png" alt="Jeevika Shah Jewellery logo" fill className="object-contain" />
-				</div>
-				<div className="flex items-center justify-end gap-2 md:gap-3 md:w-1/4">
-					<Link href={"/account"} className="hidden md:flex">
-						<UserCircleIcon className="cursor-pointer" />
-					</Link>
-					<Link href={"/cart"}>
-						<ShoppingBagIcon className="cursor-pointer" />
-					</Link>
-					<span className="bg-black text-white rounded-full w-7 h-7 flex items-center justify-center">{getCartLength()}</span>
-				</div>
-			</div>
-		</nav>
-	);
+  return (
+    <nav
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className={` ${scrolled || hovered || path !== "/"
+        ? "bg-white text-black shadow-md"
+        : "bg-transparent text-white"
+        } z-50 fixed w-full  top-0 transition-colors duration-300`}
+    >
+      <div className="flex items-center justify-between py-2 px-4 md:w-[90%] mx-auto">
+        <div className="flex md:hidden">
+          <NavbarSheet />
+        </div>
+        <div className="hidden md:flex items-center gap-4 md:w-1/4">
+          <NavigationMenuDemo />
+        </div>
+        <div className="relative w-[60px] h-[60px] md:w-[100px] md:h-[100px]">
+          <Image
+            src="/assets/logo-primary.png"
+            alt="Jeevika Shah Jewellery logo"
+            fill
+            className="object-contain"
+          />
+        </div>
+        <div className="flex items-center justify-end gap-2 md:gap-3 md:w-1/4">
+          <Link href={"/account"} className="hidden md:flex">
+            <UserCircleIcon className="cursor-pointer" />
+          </Link>
+          <Link href={"/cart"}>
+            <ShoppingBagIcon className="cursor-pointer" />
+          </Link>
+          <span className="bg-black text-white rounded-full w-7 h-7 flex items-center justify-center">
+            {getCartLength()}
+          </span>
+        </div>
+      </div>
+    </nav>
+  );
 }
 
 export default Navbar;

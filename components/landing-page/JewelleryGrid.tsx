@@ -1,17 +1,29 @@
-import { jewelleryItems } from "@/constants";
+'use client';
 import React from "react";
 import JewelleryCard from "./JewelleryCard";
 import { Button } from "../ui/button";
+import { usePathname } from "next/navigation";
 
-function JewelleryGrid() {
+interface JewelleryGridProps {
+	jewelleryItems: Item[];
+}
+
+function JewelleryGrid({ jewelleryItems }: JewelleryGridProps) {
+	// get current path
+	const path = usePathname();
 	return (
 		<div className="w-full md:w-[95%] mx-auto p-3 flex flex-col items-center">
-			<div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-5">
-				{jewelleryItems.map((item) => {
-					return <JewelleryCard key={item.id} jewelleryItem={item} />;
+			<div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 my-5 w-full">
+				{jewelleryItems.map((item, index) => {
+					return (
+						<JewelleryCard
+							key={item.name + index.toString()}
+							jewelleryItem={item}
+						/>
+					);
 				})}
 			</div>
-			<Button className="p-6 w-[200px] cursor-pointer">VIEW ALL</Button>
+			{path === "/" && <Button className="p-6 w-[200px] cursor-pointer">VIEW ALL</Button>}
 		</div>
 	);
 }
