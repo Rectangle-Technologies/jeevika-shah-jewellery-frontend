@@ -57,11 +57,11 @@ export default function RootLayout({
 			<body className={`${poppins.variable} antialiased`}>
 				<StoreProvider>
 					<Navbar />
+					{children}
+					<Footer />
+					<WhatsAppFloatingButton />
+					<ScrollToTop />
 				</StoreProvider>
-				{children}
-				<Footer />
-				<WhatsAppFloatingButton />
-				<ScrollToTop />
 			</body>
 		</html>
 	);

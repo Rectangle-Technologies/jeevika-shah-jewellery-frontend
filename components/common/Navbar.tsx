@@ -9,7 +9,7 @@ import NavigationMenuDemo from "./NavigationMenuDemo";
 import { usePathname } from "next/navigation";
 
 function Navbar() {
-  const { getCartLength } = React.useContext(StoreContext)!;
+  const { cartLength } = React.useContext(StoreContext)!;
   const path = usePathname();
   const [scrolled, setScrolled] = React.useState(false);
   const [hovered, setHovered] = React.useState(false);
@@ -55,7 +55,7 @@ function Navbar() {
             <ShoppingBagIcon className="cursor-pointer" />
           </Link>
           <span className="bg-black text-white rounded-full w-7 h-7 flex items-center justify-center">
-            {getCartLength()}
+            {cartLength}
           </span>
         </div>
       </div>

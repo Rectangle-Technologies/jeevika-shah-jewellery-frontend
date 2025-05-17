@@ -139,3 +139,17 @@
 .animate-fade-in-up {
   animation: fade-in-up 0.8s ease-out forwards;
 }
+
+
+/* Hide scrollbar but allow scrolling */
+.hide-scrollbar {
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
+}

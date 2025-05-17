@@ -14,24 +14,20 @@ interface JewelleryDialogProps {
 
 function JewelleryDialogCarousel({ imageList }: JewelleryDialogProps) {
     return (
-        <Carousel className="w-full max-w-xs  md:max-w-md">
-            <CarouselContent>
-                {imageList.map((src, index) => (
-                    <CarouselItem key={src + index.toString()}>
-                        <Image
-                            src={src}
-                            width={400}
-                            height={400}
-                            alt="Jewellery"
-                            className="relative p-1 h-[300px] w-[400px] mx-auto"
-                        />
-                    </CarouselItem>
-                ))}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-        </Carousel>
-    )
+		<Carousel className="w-full">
+			<CarouselContent>
+				{imageList.map((src, index) => (
+					<CarouselItem key={src + index.toString()}>
+						<div className="relative p-1 h-[300px]">
+							<Image src={src} fill alt="Jewellery" className=" mx-auto" />
+						</div>
+					</CarouselItem>
+				))}
+			</CarouselContent>
+			<CarouselPrevious />
+			<CarouselNext />
+		</Carousel>
+	);
 }
 
 export default JewelleryDialogCarousel
