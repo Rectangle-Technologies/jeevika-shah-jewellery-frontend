@@ -14,3 +14,4 @@ List of tasks:
 - [ ] After the APIs are provided, integrate them.
 - [ ] Navigate to home on clicking the logo
 - [ ] Add filters on collections page. See the reference website
+- [ ] In the menu list in desktop view, add a bit padding of around 3
