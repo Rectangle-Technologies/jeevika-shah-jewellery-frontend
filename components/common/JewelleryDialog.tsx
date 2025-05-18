@@ -21,7 +21,7 @@ function JewelleryDialog({ jewellery }: JewelleryDialogProps) {
 				<div className="mx-auto w-full  md:w-[60%] px-12">
 					<JewelleryDialogCarousel imageList={jewellery.images} />
 				</div>
-				<DialogHeader className="">
+				<DialogHeader className="text-start">
 					<DialogTitle>{jewellery.name}</DialogTitle>
 					<DialogDescription>{jewellery.description}</DialogDescription>
 					<div className="text-sm">

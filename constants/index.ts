@@ -1,5 +1,6 @@
 export const jewelleryItems: Item[] = [
     {
+        _id: "1",
         name: "Elegant Gold Ring",
         description: "A beautifully crafted 22K gold ring with a central diamond.",
         category: "Rings",
@@ -23,6 +24,7 @@ export const jewelleryItems: Item[] = [
         isActive: true
     },
     {
+        _id: "2",
         name: "Modern Diamond Pendant",
         description: "Stylish pendant with lab-grown diamonds set in 18K gold.",
         category: "Necklaces",
@@ -45,6 +47,7 @@ export const jewelleryItems: Item[] = [
         isActive: true
     },
     {
+        _id: "3",
         name: "Classic Gold Bangle",
         description: "Traditional gold bangle, perfect for weddings and festivals.",
         category: "Bangles",
@@ -68,6 +71,7 @@ export const jewelleryItems: Item[] = [
         isActive: true
     },
     {
+        _id: "4",
         name: "Diamond Stud Earrings",
         description: "Elegant earrings with natural diamonds and 14K gold.",
         category: "Earrings",
@@ -90,6 +94,7 @@ export const jewelleryItems: Item[] = [
         isActive: true
     },
     {
+        _id: "5",
         name: "Contemporary Bracelet",
         description: "Modern design bracelet with a blend of gold and lab diamonds.",
         category: "Bracelets",
@@ -112,6 +117,7 @@ export const jewelleryItems: Item[] = [
         isActive: true
     },
     {
+        _id: "6",
         name: "Vintage Gold Necklace",
         description: "Heavily embellished vintage style necklace in 22K gold.",
         category: "Necklaces",

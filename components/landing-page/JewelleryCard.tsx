@@ -9,6 +9,7 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 import JewelleryDialog from "../common/JewelleryDialog";
+import Link from "next/link";
 
 interface JewelleryCardProps {
 	jewelleryItem: Item;
@@ -42,7 +43,7 @@ function JewelleryCard({ jewelleryItem }: JewelleryCardProps) {
 					<JewelleryDialog jewellery={jewelleryItem} />
 				</div>
 
-				<div className="p-3">
+				<Link href={`/product/${jewelleryItem._id}`} className="p-3">
 					<CardTitle className="text-center font-normal">
 						{jewelleryItem.name}
 					</CardTitle>
@@ -52,7 +53,7 @@ function JewelleryCard({ jewelleryItem }: JewelleryCardProps) {
 							jewelleryItem.costOfLabour +
 							jewelleryItem.miscellaneousCost}
 					</CardDescription>
-				</div>
+				</Link>
 			</CardContent>
 		</Card>
 	);
