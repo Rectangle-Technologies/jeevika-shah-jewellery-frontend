@@ -5,8 +5,8 @@ export const jewelleryItems: Item[] = [
         description: "A beautifully crafted 22K gold ring with a central diamond.",
         category: "Rings",
         images: [
-            "/assets/landing-page/jewellery-1.jpg",
-            "/assets/landing-page/jewellery-1-primary.webp"
+            "/assets/landing-page/jewellery-1-primary.webp",
+            "/assets/landing-page/jewellery-1.jpg"
         ],
         sizes: [
             { displayName: "Small", weightOfMetal: 3.5 },
@@ -29,8 +29,8 @@ export const jewelleryItems: Item[] = [
         description: "Stylish pendant with lab-grown diamonds set in 18K gold.",
         category: "Necklaces",
         images: [
-            "/assets/landing-page/jewellery-1.jpg",
-            "/assets/landing-page/jewellery-1-primary.webp"
+            "/assets/landing-page/jewellery-1-primary.webp",
+            "/assets/landing-page/jewellery-1.jpg"
         ],
         sizes: [
             { displayName: "Standard", weightOfMetal: 2.2 }
@@ -52,8 +52,8 @@ export const jewelleryItems: Item[] = [
         description: "Traditional gold bangle, perfect for weddings and festivals.",
         category: "Bangles",
         images: [
-            "/assets/landing-page/jewellery-1.jpg",
-            "/assets/landing-page/jewellery-1-primary.webp"
+            "/assets/landing-page/jewellery-1-primary.webp",
+            "/assets/landing-page/jewellery-1.jpg"
         ],
         sizes: [
             { displayName: "Small", weightOfMetal: 12.5 },
@@ -76,8 +76,8 @@ export const jewelleryItems: Item[] = [
         description: "Elegant earrings with natural diamonds and 14K gold.",
         category: "Earrings",
         images: [
-            "/assets/landing-page/jewellery-1.jpg",
-            "/assets/landing-page/jewellery-1-primary.webp"
+            "/assets/landing-page/jewellery-1-primary.webp",
+            "/assets/landing-page/jewellery-1.jpg"
         ],
         sizes: [
             { displayName: "Standard", weightOfMetal: 1.8 }
@@ -99,8 +99,8 @@ export const jewelleryItems: Item[] = [
         description: "Modern design bracelet with a blend of gold and lab diamonds.",
         category: "Bracelets",
         images: [
-            "/assets/landing-page/jewellery-1.jpg",
-            "/assets/landing-page/jewellery-1-primary.webp"
+            "/assets/landing-page/jewellery-1-primary.webp",
+            "/assets/landing-page/jewellery-1.jpg"
         ],
         sizes: [
             { displayName: "Adjustable", weightOfMetal: 6.0 }
@@ -122,8 +122,8 @@ export const jewelleryItems: Item[] = [
         description: "Heavily embellished vintage style necklace in 22K gold.",
         category: "Necklaces",
         images: [
-            "/assets/landing-page/jewellery-1.jpg",
-            "/assets/landing-page/jewellery-1-primary.webp"
+            "/assets/landing-page/jewellery-1-primary.webp",
+            "/assets/landing-page/jewellery-1.jpg"
         ],
         sizes: [
             { displayName: "Long", weightOfMetal: 25.0 }

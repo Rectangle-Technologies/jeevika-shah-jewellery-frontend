@@ -6,12 +6,13 @@ import JewewllerySizeTable from "../common/JewewllerySizeTable";
 import { Button } from "../ui/button";
 import { MinusIcon, PlusIcon } from "lucide-react";
 import { StoreContext } from "@/contexts/storeProvider";
+import JewelleryOriginTab from "../common/JewelleryOriginTab";
 
 interface MainDisplayProps {
 	jewellery: Item;
 }
 function MainDisplay({ jewellery }: MainDisplayProps) {
-    const { addToCart, removeItem, cartItems } = useContext(StoreContext);
+	const { addToCart, removeItem, cartItems } = useContext(StoreContext);
 	return (
 		<div className="w-full md:w-[95%] mx-auto flex flex-col md:flex-row md:items-center gap-4">
 			<div className="mx-auto w-full  md:w-1/2 px-3 md:px-12">
@@ -28,6 +29,7 @@ function MainDisplay({ jewellery }: MainDisplayProps) {
 				</div>
 				<div className="text-sm">Metal: {jewellery.karatOfGold}K Gold</div>
 				<JewewllerySizeTable jewellerySizes={jewellery.sizes} />
+				<JewelleryOriginTab />
 				<div className="flex items-center  gap-2">
 					<Button className=" cursor-pointer" onClick={() => addToCart(jewellery)}>
 						<PlusIcon />

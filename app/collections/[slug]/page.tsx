@@ -1,5 +1,4 @@
 import { getItemsForCollection } from "@/utils/functions/collection";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import JewelleryGrid from "@/components/landing-page/JewelleryGrid";
 import SortDropdown from "@/components/collections-page/SortDropDown";
 
@@ -29,32 +28,14 @@ export default async function CollectionsPage({ params, searchParams }: { params
 
 	const sortOption = typeof sort === "string" ? sort : "";
 
-	const sortedNatural = sortItems(
-		items.filter((item) => item.isNaturalDiamond),
-		sortOption
-	);
-	const sortedCentralised = sortItems(
-		items.filter((item) => item.isCentralisedDiamond),
-		sortOption
-	);
+	const sortedJewellery = sortItems(items, sortOption);
 
 	return (
 		<section className="pt-40 flex flex-col items-center px-3">
-			<Tabs defaultValue="Natural Diamond" className="w-full">
-				<div className="flex flex-col md:flex-row md:tems-center gap-2 justify-between w-full md:w-[95%] mx-auto mb-2 md:mb-10">
-					<TabsList>
-						<TabsTrigger value="Natural Diamond">Natural Diamond</TabsTrigger>
-						<TabsTrigger value="Centralised Diamond">Centralised Diamond</TabsTrigger>
-					</TabsList>
-					<SortDropdown />
-				</div>
-				<TabsContent value="Natural Diamond" className="w-full">
-					<JewelleryGrid jewelleryItems={sortedNatural} />
-				</TabsContent>
-				<TabsContent value="Centralised Diamond" className="w-full">
-					<JewelleryGrid jewelleryItems={sortedCentralised} />
-				</TabsContent>
-			</Tabs>
+			<div className="flex justify-end items-center gap-2 w-full md:w-[95%] mx-auto mb-2 md:mb-5">
+				<SortDropdown />
+			</div>
+			<JewelleryGrid jewelleryItems={sortedJewellery} />
 		</section>
 	);
 }

@@ -7,6 +7,7 @@ import { MinusIcon, PlusIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { StoreContext } from "@/contexts/storeProvider";
 import Link from "next/link";
+import JewelleryOriginTab from "./JewelleryOriginTab";
 
 interface JewelleryDialogProps {
 	jewellery: Item;
@@ -16,7 +17,7 @@ function JewelleryDialog({ jewellery }: JewelleryDialogProps) {
 	const { addToCart, removeItem, cartItems } = useContext(StoreContext);
 	return (
 		<Dialog>
-			<DialogTrigger className="absolute cursor-pointer px-2 py-1 rounded-md bg-gray-700 text-white">Explore Options</DialogTrigger>
+			<DialogTrigger className="absolute text-xs cursor-pointer px-4 py-2 rounded-md bg-gray-900 text-white">Explore Options</DialogTrigger>
 			<DialogContent className="md:min-w-3xl flex flex-col md:flex-row md:items-center overflow-y-scroll max-h-4/5 hide-scrollbar">
 				<div className="mx-auto w-full  md:w-[60%] px-12">
 					<JewelleryDialogCarousel imageList={jewellery.images} />
@@ -25,10 +26,14 @@ function JewelleryDialog({ jewellery }: JewelleryDialogProps) {
 					<DialogTitle>{jewellery.name}</DialogTitle>
 					<DialogDescription>{jewellery.description}</DialogDescription>
 					<div className="text-sm">
-						<Link href="/policies/shipping-policy" className="font-bold underline">Shipping</Link> will be calculated at the checkout.
+						<Link href="/policies/shipping-policy" className="font-bold underline">
+							Shipping
+						</Link>{" "}
+						will be calculated at the checkout.
 					</div>
 					<div className="text-sm">Metal: {jewellery.karatOfGold}K Gold</div>
 					<JewewllerySizeTable jewellerySizes={jewellery.sizes} />
+					<JewelleryOriginTab />
 					<div className="flex items-center  gap-2">
 						<Button className=" cursor-pointer" onClick={() => addToCart(jewellery)}>
 							<PlusIcon />
