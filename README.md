@@ -4,8 +4,8 @@ The frontend web application for e-commerce of gold and diamond jewellery.
 
 List of tasks:
 
-- [ ] Add the tabs in product page, and remove from collections page
-- [ ] Improve the navbar drawer style
+- [x] Add the tabs in product page, and remove from collections page
+- [x] Improve the navbar drawer style
 - [ ] add the Cart drawer
 - [ ] add the profile page
 - [ ] add the checkout page

@@ -9,7 +9,7 @@ import { navbarLinks } from "@/constants";
 export default function NavigationMenuDemo() {
 	return (
 		<NavigationMenu>
-			<NavigationMenuList className="gap-4">
+			<NavigationMenuList className="flex flex-col md:flex-row gap-4">
 				{navbarLinks.map((link) => {
 					if (link.subLinks) {
 						return (

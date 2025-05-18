@@ -1,9 +1,10 @@
 import React from "react";
-import { Sheet, SheetContent, SheetFooter, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { AlignLeftIcon } from "lucide-react";
+import { AlignLeftIcon, FacebookIcon, InstagramIcon } from "lucide-react";
 import { navbarLinks } from "@/constants";
 import Link from "next/link";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 function NavbarSheet() {
 	return (
@@ -14,32 +15,40 @@ function NavbarSheet() {
 				</Button>
 			</SheetTrigger>
 			<SheetContent>
-				<div className="flex flex-col h-full items-center justify-center gap-4 p-4">
+				<SheetHeader className="bg-gray-200">
+					<SheetTitle>Menu</SheetTitle>
+				</SheetHeader>
+				<div className="p-3 text-xl">
 					{navbarLinks.map((link) => {
 						if (link.subLinks) {
 							return (
-								<div key={link.title}>
-									<p>{link.title}</p>
-									<ul className="list-disc pl-5">
-										{link.subLinks.map((subLink) => (
-											<li className="my-3" key={subLink.title}>
-												<Link href={subLink.link}>{subLink.title}</Link>
-											</li>
-										))}
-									</ul>
-								</div>
+								<Accordion type="single" collapsible>
+									<AccordionItem value="item-1">
+										<AccordionTrigger className="text-xl">{link.title}</AccordionTrigger>
+										<AccordionContent className="px-3">
+											{link.subLinks.map((subLink) => (
+												<div key={subLink.title} className="text-sm my-3 font-normal">
+													<Link href={subLink.link}>{subLink.title}</Link>
+												</div>
+											))}
+										</AccordionContent>
+									</AccordionItem>
+								</Accordion>
 							);
 						} else {
-							return (
-								<Link href={link.link} key={link.title}>
-									{link.title}
-								</Link>
-							);
+							return <Link href={link.link}>{link.title}</Link>;
 						}
 					})}
+					<div className="flex pb-8 gap-2 my-5 w-full">
+						<Link href={process.env.NEXT_PUBLIC_FACEBOOK_LINK!} className="hover:underline py-1">
+							<FacebookIcon />
+						</Link>
+						<Link href={process.env.NEXT_PUBLIC_INSTAGRAM_LINK!} className="hover:underline py-1">
+							<InstagramIcon />
+						</Link>
+					</div>
 				</div>
-				<SheetFooter>
-				</SheetFooter>
+				<SheetFooter></SheetFooter>
 			</SheetContent>
 		</Sheet>
 	);
