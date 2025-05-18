@@ -12,3 +12,5 @@ List of tasks:
 - [ ] Integrate the razorpay checkout
 - [ ] Add the whatsapp link
 - [ ] After the APIs are provided, integrate them.
+- [ ] Navigate to home on clicking the logo
+- [ ] Add filters on collections page. See the reference website
