@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/common/Navbar";
-import { StoreProvider } from "@/contexts/storeProvider";
 import ScrollToTop from "@/components/landing-page/ScrollToTop";
 import WhatsAppFloatingButton from "@/components/landing-page/WhatsAppFloatingButton";
 import Footer from "@/components/common/Footer";
 import Script from "next/script";
+import { CartStoreProvider } from "@/providers/cart-store-providers";
 
 const poppins = Poppins({
 	subsets: ["latin"],
@@ -55,13 +55,13 @@ export default function RootLayout({
 				/>
 			</head>
 			<body className={`${poppins.variable} antialiased`}>
-				<StoreProvider>
+				<CartStoreProvider>
 					<Navbar />
 					{children}
 					<Footer />
 					<WhatsAppFloatingButton />
 					<ScrollToTop />
-				</StoreProvider>
+				</CartStoreProvider>
 			</body>
 		</html>
 	);

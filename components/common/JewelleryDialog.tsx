@@ -1,20 +1,20 @@
 "use client";
-import React, { useContext } from "react";
+import React from "react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import JewelleryDialogCarousel from "./JewelleryDialogCarousel";
 import JewewllerySizeTable from "./JewewllerySizeTable";
 import { MinusIcon, PlusIcon } from "lucide-react";
 import { Button } from "../ui/button";
-import { StoreContext } from "@/contexts/storeProvider";
 import Link from "next/link";
 import JewelleryOriginTab from "./JewelleryOriginTab";
+import { useCounterStore } from "@/providers/cart-store-providers";
 
 interface JewelleryDialogProps {
 	jewellery: Item;
 }
 
 function JewelleryDialog({ jewellery }: JewelleryDialogProps) {
-	const { addToCart, removeItem, cartItems } = useContext(StoreContext);
+	const { addToCart, removeItem, cartItems } = useCounterStore((state) => state);
 	return (
 		<Dialog>
 			<DialogTrigger className="absolute text-xs cursor-pointer px-4 py-2 rounded-md bg-gray-900 text-white">Explore Options</DialogTrigger>
