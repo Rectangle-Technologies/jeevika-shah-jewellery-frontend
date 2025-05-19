@@ -33,13 +33,15 @@ function CartSheet() {
 						))}
 					</div>
 				)}
-				<SheetFooter>
-					<div className="flex items-center justify-between text-lg text-gray-500 border-y py-3 my-2">
-						<p>Subtotal:</p>
-						<p className="">$ {cartItems.reduce((total, item) => total + item.count * (item.item.costOfDiamond + item.item.costOfLabour + item.item.miscellaneousCost), 0)}</p>
-					</div>
-					<Button>Checkout</Button>
-				</SheetFooter>
+				{cartItems.length > 0 && (
+					<SheetFooter>
+						<div className="flex items-center justify-between text-lg text-gray-500 border-y py-3 my-2">
+							<p>Subtotal:</p>
+							<p className="">$ {cartItems.reduce((total, item) => total + item.count * (item.item.costOfDiamond + item.item.costOfLabour + item.item.miscellaneousCost), 0)}</p>
+						</div>
+						<Button>Checkout</Button>
+					</SheetFooter>
+				)}
 			</SheetContent>
 		</Sheet>
 	);

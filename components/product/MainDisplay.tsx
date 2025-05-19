@@ -1,18 +1,18 @@
 "use client";
-import React, { useContext } from "react";
+import React from "react";
 import JewelleryDialogCarousel from "../common/JewelleryDialogCarousel";
 import Link from "next/link";
 import JewewllerySizeTable from "../common/JewewllerySizeTable";
 import { Button } from "../ui/button";
 import { MinusIcon, PlusIcon } from "lucide-react";
-import { StoreContext } from "@/contexts/storeProvider";
 import JewelleryOriginTab from "../common/JewelleryOriginTab";
+import { useCounterStore } from "@/providers/cart-store-providers";
 
 interface MainDisplayProps {
 	jewellery: Item;
 }
 function MainDisplay({ jewellery }: MainDisplayProps) {
-	const { addToCart, removeItem, cartItems } = useContext(StoreContext);
+	const { addToCart, removeItem, cartItems } = useCounterStore((state) => state);
 	return (
 		<div className="w-full md:w-[95%] mx-auto flex flex-col md:flex-row md:items-center gap-4">
 			<div className="mx-auto w-full  md:w-1/2 px-3 md:px-12">
