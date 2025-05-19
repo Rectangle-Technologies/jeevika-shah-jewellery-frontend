@@ -16,3 +16,5 @@ List of tasks:
 - [ ] Add filters on collections page. See the reference website
 - [ ] In the menu list in desktop view, add a bit padding of around 3
 - [ ] Try to use the burgandy logo everywhere. If not possible everywhere, then use it wherever the background is white
+- [ ] Remove explore options from Product Card and remove the Modal as well
+- [ ] On the product page, implement zoom on hover for images
