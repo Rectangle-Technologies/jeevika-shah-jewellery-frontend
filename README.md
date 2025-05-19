@@ -18,3 +18,4 @@ List of tasks:
 - [ ] Try to use the burgandy logo everywhere. If not possible everywhere, then use it wherever the background is white
 - [ ] Remove explore options from Product Card and remove the Modal as well
 - [ ] On the product page, implement zoom on hover for images
+- [ ] Change footer background color to burgandy
