@@ -13,7 +13,7 @@ function JewelleryGrid({ jewelleryItems }: JewelleryGridProps) {
 	const path = usePathname();
 	return (
 		<div className="w-full md:w-[95%] mx-auto p-3 flex flex-col items-center">
-			<div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 my-5 w-full">
+			<div className=" grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 my-5 w-full">
 				{jewelleryItems.map((item, index) => {
 					return (
 						<JewelleryCard

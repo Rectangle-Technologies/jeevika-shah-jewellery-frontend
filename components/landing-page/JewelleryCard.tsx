@@ -8,7 +8,6 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import JewelleryDialog from "../common/JewelleryDialog";
 import Link from "next/link";
 
 interface JewelleryCardProps {
@@ -23,7 +22,7 @@ function JewelleryCard({ jewelleryItem }: JewelleryCardProps) {
 				onMouseLeave={() => setHovered(false)}
 				className="px-0"
 			>
-				<div className="relative flex flex-col items-center justify-end p-3 h-[250px] w-full overflow-hidden">
+				<div className="relative flex flex-col items-center justify-end p-3 h-[150px] w-[150px] mx-auto overflow-hidden">
 					{/* Primary image */}
 					<div
 						className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${hovered ? "opacity-0" : "opacity-100"
@@ -39,8 +38,6 @@ function JewelleryCard({ jewelleryItem }: JewelleryCardProps) {
 							} ${hovered ? "cursor-pointer" : ""}`}
 						style={{ backgroundImage: `url(${jewelleryItem.images[1]})` }}
 					></div>
-
-					<JewelleryDialog jewellery={jewelleryItem} />
 				</div>
 
 				<Link href={`/product/${jewelleryItem._id}`} className="p-3">
