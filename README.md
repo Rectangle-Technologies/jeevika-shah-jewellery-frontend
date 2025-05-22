@@ -20,3 +20,6 @@ List of tasks:
 - [ ] On the product page, implement zoom on hover for images
 - [x] Change footer background color to burgandy
 - [x] Add breadcrumbs on top
+- [ ] Recuce the font weight on the product page. Use lighter fonts everywhere
+- [ ] Add some gaps between the plus and minus buttons and the quantity on the product page
+- [ ] Keep the layout on the product page exactly as the reference website
