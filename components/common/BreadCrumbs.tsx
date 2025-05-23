@@ -1,31 +1,54 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbEllipsis, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { getProductDetails } from "@/utils/functions/product";
+
+type Crumb = {
+	name: string;
+	href: string;
+};
 
 export function Breadcrumbs() {
 	const pathname = usePathname();
-	// Split the path into segments, e.g. "/docs/components/breadcrumb" becomes ["docs", "components", "breadcrumb"]
 	const pathSegments = pathname.split("/").filter(Boolean);
+	const [breadcrumbs, setBreadcrumbs] = useState<Crumb[]>([]);
 
-	// Build an array of breadcrumb objects including the “Home” link.
-	const breadcrumbs = [
-		{ name: "Home", href: "/" },
-		...pathSegments.map((segment, index) => {
-			const href = "/" + pathSegments.slice(0, index + 1).join("/");
-			// You can improve naming by converting dashes or underscores and capitalizing words.
-			const name = segment.charAt(0).toUpperCase() + segment.slice(1);
-			return { name, href };
-		}),
-	];
+	useEffect(() => {
+		const generateBreadcrumbs = async () => {
+			const crumbs: Crumb[] = [{ name: "Home", href: "/" }];
 
-	// Decide if we want to collapse the middle breadcrumbs into an ellipsis dropdown.
-	// For example: if there are more than 3 breadcrumb items
-	const totalItems = breadcrumbs.length;
+			if (pathSegments[0] === "product") {
+				// Add "Product" breadcrumb that links to /collections/all
+				crumbs.push({ name: "Product", href: "/collections/all" });
 
-	if (totalItems <= 3) {
+				// Add product name as the last crumb
+				if (pathSegments.length > 1) {
+					const product = await getProductDetails(pathSegments[1]);
+					crumbs.push({
+						name: product?.name || "Product",
+						href: `/product/${pathSegments[1]}`,
+					});
+				}
+			} else {
+				// Generic case for other routes
+				for (let i = 0; i < pathSegments.length; i++) {
+					const segment = pathSegments[i];
+					const href = "/" + pathSegments.slice(0, i + 1).join("/");
+					const name = segment.replace(/[-_]/g, " ").replace(/\b\w/g, (l) => l.toUpperCase());
+					crumbs.push({ name, href });
+				}
+			}
+
+			setBreadcrumbs(crumbs);
+		};
+
+		generateBreadcrumbs();
+	}, [pathname]);
+
+	if (breadcrumbs.length <= 3) {
 		return (
 			<Breadcrumb>
 				<BreadcrumbList>
@@ -42,16 +65,12 @@ export function Breadcrumbs() {
 			</Breadcrumb>
 		);
 	} else {
-		// With many segments, we display:
-		// - The first item ("Home")
-		// - A dropdown for the intermediate breadcrumb items
-		// - The last item as the current page.
 		const firstCrumb = breadcrumbs[0];
-		const middleCrumbs = breadcrumbs.slice(1, totalItems - 1);
-		const lastCrumb = breadcrumbs[totalItems - 1];
+		const middleCrumbs = breadcrumbs.slice(1, breadcrumbs.length - 1);
+		const lastCrumb = breadcrumbs[breadcrumbs.length - 1];
 
 		return (
-			<Breadcrumb className="">
+			<Breadcrumb>
 				<BreadcrumbList>
 					<BreadcrumbItem>
 						<BreadcrumbLink href={firstCrumb.href}>{firstCrumb.name}</BreadcrumbLink>

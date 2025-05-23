@@ -2,7 +2,7 @@
 import React from "react";
 import NavbarSheet from "./NavbarSheet";
 import Image from "next/image";
-import { UserCircleIcon } from "lucide-react";
+import { ShoppingBagIcon, UserCircleIcon } from "lucide-react";
 import Link from "next/link";
 import NavigationMenuDemo from "./NavigationMenuDemo";
 import { usePathname } from "next/navigation";
@@ -40,7 +40,10 @@ function Navbar() {
 					<Link href={"/profile"} className="hidden md:flex">
 						<UserCircleIcon className="cursor-pointer" />
 					</Link>
-					<CartSheet />
+					{/* <CartSheet /> */}
+					<Link href={'/cart'}>
+						<ShoppingBagIcon className="cursor-pointer" />
+					</Link>
 					<span className="bg-black text-white rounded-full w-7 h-7 flex items-center justify-center">{getCartLength()}</span>
 				</div>
 			</div>

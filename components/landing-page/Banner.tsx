@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 function Banner() {
 	return (
@@ -13,8 +14,9 @@ function Banner() {
 					text-xl bg-transparent text-white p-6 h-12 rounded-full z-30 cursor-pointer
 					opacity-0 translate-y-8 animate-fade-in-up font-light
 				`}
+				asChild
 			>
-				Shop Now
+				<Link href="/collections/all">Shop Now</Link>
 			</Button>
 		</div>
 	);
