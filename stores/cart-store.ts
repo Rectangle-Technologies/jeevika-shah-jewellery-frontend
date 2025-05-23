@@ -14,6 +14,7 @@ export type CartActions = {
     addToCart: (item: Item, count?: number) => void;
     clearCart: () => void;
     removeItem: (item: Item) => void;
+    removeItems: (item: Item) => void;
     getCartLength: () => number;
 };
 
@@ -59,6 +60,14 @@ export const createCartStore = (
                                     : i
                             )
                             .filter((i) => i.count > 0),
+                    }));
+                },
+
+                removeItems(item) {
+                    set((state) => ({
+                        cartItems: state.cartItems.filter(
+                            (i) => i.item.name !== item.name
+                        ),
                     }));
                 },
 

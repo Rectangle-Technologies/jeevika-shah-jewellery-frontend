@@ -29,11 +29,23 @@ function CartPage() {
 			)}
 			{cartItems.length > 0 && (
 				<div>
-					<div className="flex items-center justify-between text-lg text-gray-500 border-y py-3 my-2">
+					<div className="flex justify-between items-end text-lg text-gray-500 border-y py-3 my-2">
 						<p>Subtotal:</p>
 						<p className="">$ {cartItems.reduce((total, item) => total + item.count * (item.item.costOfDiamond + item.item.costOfLabour + item.item.miscellaneousCost), 0)}</p>
 					</div>
-					<Button className="float-right">Checkout</Button>
+					<div className=" flex flex-col gap-4 items-end">
+						<Link href="/collections/all">Continue Shopping</Link>
+						<Button>Proceed to Checkout</Button>
+						<div className="text-sm">
+							<p>
+								Taxes and{" "}
+								<Link href="" className="underline cursor-pointer">
+									shipping
+								</Link>{" "}
+								calculated at checkout.
+							</p>
+						</div>
+					</div>
 				</div>
 			)}
 		</div>
