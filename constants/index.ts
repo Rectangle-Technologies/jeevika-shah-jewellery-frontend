@@ -163,6 +163,33 @@ export const navbarLinks = [
     { title: "Brand Journey", link: "/brand-journey" },
 ]
 
+export const footerOptions: { title: string; link: string }[] = [
+    {
+        title: "Brand Journey",
+        link: "/brand-journey",
+    },
+    {
+        title: "Exchange & Refund Policy",
+        link: "/policies/exchange-and-refund-policy",
+    },
+    {
+        title: "Privacy Policy",
+        link: "/policies/privacy-policy",
+    },
+    {
+        title: "Buy Back Policy",
+        link: "/policies/buy-back-policy",
+    },
+    {
+        title: "Shipping Policy",
+        link: "/policies/shipping-policy",
+    },
+    {
+        title: "Gold Hallmark",
+        link: "/policies/gold-hallmark",
+    }
+];
+
 export const sortingCriteria = [
     { label: 'Alphabetically, A-Z', value: 'a-z' },
     { label: 'Alphabetically, Z-A', value: 'z-a' },
