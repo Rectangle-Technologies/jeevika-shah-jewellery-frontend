@@ -20,7 +20,7 @@ async function ProfilePage() {
 	};
 	return (
 		<div className=" flex flex-col items-center gap-5">
-			<div className="flex items-center justify-between w-full">
+			<div className="flex items-center justify-between w-full mt-5">
 				<p className="text-3xl">Account</p>
 				<Button variant={"link"}>
 					<LogOutIcon />
