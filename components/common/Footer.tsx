@@ -24,7 +24,7 @@ function Footer() {
 					<InstagramIcon />
 				</Link>
 			</div>
-			<div className="py-4">© 2025 All rights reserved</div>
+			<div className="py-4">© {new Date().getFullYear()} All rights reserved</div>
 		</footer>
 	);
 }
