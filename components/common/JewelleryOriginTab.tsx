@@ -5,8 +5,8 @@ function JewelleryOriginTab() {
 	return (
 		<Tabs defaultValue="natural">
 			<TabsList>
-				<TabsTrigger value="natural">Natural</TabsTrigger>
-				<TabsTrigger value="lab">Lab Grown</TabsTrigger>
+				<TabsTrigger value="natural">Natural Diamond</TabsTrigger>
+				<TabsTrigger value="lab">Lab Grown Diamond</TabsTrigger>
 			</TabsList>
 			<TabsContent value="natural">Natural</TabsContent>
 			<TabsContent value="lab">Lab Grown</TabsContent>

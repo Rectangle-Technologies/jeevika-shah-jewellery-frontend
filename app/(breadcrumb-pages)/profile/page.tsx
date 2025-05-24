@@ -51,7 +51,7 @@ async function ProfilePage() {
 					<p className="text-gray-700">{userDetails.email}</p>
 				</div>
 				<div className="">
-					<p>Default Shipping Address:</p>
+					<p>Address:</p>
 					{userDetails.address && (
 						<p className="text-gray-700">
 							{userDetails.address.line1}, {userDetails.address.line2}, {userDetails.address.city}, {userDetails.address.state}, {userDetails.address.country}, {userDetails.address.zip}
