@@ -1,23 +1,11 @@
+import { footerOptions } from "@/constants";
 import { FacebookIcon, InstagramIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 function Footer() {
-	const footerOptions: { title: string; link: string }[] = [
-		{
-			title: "Brand Journey",
-			link: "/brand-journey",
-		},
-		{
-			title: "Exchange & Refund Policy",
-			link: "/exchange-and-refund-policy",
-		},
-		{
-			title: "Privacy Policy",
-			link: "/privacy-policy",
-		},
-	];
+
 	return (
 		<footer className="w-full flex flex-col items-center justify-center py-2 bg-[#800020] text-white px-4 md:px-10">
 			<Image src="/assets/logo-primary.png" alt="Jeevika Shah Jewellery logo" width={150} height={150} />
