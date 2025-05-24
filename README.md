@@ -33,3 +33,4 @@ List of tasks:
 - [ ] Size should be a drop-down menu and it should only show the displayName property, not the weightOfMetal. weightOfMetal is for internal use
 - [ ] Shop Now button on cart page when cart is empty should navigate to the all products page.
 - [ ] On policy pages, center the title, add some bottom margin to the title and increase the line height of the content.
+- [ ] In mobile view, when the menu bar is open, on clicking on any item, menu bar should collapse.
