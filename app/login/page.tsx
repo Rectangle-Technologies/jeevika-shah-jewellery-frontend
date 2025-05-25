@@ -3,7 +3,7 @@ import Link from "next/link";
 
 function LoginPage() {
 	return (
-		<div className="h-[calc(100vh-64px)] pt-40 w-full px-2 md:w-[95%] mx-auto flex flex-col items-center">
+		<div className="min-h-[calc(100vh-64px)] pt-40 w-full px-2 md:w-[95%] mx-auto flex flex-col items-center">
 			<LoginForm />
 			<div className="flex items-center gap-2">
 				<p>Don&apos;t have an account? Register</p>

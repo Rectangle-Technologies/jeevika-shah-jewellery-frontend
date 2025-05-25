@@ -5,7 +5,7 @@ import JewelleryCategory from "@/components/landing-page/JewelleryCategory";
 import JewelleryGrid from "@/components/landing-page/JewelleryGrid";
 import PersonalisedPieces from "@/components/landing-page/PersonalisedPieces";
 import WhyWeAreHere from "@/components/landing-page/WhyWeAreHere";
-import { jewelleryItems } from "@/constants";
+import { getProducts } from "@/utils/functions/collection";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -61,7 +61,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
+export default async function Home() {
+  const jewelleryItems = await getProducts(1, 12, "", true);
   return (
     <div>
       <Banner />

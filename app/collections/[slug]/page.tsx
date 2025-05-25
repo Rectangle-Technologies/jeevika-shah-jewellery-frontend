@@ -1,4 +1,4 @@
-import { getItemsForCollection } from "@/utils/functions/collection";
+import { getProducts } from "@/utils/functions/collection";
 import JewelleryGrid from "@/components/landing-page/JewelleryGrid";
 import SortDropdown from "@/components/collections-page/SortDropDown";
 import FilterSheet from "@/components/collections-page/FilterSheet";
@@ -30,7 +30,9 @@ export default async function CollectionsPage({ params, searchParams }: { params
 	const minPrice = typeof sp.minPrice === "string" ? parseFloat(sp.minPrice) : 0;
 	const maxPrice = typeof sp.maxPrice === "string" ? parseFloat(sp.maxPrice) : Infinity;
 
-	let items = await getItemsForCollection(slug);
+	// make the first letter of slug capital
+	let modifiedSlug = slug.charAt(0).toUpperCase() + slug.slice(1);
+	let items = await getProducts(1, 20, modifiedSlug, false);
 
 	const originalMaxValue = items.reduce((max, item) => Math.max(max, item.costOfDiamond + item.costOfLabour + item.miscellaneousCost), 0);
 
@@ -45,7 +47,7 @@ export default async function CollectionsPage({ params, searchParams }: { params
 	const sortedJewellery = sortItems(items, sortOption);
 
 	return (
-		<section className="pt-24 lg:pt-40 flex flex-col items-center px-3">
+		<section className="pt-24 md:pt-40 flex flex-col items-center px-3">
 			<div className="flex justify-between items-center gap-2 w-full md:w-[95%] mx-auto mb-2 md:mb-5">
 				<FilterSheet maxPrice={originalMaxValue} />
 				<SortDropdown />

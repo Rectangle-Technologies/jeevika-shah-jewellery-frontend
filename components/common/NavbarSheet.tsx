@@ -2,11 +2,14 @@ import React from "react";
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { AlignLeftIcon, FacebookIcon, InstagramIcon } from "lucide-react";
-import { navbarLinks } from "@/constants";
 import Link from "next/link";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
-function NavbarSheet() {
+interface NavbarSheetProps {
+	navbarLinks: { title: string; link?: string; subLinks?: { title: string; link: string }[] }[];
+}
+
+function NavbarSheet({ navbarLinks }: NavbarSheetProps) {
 	return (
 		<Sheet>
 			<SheetTrigger asChild>
@@ -36,7 +39,7 @@ function NavbarSheet() {
 								</Accordion>
 							);
 						} else {
-							return <Link href={link.link}>{link.title}</Link>;
+							return <div className="">{link.link && <Link href={link.link}>{link.title}</Link>}</div>;
 						}
 					})}
 					<div className="flex pb-8 gap-2 my-5 w-full">
