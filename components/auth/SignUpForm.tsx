@@ -12,8 +12,6 @@ import { ToastContainer, toast } from "react-toastify";
 function SignUpForm() {
 	const [currentStep, setCurrentStep] = React.useState(1);
 	const [loading, setLoading] = React.useState(false);
-	const [error, setError] = React.useState<string | null>(null);
-	const [success, setSuccess] = React.useState<string | null>(null);
 	const [verificationId, setVerificationId] = React.useState<string | null>(null);
 	const [step1Data, setStep1Data] = React.useState<typeof step1DefaultValues | null>(null);
 
@@ -28,28 +26,38 @@ function SignUpForm() {
 	});
 
 	const handleStep1 = async (values: typeof step1DefaultValues) => {
-		setError(null);
-		setSuccess(null);
 		setLoading(true);
 		try {
 			const checkRes = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/check-user`, { phone: values.phone });
 			if (checkRes.data.exists) {
-				setError("User already exists. Kindly login.");
+				toast.error("User already exists. Kindly login.", {
+					type: "warning",
+					position: "bottom-right",
+				});
 				setLoading(false);
 				return;
 			}
 			const otpRes = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/send-otp`, { phone: values.phone });
 			if (otpRes.data.result && otpRes.data.result.toLocaleLowerCase() !== "success") {
-				setError(otpRes.data.message);
+				toast.error(otpRes.data.message, {
+					type: "error",
+					position: "bottom-right",
+				});
 				setLoading(false);
 				return;
 			}
-			setSuccess("OTP sent to your phone.");
+			toast("OTP sent to your phone.", {
+				type: "success",
+				position: "bottom-right",
+			});
 			setVerificationId(otpRes.data.body.data.verificationId);
 			setStep1Data(values);
 			setCurrentStep(2);
 		} catch (err: any) {
-			setError(err?.response?.data?.message || "Something went wrong.");
+			toast.error(err?.response?.data?.message || "Failed to send OTP.", {
+				type: "error",
+				position: "bottom-right",
+			});
 		} finally {
 			setLoading(false);
 		}
@@ -57,12 +65,13 @@ function SignUpForm() {
 
 	// Step 2 submit
 	const handleStep2 = async (values: typeof step2DefaultValues) => {
-		setError(null);
-		setSuccess(null);
 		setLoading(true);
 		try {
 			if (!step1Data) {
-				setError("Step 1 data is missing.");
+				toast("Step 1 data is missing.", {
+					type: "error",
+					position: "bottom-right",
+				});
 				setLoading(false);
 				return;
 			}
@@ -80,13 +89,22 @@ function SignUpForm() {
 				otp: values.otp,
 			};
 			const verifyRes = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/verify-otp`, formattedUserData);
-			if (verifyRes.data.verified) {
-				setSuccess("OTP verified! You can now complete registration.");
+			if (verifyRes.data.result && verifyRes.data.result.toLocaleLowerCase() === "success") {
+				toast("OTP verified! You can now complete registration.", {
+					type: "success",
+					position: "bottom-right",
+				});
 			} else {
-				setError("Invalid OTP. Please try again.");
+				toast(verifyRes.data.message || "Failed to verify OTP.", {
+					type: "error",
+					position: "bottom-right",
+				});
 			}
 		} catch (err: any) {
-			setError(err?.response?.data?.message || "Failed to verify OTP.");
+			toast.error(err?.response?.data?.message || "Failed to verify OTP.", {
+				type: "error",
+				position: "bottom-right",
+			});
 		} finally {
 			setLoading(false);
 		}
