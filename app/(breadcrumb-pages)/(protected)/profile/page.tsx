@@ -1,3 +1,4 @@
+import ProfileHeader from "@/components/profile/ProfileHeader";
 import { Button } from "@/components/ui/button";
 import { LogOutIcon, MoveRightIcon, ShoppingBagIcon } from "lucide-react";
 import Link from "next/link";
@@ -20,17 +21,11 @@ async function ProfilePage() {
 	};
 	return (
 		<div className=" flex flex-col items-center gap-5">
-			<div className="flex items-center justify-between w-full mt-5">
-				<p className="text-3xl">Account</p>
-				<Button variant={"link"}>
-					<LogOutIcon />
-					Logout
-				</Button>
-			</div>
+			<ProfileHeader />
 			{previousOrders.length === 0 && (
 				<div className="h-full flex flex-col items-center justify-center gap-4 lg:gap-8 text-md lg:text-2xl min-h-[40vh]">
-					<ShoppingBagIcon height={140} width={140} className="hidden lg:flex"/>
-					<ShoppingBagIcon height={50} width={50} className="lg:hidden"/>
+					<ShoppingBagIcon height={140} width={140} className="hidden lg:flex" />
+					<ShoppingBagIcon height={50} width={50} className="lg:hidden" />
 					<p className="">No previous orders found.</p>
 				</div>
 			)}

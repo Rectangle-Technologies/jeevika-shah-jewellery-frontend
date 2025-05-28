@@ -13,8 +13,10 @@ import SocialShareButtons from "./SocialShareButton";
 interface MainDisplayProps {
 	jewellery: Item;
 }
+
 function MainDisplay({ jewellery }: MainDisplayProps) {
 	const { addToCart, removeItem, cartItems } = useCounterStore((state) => state);
+
 	return (
 		<div className="w-full md:w-[95%] mx-auto flex flex-col md:flex-row md:items-center gap-4 text-md">
 			<div className="mx-auto w-full  md:w-1/2 px-3 md:px-12">

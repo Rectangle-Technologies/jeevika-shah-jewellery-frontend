@@ -1,5 +1,5 @@
 import React from "react";
-import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetClose, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { AlignLeftIcon, FacebookIcon, InstagramIcon } from "lucide-react";
 import Link from "next/link";
@@ -28,18 +28,18 @@ function NavbarSheet({ navbarLinks }: NavbarSheetProps) {
 								<Accordion type="single" collapsible>
 									<AccordionItem value="item-1">
 										<AccordionTrigger className="text-xl">{link.title}</AccordionTrigger>
-										<AccordionContent className="px-3">
+										<AccordionContent className="px-3 flex flex-col">
 											{link.subLinks.map((subLink) => (
-												<div key={subLink.title} className="text-sm my-3 font-normal">
+												<SheetClose asChild key={subLink.title} className="text-sm my-1 font-normal">
 													<Link href={subLink.link}>{subLink.title}</Link>
-												</div>
+												</SheetClose>
 											))}
 										</AccordionContent>
 									</AccordionItem>
 								</Accordion>
 							);
 						} else {
-							return <div className="">{link.link && <Link href={link.link}>{link.title}</Link>}</div>;
+							return <SheetClose asChild className="">{link.link && <Link href={link.link}>{link.title}</Link>}</SheetClose>;
 						}
 					})}
 					<div className="flex pb-8 gap-2 my-5 w-full">

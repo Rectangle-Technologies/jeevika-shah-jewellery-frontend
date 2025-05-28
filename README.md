@@ -31,10 +31,10 @@ List of tasks:
 - [ ] In address line2 is also optional. So the comma after line2 should come only if line2 exists. Make it optional in the interface as well.
 - [ ] Make the entire Product Card a link i.e. customer should be directed to the product page on clicking anywhere on the card, not just on the title.
 - [ ] Size should be a drop-down menu and it should only show the displayName property, not the weightOfMetal. weightOfMetal is for internal use
-- [ ] Shop Now button on cart page when cart is empty should navigate to the all products page.
-- [ ] On policy pages, center the title, add some bottom margin to the title and increase the line height of the content.
-- [ ] In mobile view, when the menu bar is open, on clicking on any item, menu bar should collapse.
-
+- [x] Shop Now button on cart page when cart is empty should navigate to the all products page.
+- [x] On policy pages, center the title, add some bottom margin to the title and increase the line height of the content.
+- [x] In mobile view, when the menu bar is open, on clicking on any item, menu bar should collapse.
+- [ ] Make page for `/collections/all`.
 Flow for user authentication:
 Login:
 1. Take input for mobile number.

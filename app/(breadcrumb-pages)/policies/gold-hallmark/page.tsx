@@ -4,7 +4,7 @@ import React from "react";
 function GoldHallMarkPage() {
 	return (
 		<div className="flex flex-col gap-3 p-4">
-			<p className="text-2xl">Gold Hallmark</p>
+			<p className="text-2xl policy-header">Gold Hallmark</p>
 			<p>Jeevika Shah is a BIS-Certified Jeweller, and it ensures to meet all standards to provide our customers with the purest and finest precious metal articles.</p>
 			<Table className="border border-gray-300 border-collapse">
 				<TableHeader>

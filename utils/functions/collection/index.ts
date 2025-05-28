@@ -31,7 +31,13 @@ export async function getNavbarOptions() {
 
 export async function getProducts(pageNo: number, pageSize: number, category: string, isLandingPageProduct: boolean): Promise<Item[]> {
   try {
-    const res = await fetch(`${process.env.API_URL}/products?pageNo=${pageNo}&pageSize=${pageSize}&category=${category}`);
+    let url = "";
+    if (isLandingPageProduct) {
+      url = `${process.env.API_URL}/products?pageNo=${pageNo}&pageSize=${pageSize}&category=${category}&isLandingPageProduct=${isLandingPageProduct}`;
+    } else {
+      url = `${process.env.API_URL}/products?pageNo=${pageNo}&pageSize=${pageSize}&category=${category}`
+    }
+    const res = await fetch(url);
     const data = await res.json();
     if (data.result && data.result.toLocaleLowerCase() === 'success') {
       return data.body.products;

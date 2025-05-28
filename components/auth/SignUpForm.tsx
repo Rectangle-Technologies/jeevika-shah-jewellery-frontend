@@ -8,8 +8,12 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 function SignUpForm() {
+
+	const router = useRouter();
+
 	const [currentStep, setCurrentStep] = React.useState(1);
 	const [loading, setLoading] = React.useState(false);
 	const [verificationId, setVerificationId] = React.useState<string | null>(null);
@@ -28,15 +32,15 @@ function SignUpForm() {
 	const handleStep1 = async (values: typeof step1DefaultValues) => {
 		setLoading(true);
 		try {
-			const checkRes = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/check-user`, { phone: values.phone });
-			if (checkRes.data.exists) {
-				toast.error("User already exists. Kindly login.", {
-					type: "warning",
-					position: "bottom-right",
-				});
-				setLoading(false);
-				return;
-			}
+			// const checkRes = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/check-user`, { phone: values.phone });
+			// if (checkRes.data.exists) {
+			// 	toast.error("User already exists. Kindly login.", {
+			// 		type: "warning",
+			// 		position: "bottom-right",
+			// 	});
+			// 	setLoading(false);
+			// 	return;
+			// }
 			const otpRes = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/send-otp`, { phone: values.phone });
 			if (otpRes.data.result && otpRes.data.result.toLocaleLowerCase() !== "success") {
 				toast.error(otpRes.data.message, {
@@ -94,6 +98,14 @@ function SignUpForm() {
 					type: "success",
 					position: "bottom-right",
 				});
+				localStorage.setItem("at", verifyRes.data.body.token);
+				const restoreUrl = sessionStorage.getItem("restore_url");
+				if(restoreUrl) {
+					sessionStorage.removeItem("restore_url");
+					router.push(restoreUrl);
+				}else{
+					router.push("/");
+				}
 			} else {
 				toast(verifyRes.data.message || "Failed to verify OTP.", {
 					type: "error",

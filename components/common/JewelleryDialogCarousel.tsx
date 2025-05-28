@@ -7,10 +7,13 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 import Image from 'next/image'
+import { imgSrcModifier } from '@/utils/functions/image';
 
 interface JewelleryDialogProps {
     imageList: string[]
 }
+
+
 
 function JewelleryDialogCarousel({ imageList }: JewelleryDialogProps) {
     return (
@@ -19,7 +22,7 @@ function JewelleryDialogCarousel({ imageList }: JewelleryDialogProps) {
 				{imageList.map((src, index) => (
 					<CarouselItem key={src + index.toString()}>
 						<div className="relative p-1 h-[300px]">
-							<Image src={src} fill alt="Jewellery" className=" mx-auto" />
+							<Image src={imgSrcModifier(src)} fill alt="Jewellery" className=" mx-auto" />
 						</div>
 					</CarouselItem>
 				))}

@@ -16,7 +16,7 @@ function CartPage() {
 					<ShoppingCartIcon height={70} width={70} />
 					<p className="">Your cart is empty</p>
 					<Button asChild className="mt-4">
-						<Link href="/">Shop Now</Link>
+						<Link href="/collections/all">Shop Now</Link>
 					</Button>
 				</div>
 			)}
