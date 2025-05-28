@@ -59,6 +59,6 @@ Flow for order creation:
 5. If the Razorpay Order creation is successful, then in the callback method of Razorpay, call the API: /razorpay/verify-signature (Verify Signature).
 6. If Signature Verification fails, then redierect user to the Order Confirmation page and display a message that "There was an error completing the payment. Don't worry your order has been successfully placed, you can complete your payment here".
 7. If the signature verification is successful, then update payment details of the order by calling the API: /order/update-payment/:orderId, with the Razorpay Payment ID.
-8. Redierect user to the Order Confirmation page and display a message that "Thank you for shopping with us! Your order has been placed successfully".
+8. Redierect user to the Order Confirmation page, send confirmation by calling the API: /order/send-confirmation/:orderId (Send confirmation) and display a message that "Thank you for shopping with us! Your order has been placed successfully".
 
 Note: Display the messages on the order confrimation page in a simple and easy-to-the eye manner
