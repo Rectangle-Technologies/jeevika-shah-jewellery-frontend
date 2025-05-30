@@ -45,12 +45,12 @@ function LoginForm() {
 	const handlePhoneSubmit = async (values: z.infer<typeof phoneSchema>) => {
 		setLoading(true);
 		try {
-			// const checkRes = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/check-user`, { phone: values.phone });
-			// if (!checkRes.data.exists) {
-			// 	toast.error("User does not exist. Please sign up.", { position: "bottom-right" });
-			// 	setLoading(false);
-			// 	return;
-			// }
+			const checkRes = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/check-exists`, { phone: values.phone });
+			if (checkRes.status !== 200) {
+				toast.error("User does not exist. Please sign up.", { position: "bottom-right" });
+				setLoading(false);
+				return;
+			}
 			// User exists, send OTP
 			const otpRes = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/send-otp`, { phone: values.phone });
 			if (otpRes.data.result && otpRes.data.result.toLowerCase() !== "success") {

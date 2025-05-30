@@ -8,7 +8,7 @@ import { UseFormReturn } from "react-hook-form";
 export const step1Schema = z.object({
 	first_name: z.string().trim().min(2, { message: "First name must be at least 2 characters long" }).max(50, { message: "First name must be at most 50 characters long" }),
 	last_name: z.string().trim(),
-	email: z.string().trim().email({ message: "Please enter a valid email address" }),
+	email: z.string().trim().email().optional(),
 	phone: z
 		.string()
 		.trim()
@@ -24,7 +24,6 @@ export const step1Schema = z.object({
 export const step1DefaultValues = {
 	first_name: "",
 	last_name: "",
-	email: "",
 	phone: "",
 	line1: "",
 	city: "",

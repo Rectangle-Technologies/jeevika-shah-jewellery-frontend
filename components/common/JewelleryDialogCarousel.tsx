@@ -1,36 +1,23 @@
-import React from 'react'
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-} from "@/components/ui/carousel"
-import Image from 'next/image'
-import { imgSrcModifier } from '@/utils/functions/image';
+import React from "react";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from "react-responsive-carousel";
+import Image from "next/image";
+import { imgSrcModifier } from "@/utils/functions/image";
 
 interface JewelleryDialogProps {
-    imageList: string[]
+	imageList: string[];
 }
 
-
-
 function JewelleryDialogCarousel({ imageList }: JewelleryDialogProps) {
-    return (
+	return (
 		<Carousel className="w-full">
-			<CarouselContent>
-				{imageList.map((src, index) => (
-					<CarouselItem key={src + index.toString()}>
-						<div className="relative p-1 h-[300px]">
-							<Image src={imgSrcModifier(src)} fill alt="Jewellery" className=" mx-auto" />
-						</div>
-					</CarouselItem>
-				))}
-			</CarouselContent>
-			<CarouselPrevious />
-			<CarouselNext />
+			{imageList.map((src, index) => (
+				<div key={src + index.toString()} className="relative p-1 h-[300px]">
+					<Image src={imgSrcModifier(src)} fill alt="Jewellery" className="mx-auto" />
+				</div>
+			))}
 		</Carousel>
 	);
 }
 
-export default JewelleryDialogCarousel
+export default JewelleryDialogCarousel;

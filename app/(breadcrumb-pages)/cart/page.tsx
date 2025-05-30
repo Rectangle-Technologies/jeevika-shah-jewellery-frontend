@@ -31,7 +31,7 @@ function CartPage() {
 				<div>
 					<div className="flex justify-between items-end text-lg text-gray-500 border-y py-3 my-2">
 						<p>Subtotal:</p>
-						<p className="">$ {cartItems.reduce((total, item) => total + item.count * (item.item.costOfDiamond + item.item.costOfLabour + item.item.miscellaneousCost), 0)}</p>
+						<p className="">$ {cartItems.reduce((total, item) => total + item.quantity * (item.item.costOfDiamond + item.item.costOfLabour + item.item.miscellaneousCost), 0)}</p>
 					</div>
 					<div className=" flex flex-col gap-4 items-end">
 						<Link href="/collections/all">Continue Shopping</Link>

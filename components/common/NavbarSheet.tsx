@@ -1,15 +1,17 @@
 import React from "react";
 import { Sheet, SheetClose, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { AlignLeftIcon, FacebookIcon, InstagramIcon } from "lucide-react";
+import { AlignLeftIcon, FacebookIcon, InstagramIcon, LogOutIcon } from "lucide-react";
 import Link from "next/link";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { useAuthStore } from "@/stores/auth-store";
 
 interface NavbarSheetProps {
 	navbarLinks: { title: string; link?: string; subLinks?: { title: string; link: string }[] }[];
 }
 
 function NavbarSheet({ navbarLinks }: NavbarSheetProps) {
+	const { isAuthenticated } = useAuthStore((state) => state);
 	return (
 		<Sheet>
 			<SheetTrigger asChild>
@@ -39,9 +41,19 @@ function NavbarSheet({ navbarLinks }: NavbarSheetProps) {
 								</Accordion>
 							);
 						} else {
-							return <SheetClose asChild className="">{link.link && <Link href={link.link}>{link.title}</Link>}</SheetClose>;
+							return (
+								<SheetClose asChild className="">
+									{link.link && <Link href={link.link}>{link.title}</Link>}
+								</SheetClose>
+							);
 						}
 					})}
+					{isAuthenticated && (
+						<Button variant="link" className="text-xl font-normal flex px-0 mx-0">
+							Logout
+							{/* <LogOutIcon className="px-0 mx-0" /> */}
+						</Button>
+					)}
 					<div className="flex pb-8 gap-2 my-5 w-full">
 						<Link href={process.env.NEXT_PUBLIC_FACEBOOK_LINK!} className="hover:underline py-1">
 							<FacebookIcon />

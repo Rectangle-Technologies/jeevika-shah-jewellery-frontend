@@ -21,6 +21,14 @@ interface Item {
     isActive: boolean
 }
 
+interface IndividualCartItem {
+    productId: string;
+    quantity: number;
+    size: string;
+    diamondType: string;
+    item: Item
+}
+
 interface Address {
     line1: string;
     line2: string;

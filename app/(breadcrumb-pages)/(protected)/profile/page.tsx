@@ -1,24 +1,27 @@
+"use client";
 import ProfileHeader from "@/components/profile/ProfileHeader";
-import { Button } from "@/components/ui/button";
-import { LogOutIcon, MoveRightIcon, ShoppingBagIcon } from "lucide-react";
-import Link from "next/link";
+import { getPreviousOrders, getUserDetails } from "@/utils/functions/user";
+import { ShoppingBagIcon } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 import React from "react";
 
-async function ProfilePage() {
-	const previousOrders = [];
-	const userDetails: User = {
-		name: "Virat Kohli",
-		email: "virat.kohli@example.com",
-		phone: "1234567890",
-		address: {
-			line1: "line1",
-			line2: "line2",
-			city: "city",
-			state: "state",
-			country: "country",
-			zip: "zip",
-		},
-	};
+function ProfilePage() {
+	const [previousOrders, setPreviousOrders] = React.useState<any[]>([]);
+	const [userDetails, setUserDetails] = React.useState<User | null>(null);
+
+	React.useEffect(() => {
+		const fetchUserDetails = async () => {
+			const userDetails = await getUserDetails();
+			setUserDetails(userDetails);
+		};
+		const fetchPreviousOrders = async () => {
+			const previousOrders = await getPreviousOrders(1, 10);
+			setPreviousOrders(previousOrders);
+		}
+		fetchUserDetails();
+		fetchPreviousOrders();
+	}, []);
+
 	return (
 		<div className=" flex flex-col items-center gap-5">
 			<ProfileHeader />
@@ -34,23 +37,38 @@ async function ProfilePage() {
 				<div className="flex flex-col md:flex-row items-start md:items-center justify-between w-full md:w-3/5 lg:w-2/5">
 					<div className="">
 						<p>First Name:</p>
-						<p className="text-gray-700">{userDetails.name.split(" ")[0]}</p>
+						{!userDetails ? <Skeleton className="h-6 w-24" /> : <p className="text-gray-700">{userDetails.name.split(" ")[0]}</p>}
 					</div>
 					<div className="">
 						<p>Last Name:</p>
-						<p className="text-gray-700">{userDetails.name.split(" ")[1] && userDetails.name.split(" ")[1]}</p>
+						{!userDetails ? (
+							<Skeleton className="h-6 w-24" />
+						) : (
+							<p className="text-gray-700">
+								{userDetails.name.split(" ").length > 1 &&
+									userDetails.name
+										.split(" ")
+										.map((name) => name)
+										.slice(1)
+										.join(" ")}
+							</p>
+						)}
 					</div>
 				</div>
 				<div className="">
 					<p>Email:</p>
-					<p className="text-gray-700">{userDetails.email}</p>
+					{!userDetails ? <Skeleton className="h-6 w-48" /> : <p className="text-gray-700">{userDetails.email ? userDetails.email : "Not Provided"}</p>}
 				</div>
 				<div className="">
 					<p>Address:</p>
-					{userDetails.address && (
-						<p className="text-gray-700">
-							{userDetails.address.line1}, {userDetails.address.line2}, {userDetails.address.city}, {userDetails.address.state}, {userDetails.address.country}, {userDetails.address.zip}
-						</p>
+					{!userDetails ? (
+						<Skeleton className="h-6 w-64" />
+					) : (
+						userDetails.address && (
+							<p className="text-gray-700">
+								{userDetails.address.line1}, {userDetails.address.line2}, {userDetails.address.city}, {userDetails.address.state}, {userDetails.address.country}, {userDetails.address.zip}
+							</p>
+						)
 					)}
 				</div>
 				{/* <Link href={"/profile/addresses"} className="flex items-center gap-2">

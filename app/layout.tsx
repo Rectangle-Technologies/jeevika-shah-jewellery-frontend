@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 		icon: "/favicon.ico",
 		apple: "/apple-touch-icon.png",
 	},
-	manifest: "/site.webmanifest",
+	// manifest: "/site.webmanifest",
 };
 
 export default async function RootLayout({

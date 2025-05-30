@@ -11,7 +11,6 @@ import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
 function SignUpForm() {
-
 	const router = useRouter();
 
 	const [currentStep, setCurrentStep] = React.useState(1);
@@ -32,15 +31,15 @@ function SignUpForm() {
 	const handleStep1 = async (values: typeof step1DefaultValues) => {
 		setLoading(true);
 		try {
-			// const checkRes = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/check-user`, { phone: values.phone });
-			// if (checkRes.data.exists) {
-			// 	toast.error("User already exists. Kindly login.", {
-			// 		type: "warning",
-			// 		position: "bottom-right",
-			// 	});
-			// 	setLoading(false);
-			// 	return;
-			// }
+			const checkRes = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/check-exists`, { phone: values.phone });
+			if (checkRes.status === 200) {
+				toast.error("User already exists. Kindly login.", {
+					type: "warning",
+					position: "bottom-right",
+				});
+				setLoading(false);
+				return;
+			}
 			const otpRes = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/send-otp`, { phone: values.phone });
 			if (otpRes.data.result && otpRes.data.result.toLocaleLowerCase() !== "success") {
 				toast.error(otpRes.data.message, {
@@ -100,10 +99,10 @@ function SignUpForm() {
 				});
 				localStorage.setItem("at", verifyRes.data.body.token);
 				const restoreUrl = sessionStorage.getItem("restore_url");
-				if(restoreUrl) {
+				if (restoreUrl) {
 					sessionStorage.removeItem("restore_url");
 					router.push(restoreUrl);
-				}else{
+				} else {
 					router.push("/");
 				}
 			} else {

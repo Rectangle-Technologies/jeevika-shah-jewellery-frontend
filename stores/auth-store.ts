@@ -1,4 +1,5 @@
 // stores/auth-store.ts
+import { verifyToken } from "@/utils/functions/user";
 import { create } from "zustand";
 
 interface AuthState {
@@ -6,7 +7,7 @@ interface AuthState {
     isAuthenticated: boolean;
     login: (token: string) => void;
     logout: () => void;
-    restore: () => void;
+    restore: () => Promise<void>;
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
@@ -20,8 +21,13 @@ export const useAuthStore = create<AuthState>((set) => ({
         localStorage.removeItem("at");
         set({ token: null, isAuthenticated: false });
     },
-    restore: () => {
+    restore: async () => {
         const storedToken = localStorage.getItem("at");
-        set({ token: storedToken, isAuthenticated: !!storedToken });
+        const isTokenValid = storedToken ? await verifyToken(storedToken) : false;
+        if (isTokenValid) {
+            set({ token: storedToken, isAuthenticated: true });
+        } else {
+            set({ token: null, isAuthenticated: false });
+        }
     },
 }));

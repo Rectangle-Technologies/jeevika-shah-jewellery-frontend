@@ -1,15 +1,19 @@
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-function JewelleryOriginTab() {
+interface JwelleryOriginTabProps {
+	setType: React.Dispatch<React.SetStateAction<string>>;
+}
+
+function JewelleryOriginTab({ setType }: JwelleryOriginTabProps) {
 	return (
-		<Tabs defaultValue="natural">
+		<Tabs onValueChange={(value) => setType(value)} defaultValue="natural">
 			<TabsList>
-				<TabsTrigger value="natural">Natural Diamond</TabsTrigger>
-				<TabsTrigger value="lab">Lab Grown Diamond</TabsTrigger>
+				<TabsTrigger value={"natural"}>Natural Diamond</TabsTrigger>
+				<TabsTrigger value={"lab-grown"}>Lab Grown Diamond</TabsTrigger>
 			</TabsList>
-			<TabsContent value="natural">Natural</TabsContent>
-			<TabsContent value="lab">Lab Grown</TabsContent>
+			{/* <TabsContent value="natural">Natural</TabsContent> */}
+			{/* <TabsContent value="lab">Lab Grown</TabsContent> */}
 		</Tabs>
 	);
 }

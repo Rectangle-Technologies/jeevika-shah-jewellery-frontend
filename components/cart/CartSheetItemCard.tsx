@@ -6,16 +6,16 @@ import { useCounterStore } from "@/providers/cart-store-providers";
 import { imgSrcModifier } from "@/utils/functions/image";
 
 interface CartSheetItemCardProps {
-	cartItem: { item: Item; count: number };
+	cartItem: IndividualCartItem;
 }
 
 function CartSheetItemCard({ cartItem }: CartSheetItemCardProps) {
-	const { addToCart, removeItem, removeItems } = useCounterStore((state) => state);
+	const { addToCart, removeItems } = useCounterStore((state) => state);
 	const columnHeading = "text-black text-xs";
 	const itemDetailStyle = "mx-auto text-center";
 	return (
 		<Card className="gap-2 relative">
-			<CircleXIcon className="text-red-500 absolute right-2 top-2" onClick={() => removeItems(cartItem.item)} />
+			<CircleXIcon className="text-red-500 cursor-pointer absolute right-2 top-2" onClick={() => removeItems(cartItem.item)} />
 
 			<CardHeader>
 				<CardTitle>{cartItem.item.name}</CardTitle>
@@ -42,15 +42,15 @@ function CartSheetItemCard({ cartItem }: CartSheetItemCardProps) {
 					<div className={itemDetailStyle}>
 						<p className={columnHeading}>Qty</p>
 						<div className="flex items-center gap-3 my-2">
-							<PlusIcon onClick={() => addToCart(cartItem.item)} className="text-black border border-black rounded-full cursor-pointer hover:shadow" />
-							<p>{cartItem.count}</p>
-							<MinusIcon onClick={() => removeItem(cartItem.item)} className="text-black border border-black rounded-full cursor-pointer hover:shadow" />
+							<PlusIcon onClick={() => addToCart(cartItem.item._id, cartItem.item, cartItem.size, cartItem.diamondType, 1)} className="text-black border border-black rounded-full cursor-pointer hover:shadow" />
+							<p>{cartItem.quantity}</p>
+							<MinusIcon onClick={() => removeItems(cartItem.item)} className="text-black border border-black rounded-full cursor-pointer hover:shadow" />
 						</div>
 					</div>
 
 					<div className={itemDetailStyle}>
 						<p className={columnHeading}>Total</p>
-						{cartItem.count * (cartItem.item.costOfDiamond + cartItem.item.costOfLabour + cartItem.item.miscellaneousCost)}
+						{cartItem.quantity * (cartItem.item.costOfDiamond + cartItem.item.costOfLabour + cartItem.item.miscellaneousCost)}
 					</div>
 				</div>
 			</CardContent>

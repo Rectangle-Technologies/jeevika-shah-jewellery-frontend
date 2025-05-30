@@ -11,8 +11,9 @@ export default function ProtectedLayout({ children }: { children: React.ReactNod
 	const pathname = usePathname();
 
 	useEffect(() => {
-		restore();
-		setChecked(true);
+		restore().then(() => {
+			setChecked(true);
+		});
 		// eslint-disable-next-line
 	}, []);
 

@@ -2,27 +2,31 @@
 import React from "react";
 import JewelleryDialogCarousel from "../common/JewelleryDialogCarousel";
 import Link from "next/link";
-import JewewllerySizeTable from "../common/JewewllerySizeTable";
+// import JewewllerySizeTable from "../common/JewewllerySizeTable";
 import { Button } from "../ui/button";
 import { HeartIcon, MinusIcon, PlusIcon } from "lucide-react";
 import JewelleryOriginTab from "../common/JewelleryOriginTab";
 import { useCounterStore } from "@/providers/cart-store-providers";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import SocialShareButtons from "./SocialShareButton";
+import JewellerySizeDropdown from "./JewellerySizeDropdown";
 
 interface MainDisplayProps {
 	jewellery: Item;
 }
 
 function MainDisplay({ jewellery }: MainDisplayProps) {
-	const { addToCart, removeItem, cartItems } = useCounterStore((state) => state);
+	const { addToCart, cartItems } = useCounterStore((state) => state);
+	const [count, setCount] = React.useState(cartItems.find((item) => item.productId === jewellery._id)?.quantity || 1);
+	const [size, setSize] = React.useState(cartItems.find((item) => item.productId === jewellery._id)?.size || jewellery.sizes[0].displayName);
+	const [type, setType] = React.useState(cartItems.find((item) => item.productId === jewellery._id)?.diamondType || 'natural');
 
 	return (
 		<div className="w-full md:w-[95%] mx-auto flex flex-col md:flex-row md:items-center gap-4 text-md">
-			<div className="mx-auto w-full  md:w-1/2 px-3 md:px-12">
+			<div className="mx-auto w-full  md:w-1/2 px-3">
 				<JewelleryDialogCarousel imageList={jewellery.images} />
 			</div>
-			<div className="text-start w-full md:w-1/2 px-3 md:px-12 flex flex-col items-start gap-4 text-gray-600">
+			<div className="text-start w-full md:w-1/2 px-3 flex flex-col items-start gap-4 text-gray-600">
 				<p className="text-2xl text-black">{jewellery.name}</p>
 				<p className="text-md">$ {jewellery.costOfDiamond + jewellery.costOfLabour + jewellery.miscellaneousCost}</p>
 				<p className="text-md">{jewellery.description}</p>
@@ -34,20 +38,37 @@ function MainDisplay({ jewellery }: MainDisplayProps) {
 				</div>
 				<div className="">Metal: {jewellery.karatOfGold}K Gold</div>
 				<p>Please Allow Between 2 to 3 Weeks To Finalize And Deliver Your Product.</p>
-				<JewewllerySizeTable jewellerySizes={jewellery.sizes} />
-				<JewelleryOriginTab />
-				<div className="w-full flex items-center justify-between gap-2">
-					<div className="flex items-center  gap-6">
-						<Button className=" cursor-pointer" onClick={() => addToCart(jewellery)}>
-							<PlusIcon />
-						</Button>
-						<p>{cartItems.find((item) => item.item.name === jewellery.name)?.count || 0}</p>
-						<Button className="cursor-pointer" onClick={() => removeItem(jewellery)} disabled={cartItems.find((item) => item.item.name === jewellery.name)?.count === 0}>
-							<MinusIcon />
+				{/* <JewewllerySizeTable jewellerySizes={jewellery.sizes} /> */}
+				<JewellerySizeDropdown jewellerySizes={jewellery.sizes} setSize={setSize} />
+				<JewelleryOriginTab setType={setType} />
+				<div className="w-full flex flex-col justify-between gap-6">
+					<div className="flex items-center lg:justify-between gap-2 lg:gap-6">
+						<div className="flex items-center gap-3 lg:gap-6 lg:w-1/3">
+							<Button
+								className=" cursor-pointer"
+								onClick={() => {
+									setCount(count + 1);
+								}}
+							>
+								<PlusIcon />
+							</Button>
+							<p>{count}</p>
+							<Button
+								className="cursor-pointer"
+								onClick={() => {
+									setCount(count - 1);
+								}}
+								disabled={cartItems.find((item) => item.item.name === jewellery.name)?.quantity === 0}
+							>
+								<MinusIcon />
+							</Button>
+						</div>
+						<Button type="button" onClick={() => addToCart(jewellery._id, jewellery, size, type, count)} className="w-2/3 cursor-pointer">
+							Add to Cart
 						</Button>
 					</div>
-					<div className="flex items-center gap-4">
-						<Button type="button" className=" cursor-pointer">
+					<div className="flex items-center justify-between">
+						<Button type="button" className=" cursor-pointer w-[90%]">
 							Buy it now
 						</Button>
 						<TooltipProvider>
