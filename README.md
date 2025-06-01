@@ -44,6 +44,7 @@ List of tasks:
 - [ ] In the mobile menu, add an option to navigate to Profile Page.
 - [ ] ![alt text](image-3.png)
 - [ ] Will clicking on social share buttons on product page share the product?
+- [ ] Default size should be the first size on the product page
 
 
 Flow for user authentication:
