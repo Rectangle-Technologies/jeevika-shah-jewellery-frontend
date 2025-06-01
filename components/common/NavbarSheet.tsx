@@ -4,12 +4,13 @@ import { Button } from "@/components/ui/button";
 import { AlignLeftIcon, FacebookIcon, InstagramIcon } from "lucide-react";
 import Link from "next/link";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-
+import { useAuthStore } from "@/stores/auth-store";
 interface NavbarSheetProps {
 	navbarLinks: { title: string; link?: string; subLinks?: { title: string; link: string }[] }[];
 }
 
 function NavbarSheet({ navbarLinks }: NavbarSheetProps) {
+	const { isAuthenticated, logout } = useAuthStore((state) => state);
 	return (
 		<Sheet>
 			<SheetTrigger asChild>
@@ -46,8 +47,8 @@ function NavbarSheet({ navbarLinks }: NavbarSheetProps) {
 							);
 						}
 					})}
-					{localStorage.getItem("at") && (
-						<Button variant="link" className="text-xl font-normal flex px-0 mx-0 cursor-pointer">
+					{isAuthenticated && (
+						<Button variant="link" className="text-xl font-normal flex px-0 mx-0 cursor-pointer" onClick={logout}>
 							Logout
 							{/* <LogOutIcon className="px-0 mx-0" /> */}
 						</Button>

@@ -8,6 +8,7 @@ import NavigationMenuDemo from "./NavigationMenuDemo";
 import { usePathname } from "next/navigation";
 // import CartSheet from "../cart/CartSheet";
 import { useCounterStore } from "@/providers/cart-store-providers";
+import { Skeleton } from "../ui/skeleton";
 
 interface NavbarProps {
 	navbarLinks: { title: string; link?: string; subLinks?: { title: string; link: string }[] }[];
@@ -18,14 +19,17 @@ function Navbar({ navbarLinks }: NavbarProps) {
 	const path = usePathname();
 	const [scrolled, setScrolled] = React.useState(false);
 	const [hovered, setHovered] = React.useState(false);
+	const [mounted, setMounted] = React.useState(false);
 
 	React.useEffect(() => {
+		setMounted(true);
 		const handleScroll = () => {
 			setScrolled(window.scrollY > 100);
 		};
 		window.addEventListener("scroll", handleScroll);
 		return () => {
 			window.removeEventListener("scroll", handleScroll);
+			setMounted(false);
 		};
 	}, []);
 
@@ -50,7 +54,9 @@ function Navbar({ navbarLinks }: NavbarProps) {
 						<Link href={"/cart"}>
 							<ShoppingBagIcon className="cursor-pointer" />
 						</Link>
-						<span className="bg-black text-white rounded-full w-7 h-7 flex items-center justify-center">{getCartLength()}</span>
+						<span className="bg-black text-white rounded-full w-7 h-7 flex items-center justify-center">
+							{mounted ? <span className="bg-black text-white w-7 h-7 rounded-full flex items-center justify-center">{getCartLength()}</span> : <Skeleton className="w-7 h-7 rounded-full" />}
+						</span>
 					</div>
 				</div>
 			) : (

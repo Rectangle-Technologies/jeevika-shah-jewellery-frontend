@@ -37,7 +37,7 @@ function CartSheet() {
 					<SheetFooter>
 						<div className="flex items-center justify-between text-lg text-gray-500 border-y py-3 my-2">
 							<p>Subtotal:</p>
-							<p className="">$ {cartItems.reduce((total, item) => total + item.count * (item.item.costOfDiamond + item.item.costOfLabour + item.item.miscellaneousCost), 0)}</p>
+							<p className="">$ {cartItems.reduce((total, item) => total + item.quantity * (item.item.costOfDiamond + item.item.costOfLabour + item.item.miscellaneousCost), 0)}</p>
 						</div>
 						<Button>Checkout</Button>
 					</SheetFooter>
