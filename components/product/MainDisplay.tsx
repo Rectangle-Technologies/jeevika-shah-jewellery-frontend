@@ -26,18 +26,11 @@ function MainDisplay({ jewellery }: MainDisplayProps) {
 			<div className="mx-auto w-full  md:w-1/2 px-3">
 				<JewelleryDialogCarousel imageList={jewellery.images} />
 			</div>
-			<div className="text-start w-full md:w-1/2 px-3 flex flex-col items-start gap-4 text-gray-600">
+			<div className="text-start w-full md:w-1/2 px-3 flex flex-col items-start gap-7 text-gray-600">
 				<p className="text-2xl text-black">{jewellery.name}</p>
 				<p className="text-md">$ {jewellery.costOfDiamond + jewellery.costOfLabour + jewellery.miscellaneousCost}</p>
 				<p className="text-md">{jewellery.description}</p>
-				<div className="text-sm">
-					<Link href="/policies/shipping-policy" className="font-bold underline">
-						Shipping
-					</Link>{" "}
-					will be calculated at the checkout.
-				</div>
 				<div className="">Metal: {jewellery.karatOfGold}K Gold</div>
-				<p>Please Allow Between 2 to 3 Weeks To Finalize And Deliver Your Product.</p>
 				{/* <JewewllerySizeTable jewellerySizes={jewellery.sizes} /> */}
 				<JewellerySizeDropdown jewellerySizes={jewellery.sizes} setSize={setSize} />
 				<JewelleryOriginTab setType={setType} />
@@ -83,6 +76,7 @@ function MainDisplay({ jewellery }: MainDisplayProps) {
 						</TooltipProvider>
 					</div>
 				</div>
+				<p>Please Allow Between 2 to 3 Weeks To Finalize And Deliver Your Product.</p>
 				{/* store information */}
 				<div className="">
 					<p></p>

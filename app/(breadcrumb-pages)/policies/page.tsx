@@ -6,7 +6,7 @@ import React from "react";
 function PolicyPage() {
 	return (
 		<div className="flex flex-col gap-3 p-4">
-			<p className="text-2xl policy-header">Policies:</p>
+			<p className="text-2xl policy-header">Policies</p>
 			<div className="text-md space-y-3 leading-[2]">
 				<p>Our label Jeevika Shah offers a stunning collection of high-quality jewelry, hand-finished in India, that is sure to captivate anyone seeking elegance. One of the standout features of JS is their commitment to ethically sourced diamonds and gemstones.</p>
 				<p>

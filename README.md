@@ -35,6 +35,17 @@ List of tasks:
 - [x] On policy pages, center the title, add some bottom margin to the title and increase the line height of the content.
 - [x] In mobile view, when the menu bar is open, on clicking on any item, menu bar should collapse.
 - [x] Make page for `/collections/all`.
+- [ ] In Collections in navbar, "Shop All" is missing
+- [ ] On the login page, shift the logo to center.
+- [ ] On the signup page, add input for address line 2
+- [ ] In the product response, there is "suggestions". Use those products in "You May Also Like".
+- [ ] On the product page, for the active image, make the selector black so that it is more evident. ![alt text](image-1.png)
+- [ ] Reduce this space on brand journey. Same issue on policy pages ![alt text](image-2.png)
+- [ ] In the mobile menu, add an option to navigate to Profile Page.
+- [ ] ![alt text](image-3.png)
+- [ ] Will clicking on social share buttons on product page share the product?
+
+
 Flow for user authentication:
 Login:
 1. Take input for mobile number.
