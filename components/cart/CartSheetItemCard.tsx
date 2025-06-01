@@ -27,11 +27,7 @@ function CartSheetItemCard({ cartItem }: CartSheetItemCardProps) {
 				<div className="w-full md:w-2/3 grid grid-cols-2 md:grid-cols-4 gap-3 text-gray-400">
 					<div className={itemDetailStyle}>
 						<p className={columnHeading}>Size</p>
-						{cartItem.item.sizes.map((size) => (
-							<p key={size.displayName}>
-								{size.displayName} - {size.weightOfMetal}
-							</p>
-						))}
+						<p key={cartItem.size}>{cartItem.size}</p>
 					</div>
 
 					<div className={itemDetailStyle}>

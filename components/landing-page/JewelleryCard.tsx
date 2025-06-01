@@ -23,7 +23,7 @@ function JewelleryCard({ jewelleryItem }: JewelleryCardProps) {
 						></div>
 
 						{/* Hover image */}
-						<div className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ease-in delay-100 ${hovered ? "opacity-100" : "opacity-0"} ${hovered ? "cursor-pointer" : ""}`} style={{ backgroundImage: `url(${jewelleryItem.images[1]})` }}></div>
+						<div className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ease-in delay-100 ${hovered ? "opacity-100" : "opacity-0"}`} style={{ backgroundImage: `url(${imgSrcModifier(jewelleryItem.images[1])})` }}></div>
 					</div>
 
 					<div className="p-3">

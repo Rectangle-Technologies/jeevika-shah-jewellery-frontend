@@ -11,6 +11,7 @@ export type CartActions = {
     addToCart: (itemId: string, item: Item, size: string, type: string, count?: number,) => Promise<void>;
     removeItems: (item: Item) => Promise<void>;
     getCartLength: () => number;
+    fetchCartItems: () => Promise<void>;
 };
 
 export type CartStore = CartState & CartActions;
@@ -97,6 +98,27 @@ export const createCartStore = (
                 },
                 getCartLength: () =>
                     get().cartItems.reduce((total, i) => total + i.quantity, 0),
+                fetchCartItems: async () => {
+                    const token = localStorage.getItem("at");
+                    if (!token) return;
+                    try {
+                        const res = await axios.get(
+                            `${process.env.NEXT_PUBLIC_API_URL}/cart/get-cart`,
+                            {
+                                headers: {
+                                    Authorization: `Bearer ${token}`,
+                                },
+                            }
+                        );
+                        if (res.status === 200 && Array.isArray(res.data.cartItems)) {
+                            set({ cartItems: res.data.cartItems });
+                        } else {
+                            toast.error("Failed to fetch cart items.");
+                        }
+                    } catch (err: any) {
+                        toast.error(err?.response?.data?.message || "Failed to fetch cart items.");
+                    }
+                },
             }),
             {
                 name: 'cart-storage',

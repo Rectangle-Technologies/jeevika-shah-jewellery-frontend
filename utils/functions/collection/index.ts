@@ -32,6 +32,9 @@ export async function getNavbarOptions() {
 export async function getProducts(pageNo: number, pageSize: number, category: string, isLandingPageProduct: boolean): Promise<Item[]> {
   try {
     let url = "";
+    if (category.toLowerCase() === 'all') {
+      category = '';
+    }
     if (isLandingPageProduct) {
       url = `${process.env.API_URL}/products?pageNo=${pageNo}&pageSize=${pageSize}&category=${category}&isLandingPageProduct=${isLandingPageProduct}`;
     } else {
