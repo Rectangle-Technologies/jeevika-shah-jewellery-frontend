@@ -33,22 +33,13 @@ function CartPage() {
 						<p>Subtotal:</p>
 						<p className="">$ {cartItems.reduce((total, item) => total + item.quantity * (item.item.costOfDiamond + item.item.costOfLabour + item.item.miscellaneousCost), 0)}</p>
 					</div>
-					<div className=" flex flex-col gap-4 items-end">
+					<div className="flex flex-row gap-4 items-center justify-between my-10">
 						<Link href="/collections/all" className="hover:underline cursor-pointer">
 							Continue Shopping
 						</Link>
 						<Button asChild>
 							<Link href="/checkout">Proceed to Checkout</Link>
 						</Button>
-						<div className="text-sm">
-							<p>
-								Taxes and{" "}
-								<Link href="" className="underline cursor-pointer">
-									shipping
-								</Link>{" "}
-								calculated at checkout.
-							</p>
-						</div>
 					</div>
 				</div>
 			)}

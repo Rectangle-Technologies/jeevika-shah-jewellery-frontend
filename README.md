@@ -42,9 +42,16 @@ List of tasks:
 - [ ] On the product page, for the active image, make the selector black so that it is more evident. ![alt text](image-1.png)
 - [ ] Reduce this space on brand journey. Same issue on policy pages ![alt text](image-2.png)
 - [ ] In the mobile menu, add an option to navigate to Profile Page.
-- [ ] ![alt text](image-3.png)
+- [ ] This issue is there everywhere where an image is being displayed. ![alt text](image-3.png)
 - [ ] Will clicking on social share buttons on product page share the product?
 - [ ] Default size should be the first size on the product page
+- [ ] On the landing page in the categories section, clicking on the photo of any 1 category should navigate to products of that category.
+- [ ] On the landing page, clicking on the View All should navigate to all products.
+- [ ] Update the policies as discussed.
+- [ ] The number indicator besides cart icon is not showing a correct number. It is showing the total quantity, but it should show the number of products. For e.g., if I add 3 quantity of 1 product, it should show 1, not 3. ![alt text](image-4.png)
+- [ ] The minus button on cart is removing the product from cart. It should reduce the quantity by 1. If the quantity is 1, only then it should remove from cart.
+- [ ] Remove the text "Taxes and shipping calculated at checkout." from cart.
+- [ ] Show the diamond type selected on cart page.
 
 
 Flow for user authentication:
