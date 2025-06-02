@@ -42,6 +42,7 @@ interface CartProduct {
     productId: string; // assuming _id from MongoDB, so it's a string
     quantity: number;
     size: string;
+    diamondType?: string;
 }
 
 interface Cart {

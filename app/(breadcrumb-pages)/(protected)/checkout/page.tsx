@@ -3,7 +3,7 @@ import RightSection from "@/components/checkout/RightSection";
 
 function CheckOutPage() {
 	return (
-		<div className="flex flex-col lg:flex-row gap-4">
+		<div className="flex flex-col-reverse lg:flex-row mt-6 gap-4">
 			{/* left section */}
 			<LeftSection />
 

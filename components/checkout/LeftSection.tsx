@@ -6,7 +6,8 @@ import CheckoutItem from "./CheckoutItem";
 function LeftSection() {
 	const { cartItems } = useCounterStore((state) => state);
 	return (
-		<section className="w-full lg:w-1/2 h-full p-4 ">
+		<section className="w-full lg:w-1/2 h-full px-1 pt-4 lg:p-4 ">
+			<p className="text-xl font-semibold my-2">Order Summary</p>
 			{/* products in cart */}
 			<div className="">
 				{cartItems.map((item) => (
