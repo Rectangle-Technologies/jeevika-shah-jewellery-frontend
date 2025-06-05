@@ -23,9 +23,9 @@ export async function getUserDetails(): Promise<User | null> {
     }
 }
 
-export async function getPreviousOrders(pageNo: number, pageSize: number): Promise<any[]> {
+export async function getPreviousOrders(pageNo: number, pageSize: number): Promise<OrderProduct[]> {
     try {
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/order/get-user?pageNo=${pageNo}&pageSize=${pageSize}`,{
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/order/get-user?pageNo=${pageNo}&pageSize=${pageSize}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('at')}`
             }

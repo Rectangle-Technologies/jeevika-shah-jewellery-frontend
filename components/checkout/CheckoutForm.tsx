@@ -11,6 +11,7 @@ import { useCounterStore } from "@/providers/cart-store-providers";
 import { createOrder, createRazorpayOrder, updateOrderStatus, updatePaymentDetails, verifyPaymentSignature } from "@/utils/functions/checkout";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { encodeMsg } from "@/utils/functions/order/encode";
 
 const formSchema = z.object({
 	email: z.string().email().optional(),
@@ -31,7 +32,7 @@ interface CheckoutFormProps {
 }
 
 function CheckoutForm({ userDetails }: CheckoutFormProps) {
-	const { cartItems } = useCounterStore((state) => state);
+	const { cartItems, removeItems } = useCounterStore((state) => state);
 
 	const router = useRouter();
 
@@ -54,18 +55,14 @@ function CheckoutForm({ userDetails }: CheckoutFormProps) {
 		// 1. Create order
 		const orderRes = await createOrder(cartItems);
 		if (!orderRes.isOrderCreated || !orderRes.orderId) {
-			// 2. If order creation fails, redirect with error
-			// router.push("/order-confirmation?error=Order could not be created, please try again later");
-			toast.error("Order could not be created, please try again later");
+			router.push(`/order-status?error=${encodeMsg("Order could not be created, please try again later.")}`);
 			return;
 		}
 
 		// 3. Create Razorpay order
 		const razorpayRes = await createRazorpayOrder(orderRes.orderId);
 		if (!razorpayRes.isOrderCreated || !razorpayRes.razorpayOrderId) {
-			// 4. If Razorpay order creation fails, redirect with error
-			// router.push("/order-confirmation?error=There was an error completing the payment. Don't worry your order has been successfully placed, you can complete your payment here");
-			toast.error("There was an error completing the payment. Don't worry your order has been successfully placed, you can complete your payment here");
+			router.push(`/order-status?error=${encodeMsg("There was an error completing the payment. Don't worry your order has been successfully placed, you can complete your payment here.")}&orderId=${orderRes.orderId}`);
 			return;
 		}
 
@@ -76,15 +73,13 @@ function CheckoutForm({ userDetails }: CheckoutFormProps) {
 			currency: razorpayRes.currency,
 			name: "Jeevika Shah Jewellery",
 			description: "Order Payment",
-			image: `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`,
+			image: `${process.env.NEXT_PUBLIC_BASE_URL}/assets/logo-seconday.png`,
 			order_id: razorpayRes.razorpayOrderId,
 			handler: async function (response: any) {
 				// 6. Verify payment signature
 				const verifyRes = await verifyPaymentSignature(razorpayRes.razorpayOrderId!, response.razorpay_payment_id, response.razorpay_signature);
 				if (!verifyRes.isPaymentVerified) {
-					// 7. If signature verification fails, redirect with error
-					// router.push("/order-confirmation?error=There was an error completing the payment. Don't worry your order has been successfully placed, you can complete your payment here");
-					toast.error("There was an error completing the payment. Don't worry your order has been successfully placed, you can complete your payment here");
+					router.push(`/order-status?error=${encodeMsg("There was an error completing the payment. Don't worry your order has been successfully placed, you can complete your payment here.")}&orderId=${orderRes.orderId}`);
 					return;
 				}
 
@@ -94,13 +89,21 @@ function CheckoutForm({ userDetails }: CheckoutFormProps) {
 				// 9. Send confirmation
 				await updateOrderStatus(orderRes.orderId!, "confirmed");
 
+				// remove products
+				for (let i = 0; i < cartItems.length; i++) {
+					removeItems(cartItems[i].item);
+				}
+
 				// 10. Redirect to confirmation with success
-				// router.push("/order-confirmation?success=Thank you for shopping with us! Your order has been placed successfully");
-				toast.success("Thank you for shopping with us! Your order has been placed successfully");
+				router.push(`/order-status?success=${encodeMsg("Your order has been placed successfully.")}&orderId=${orderRes.orderId}`);
 			},
 			prefill: {
+				name: userDetails.name,
 				email: values.email,
 				contact: values.phone,
+			},
+			notes: {
+				address: `${userDetails.address?.line1}, ${userDetails.address?.city}, ${userDetails.address?.state}, ${userDetails.address?.country}, ${userDetails.address?.zip}`,
 			},
 			theme: {
 				color: "#F5CBA7",

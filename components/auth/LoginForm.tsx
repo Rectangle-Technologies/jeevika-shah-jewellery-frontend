@@ -46,7 +46,7 @@ function LoginForm() {
 		setLoading(true);
 		try {
 			const checkRes = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/check-exists`, { phone: values.phone });
-			if (checkRes.status !== 200) {
+			if (checkRes.data.result && checkRes.data.result.toLowerCase() !== "success") {
 				toast.error("User does not exist. Please sign up.", { position: "bottom-right" });
 				setLoading(false);
 				return;

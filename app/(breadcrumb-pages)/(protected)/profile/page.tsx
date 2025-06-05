@@ -4,9 +4,11 @@ import { getPreviousOrders, getUserDetails } from "@/utils/functions/user";
 import { ShoppingBagIcon } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import React from "react";
+import OrderAccordion from "@/components/profile/OrderAccordion";
+import { Separator } from "@/components/ui/separator";
 
 function ProfilePage() {
-	const [previousOrders, setPreviousOrders] = React.useState<any[]>([]);
+	const [previousOrders, setPreviousOrders] = React.useState<OrderProduct[]>([]);
 	const [userDetails, setUserDetails] = React.useState<User | null>(null);
 
 	React.useEffect(() => {
@@ -17,7 +19,7 @@ function ProfilePage() {
 		const fetchPreviousOrders = async () => {
 			const previousOrders = await getPreviousOrders(1, 10);
 			setPreviousOrders(previousOrders);
-		}
+		};
 		fetchUserDetails();
 		fetchPreviousOrders();
 	}, []);
@@ -30,6 +32,16 @@ function ProfilePage() {
 					<ShoppingBagIcon height={140} width={140} className="hidden lg:flex" />
 					<ShoppingBagIcon height={50} width={50} className="lg:hidden" />
 					<p className="">No previous orders found.</p>
+				</div>
+			)}
+			{previousOrders.length > 0 && (
+				<div className=" w-full flex flex-col gap-2">
+					{previousOrders.map((order, index) => (
+						<div className="" key={order._id}>
+							<OrderAccordion order={order} index={previousOrders.length - index} />
+							<Separator />
+						</div>
+					))}
 				</div>
 			)}
 			<div className="w-full flex flex-col gap-4 lg:gap-8 mt-10">

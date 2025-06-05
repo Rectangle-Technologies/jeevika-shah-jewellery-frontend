@@ -32,7 +32,7 @@ function SignUpForm() {
 		setLoading(true);
 		try {
 			const checkRes = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/check-exists`, { phone: values.phone });
-			if (checkRes.status === 200) {
+			if (checkRes.data.result && checkRes.data.result.toLocaleLowerCase() === "success") {
 				toast.error("User already exists. Kindly login.", {
 					type: "warning",
 					position: "bottom-right",
