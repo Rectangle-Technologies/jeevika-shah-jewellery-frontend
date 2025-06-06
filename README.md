@@ -52,6 +52,9 @@ List of tasks:
 - [ ] The minus button on cart is removing the product from cart. It should reduce the quantity by 1. If the quantity is 1, only then it should remove from cart.
 - [ ] Remove the text "Taxes and shipping calculated at checkout." from cart.
 - [ ] Show the diamond type selected on cart page.
+- [ ] On the checkout page, when ordering for someone else, take input of name and phone as well.
+- [ ] Clear the cart once order is placed.
+- [ ] Display order total on the profile page where all orders are shown
 
 
 Flow for user authentication:
