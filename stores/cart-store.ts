@@ -10,6 +10,7 @@ export type CartState = {
 export type CartActions = {
     addToCart: (itemId: string, item: Item, size: string, type: string, count?: number,) => Promise<void>;
     removeItems: (item: Item) => Promise<void>;
+    removeItemsLocally: (item: Item) => void;
     getCartLength: () => number;
     fetchCartItems: () => Promise<void>;
 };
@@ -96,8 +97,15 @@ export const createCartStore = (
                         ),
                     }));
                 },
+                removeItemsLocally(item) {
+                    set((state) => ({
+                        cartItems: state.cartItems.filter(
+                            (i) => i.productId !== item._id
+                        ),
+                    }));
+                },
                 getCartLength: () =>
-                    get().cartItems.reduce((total, i) => total + i.quantity, 0),
+                    get().cartItems.length,
                 fetchCartItems: async () => {
                     const token = localStorage.getItem("at");
                     if (!token) return;

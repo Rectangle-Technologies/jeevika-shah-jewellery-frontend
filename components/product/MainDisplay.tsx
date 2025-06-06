@@ -28,7 +28,7 @@ function MainDisplay({ jewellery }: MainDisplayProps) {
 			</div>
 			<div className="text-start w-full md:w-1/2 px-3 flex flex-col items-start gap-7 text-gray-600">
 				<p className="text-2xl text-black">{jewellery.name}</p>
-				<p className="text-md">$ {jewellery.costOfDiamond + jewellery.costOfLabour + jewellery.miscellaneousCost}</p>
+				<p className="text-md">&#8377; {jewellery.costOfDiamond + jewellery.costOfLabour + jewellery.miscellaneousCost}</p>
 				<p className="text-md">{jewellery.description}</p>
 				<div className="">Metal: {jewellery.karatOfGold}K Gold</div>
 				{/* <JewewllerySizeTable jewellerySizes={jewellery.sizes} /> */}

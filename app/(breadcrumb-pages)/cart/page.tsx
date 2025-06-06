@@ -31,7 +31,7 @@ function CartPage() {
 				<div>
 					<div className="flex justify-between items-end text-lg text-gray-500 border-y py-3 my-2">
 						<p>Subtotal:</p>
-						<p className="">$ {cartItems.reduce((total, item) => total + item.quantity * (item.item.costOfDiamond + item.item.costOfLabour + item.item.miscellaneousCost), 0)}</p>
+						<p className="">&#8377; {cartItems.reduce((total, item) => total + item.quantity * (item.item.costOfDiamond + item.item.costOfLabour + item.item.miscellaneousCost), 0)}</p>
 					</div>
 					<div className="flex flex-row gap-4 items-center justify-between my-10">
 						<Link href="/collections/all" className="hover:underline cursor-pointer">

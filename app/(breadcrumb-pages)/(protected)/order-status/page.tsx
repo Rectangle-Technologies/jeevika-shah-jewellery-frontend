@@ -98,7 +98,7 @@ function OrderStatusPage() {
 										<TableHeader>
 											<TableRow>
 												<TableHead>Product Name</TableHead>
-												<TableHead>Price (USD)</TableHead>
+												<TableHead>Price (&#8377;)</TableHead>
 												<TableHead>Quantity</TableHead>
 												<TableHead>Size</TableHead>
 											</TableRow>
@@ -107,7 +107,7 @@ function OrderStatusPage() {
 											{order.products.map((item) => (
 												<TableRow key={item._id}>
 													<TableCell>{item.productId.name}</TableCell>
-													<TableCell>USD {item.price}</TableCell>
+													<TableCell>&#8377; {item.price}</TableCell>
 													<TableCell>{item.quantity}</TableCell>
 													<TableCell>{item.size}</TableCell>
 												</TableRow>

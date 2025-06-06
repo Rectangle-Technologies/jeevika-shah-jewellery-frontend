@@ -38,9 +38,9 @@ function OrderAccordion({ order, index }: OrderAccordionProps) {
 								<TableRow>
 									<TableHead></TableHead>
 									<TableHead>Product Name</TableHead>
-									<TableHead>Price (USD)</TableHead>
 									<TableHead>Quantity</TableHead>
 									<TableHead>Size</TableHead>
+									<TableHead>Price (&#8377;)</TableHead>
 								</TableRow>
 							</TableHeader>
 							<TableBody>
@@ -48,11 +48,18 @@ function OrderAccordion({ order, index }: OrderAccordionProps) {
 									<TableRow key={item._id}>
 										<TableCell>{index + 1}</TableCell>
 										<TableCell>{item.productId.name}</TableCell>
-										<TableCell>USD {item.price}</TableCell>
 										<TableCell>{item.quantity}</TableCell>
 										<TableCell>{item.size}</TableCell>
+										<TableCell>&#8377; {item.price}</TableCell>
 									</TableRow>
 								))}
+								<TableRow>
+									<TableCell></TableCell>
+									<TableCell>Total:</TableCell>
+									<TableCell></TableCell>
+									<TableCell></TableCell>
+									<TableCell>&#8377; {order.products.reduce((total, item) => total + item.price * item.quantity, 0)}</TableCell>
+								</TableRow>
 							</TableBody>
 						</Table>
 					</div>

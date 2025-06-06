@@ -28,7 +28,7 @@ function JewelleryCard({ jewelleryItem }: JewelleryCardProps) {
 
 					<div className="p-3">
 						<CardTitle className="text-center font-normal">{jewelleryItem.name}</CardTitle>
-						<CardDescription className="text-center mt-10">From ${jewelleryItem.costOfDiamond + jewelleryItem.costOfLabour + jewelleryItem.miscellaneousCost}</CardDescription>
+						<CardDescription className="text-center mt-10">From &#8377; {jewelleryItem.costOfDiamond + jewelleryItem.costOfLabour + jewelleryItem.miscellaneousCost}</CardDescription>
 					</div>
 				</CardContent>
 			</Card>

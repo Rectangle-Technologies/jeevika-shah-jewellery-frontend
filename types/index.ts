@@ -31,7 +31,7 @@ interface IndividualCartItem {
 
 interface Address {
     line1: string;
-    line2: string;
+    line2?: string;
     city: string;
     state: string;
     country: string;
@@ -49,19 +49,15 @@ interface Cart {
     products: CartProduct[];
 }
 
+interface ReceiverDetails {
+    address: Address;
+    name: string;
+    phone: string;
+}
+
 interface OrderProduct {
-    receiverDetails: {
-        address: {
-            line1: string;
-            city: string;
-            state: string;
-            country: string;
-            zip: string;
-        };
-        name: string;
-        phone: string;
-    };
-    customOrderDetails: {
+    receiverDetails: ReceiverDetails;
+        customOrderDetails: {
         isCustomOrder: boolean;
     };
     _id: string;

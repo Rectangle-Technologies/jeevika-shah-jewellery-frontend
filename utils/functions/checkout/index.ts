@@ -1,10 +1,10 @@
 import axios from "axios";
 
-export async function createOrder(products: CartProduct[]): Promise<{ isOrderCreated: boolean; orderId?: string }> {
+export async function createOrder(products: CartProduct[], receiverDetails?: ReceiverDetails): Promise<{ isOrderCreated: boolean; orderId?: string }> {
     try {
         const token = localStorage.getItem("at");
         if (!token) return { isOrderCreated: false };
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/order/create`, { products }, {
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/order/create`, { products, receiverDetails }, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

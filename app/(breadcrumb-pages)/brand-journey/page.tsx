@@ -1,4 +1,23 @@
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+	title: "Brand Journey | Jeevika Shah Jewellery",
+	description: "Discover the inspiring story behind Jeevika Shah Jewellery. Learn about our founder's passion, the brand's heritage, and our commitment to quality and craftsmanship.",
+	keywords: ["Brand Journey", "Jeevika Shah", "Jewellery", "Founder Story", "Indian Jewellery", "Italian Craftsmanship", "Luxury Jewellery", "Sustainable Luxury"],
+	openGraph: {
+		title: "Brand Journey | Jeevika Shah Jewellery",
+		description: "Discover the inspiring story behind Jeevika Shah Jewellery. Learn about our founder's passion, the brand's heritage, and our commitment to quality and craftsmanship.",
+		url: `${process.env.DOMAIN}/brand-journey`,
+		siteName: "Jeevika Shah Jewellery",
+		type: "website",
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: "Brand Journey | Jeevika Shah Jewellery",
+		description: "Discover the inspiring story behind Jeevika Shah Jewellery. Learn about our founder's passion, the brand's heritage, and our commitment to quality and craftsmanship.",
+	},
+};
 
 function BrandJourney() {
 	return (

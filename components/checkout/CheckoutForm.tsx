@@ -10,29 +10,52 @@ import { Separator } from "../ui/separator";
 import { useCounterStore } from "@/providers/cart-store-providers";
 import { createOrder, createRazorpayOrder, updateOrderStatus, updatePaymentDetails, verifyPaymentSignature } from "@/utils/functions/checkout";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
 import { encodeMsg } from "@/utils/functions/order/encode";
 
-const formSchema = z.object({
-	email: z.string().email().optional(),
-	phone: z
-		.string()
-		.trim()
-		.regex(/^[6-9]\d{9}$/, { message: "Phone number must be a valid 10-digit Indian number" }),
-	line1: z.string().trim().min(2, { message: "Address line 1 must be at least 2 characters long" }).max(150, { message: "Address line 1 must be at most 150 characters long" }),
-	city: z.string().trim().min(2, { message: "City must be at least 2 characters long" }).max(50, { message: "City must be at most 50 characters long" }),
-	state: z.string().trim().min(2, { message: "State must be at least 2 characters long" }).max(50, { message: "State must be at most 50 characters long" }),
-	country: z.string().trim().min(2, { message: "Country must be at least 2 characters long" }).max(50, { message: "Country must be at most 50 characters long" }),
-	zip: z.string().trim().min(6, { message: "Zip code must be at least 6 characters long" }).max(6, { message: "Zip code must be at most 6 digits long" }),
-	order_status: z.boolean().optional(),
-});
+const formSchema = z
+	.object({
+		email: z.string().email().optional(),
+		phone: z
+			.string()
+			.trim()
+			.regex(/^[6-9]\d{9}$/, { message: "Phone number must be a valid 10-digit Indian number" }),
+		line1: z.string().trim().min(2, { message: "Address line 1 must be at least 2 characters long" }).max(150, { message: "Address line 1 must be at most 150 characters long" }),
+		city: z.string().trim().min(2, { message: "City must be at least 2 characters long" }).max(50, { message: "City must be at most 50 characters long" }),
+		state: z.string().trim().min(2, { message: "State must be at least 2 characters long" }).max(50, { message: "State must be at most 50 characters long" }),
+		country: z.string().trim().min(2, { message: "Country must be at least 2 characters long" }).max(50, { message: "Country must be at most 50 characters long" }),
+		zip: z.string().trim().min(6, { message: "Zip code must be at least 6 characters long" }).max(6, { message: "Zip code must be at most 6 digits long" }),
+		order_status: z.boolean().optional(),
+		recipient_name: z.string().min(2, "Name is required").optional(),
+		recipient_phone: z
+			.string()
+			.regex(/^[6-9]\d{9}$/, { message: "Phone number must be a valid 10-digit Indian number" })
+			.optional(),
+	})
+	.superRefine((data, ctx) => {
+		if (data.order_status) {
+			if (!data.recipient_name || data.recipient_name.trim().length < 2) {
+				ctx.addIssue({
+					code: z.ZodIssueCode.custom,
+					message: "Recipient name is required",
+					path: ["recipient_name"],
+				});
+			}
+			if (!data.recipient_phone || !/^[6-9]\d{9}$/.test(data.recipient_phone)) {
+				ctx.addIssue({
+					code: z.ZodIssueCode.custom,
+					message: "Recipient phone is required and must be a valid 10-digit Indian number",
+					path: ["recipient_phone"],
+				});
+			}
+		}
+	});
 
 interface CheckoutFormProps {
 	userDetails: User;
 }
 
 function CheckoutForm({ userDetails }: CheckoutFormProps) {
-	const { cartItems, removeItems } = useCounterStore((state) => state);
+	const { cartItems, removeItemsLocally } = useCounterStore((state) => state);
 
 	const router = useRouter();
 
@@ -47,13 +70,18 @@ function CheckoutForm({ userDetails }: CheckoutFormProps) {
 			country: userDetails.address?.country,
 			zip: userDetails.address?.zip,
 			order_status: false,
+			recipient_name: "",
+			recipient_phone: "",
 		},
 	});
 
 	const orderForSomeoneElse = form.watch("order_status");
 	async function onSubmit(values: z.infer<typeof formSchema>) {
 		// 1. Create order
-		const orderRes = await createOrder(cartItems);
+		const receiverDetails: ReceiverDetails = orderForSomeoneElse
+			? { name: values.recipient_name!, phone: values.recipient_phone!, address: { line1: values.line1!, city: values.city!, state: values.state!, country: values.country!, zip: values.zip! } }
+			: { name: userDetails.name, phone: userDetails.phone!, address: { line1: values.line1!, city: values.city!, state: values.state!, country: values.country!, zip: values.zip! } };
+		const orderRes = await createOrder(cartItems, receiverDetails);
 		if (!orderRes.isOrderCreated || !orderRes.orderId) {
 			router.push(`/order-status?error=${encodeMsg("Order could not be created, please try again later.")}`);
 			return;
@@ -91,7 +119,7 @@ function CheckoutForm({ userDetails }: CheckoutFormProps) {
 
 				// remove products
 				for (let i = 0; i < cartItems.length; i++) {
-					removeItems(cartItems[i].item);
+					removeItemsLocally(cartItems[i].item);
 				}
 
 				// 10. Redirect to confirmation with success
@@ -137,13 +165,17 @@ function CheckoutForm({ userDetails }: CheckoutFormProps) {
 							<FormItem>
 								<FormLabel>Email</FormLabel>
 								<FormControl>
-									<Input placeholder="Please enter your email" type="email" {...field} />
+									<Input
+										placeholder="Please enter your email"
+										type="email"
+										{...field}
+										disabled={!!userDetails.email} // disable if email exists
+									/>
 								</FormControl>
 								<FormMessage />
 							</FormItem>
 						)}
 					/>
-					{/* phone number */}
 					<FormField
 						control={form.control}
 						name="phone"
@@ -151,7 +183,12 @@ function CheckoutForm({ userDetails }: CheckoutFormProps) {
 							<FormItem>
 								<FormLabel>Phone Number</FormLabel>
 								<FormControl>
-									<Input placeholder="Please enter your phone number" type="tel" {...field} />
+									<Input
+										placeholder="Please enter your phone number"
+										type="tel"
+										{...field}
+										disabled // always disabled
+									/>
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -177,6 +214,36 @@ function CheckoutForm({ userDetails }: CheckoutFormProps) {
 							</FormItem>
 						)}
 					/>
+					{orderForSomeoneElse && (
+						<>
+							<FormField
+								control={form.control}
+								name="recipient_name"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Recipient Name</FormLabel>
+										<FormControl>
+											<Input placeholder="Enter recipient's name" {...field} />
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name="recipient_phone"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Recipient Phone</FormLabel>
+										<FormControl>
+											<Input placeholder="Enter recipient's phone" {...field} />
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+						</>
+					)}
 					{/* line 1 */}
 					<FormField
 						control={form.control}

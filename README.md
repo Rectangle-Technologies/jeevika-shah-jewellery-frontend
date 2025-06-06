@@ -8,10 +8,10 @@ List of tasks:
 - [x] Improve the navbar drawer style
 - [x] add the Cart drawer
 - [x] add the profile page
-- [ ] add the checkout page
-- [ ] Integrate the razorpay checkout
-- [ ] Add the whatsapp link
-- [ ] After the APIs are provided, integrate them.
+- [x] add the checkout page
+- [x] Integrate the razorpay checkout
+- [x] Add the whatsapp link
+- [x] After the APIs are provided, integrate them.
 - [x] Navigate to home on clicking the logo
 - [x] Add filters on collections page. See the reference website
 - [ ] In the menu list in desktop view, add a bit padding of around 3
@@ -44,18 +44,18 @@ List of tasks:
 - [ ] In the mobile menu, add an option to navigate to Profile Page.
 - [ ] This issue is there everywhere where an image is being displayed. ![alt text](image-3.png)
 - [ ] Will clicking on social share buttons on product page share the product?
-- [ ] Default size should be the first size on the product page
-- [ ] On the landing page in the categories section, clicking on the photo of any 1 category should navigate to products of that category.
-- [ ] On the landing page, clicking on the View All should navigate to all products.
-- [ ] Update the policies as discussed.
-- [ ] The number indicator besides cart icon is not showing a correct number. It is showing the total quantity, but it should show the number of products. For e.g., if I add 3 quantity of 1 product, it should show 1, not 3. ![alt text](image-4.png)
+- [x] Default size should be the first size on the product page
+- [x] On the landing page in the categories section, clicking on the photo of any 1 category should navigate to products of that category.
+- [x] On the landing page, clicking on the View All should navigate to all products.
+- [x] Update the policies as discussed.
+- [x] The number indicator besides cart icon is not showing a correct number. It is showing the total quantity, but it should show the number of products. For e.g., if I add 3 quantity of 1 product, it should show 1, not 3. ![alt text](image-4.png)
 - [ ] The minus button on cart is removing the product from cart. It should reduce the quantity by 1. If the quantity is 1, only then it should remove from cart.
-- [ ] Remove the text "Taxes and shipping calculated at checkout." from cart.
-- [ ] Show the diamond type selected on cart page.
-- [ ] On the checkout page, when ordering for someone else, take input of name and phone as well.
-- [ ] Clear the cart once order is placed.
-- [ ] Display order total on the profile page where all orders are shown.
-- [ ] All prices are in INR, so should be displayed with the rupee symbol.
+- [x] Remove the text "Taxes and shipping calculated at checkout." from cart.
+- [x] Show the diamond type selected on cart page.
+- [x] On the checkout page, when ordering for someone else, take input of name and phone as well.
+- [x] Clear the cart once order is placed.
+- [x] Display order total on the profile page where all orders are shown.
+- [x] All prices are in INR, so should be displayed with the rupee symbol.
 
 
 Flow for user authentication:
