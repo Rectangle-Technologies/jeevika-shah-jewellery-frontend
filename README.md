@@ -54,7 +54,8 @@ List of tasks:
 - [ ] Show the diamond type selected on cart page.
 - [ ] On the checkout page, when ordering for someone else, take input of name and phone as well.
 - [ ] Clear the cart once order is placed.
-- [ ] Display order total on the profile page where all orders are shown
+- [ ] Display order total on the profile page where all orders are shown.
+- [ ] All prices are in INR, so should be displayed with the rupee symbol.
 
 
 Flow for user authentication:

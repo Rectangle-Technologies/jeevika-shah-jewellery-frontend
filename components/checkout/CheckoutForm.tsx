@@ -171,7 +171,7 @@ function CheckoutForm({ userDetails }: CheckoutFormProps) {
 									<Checkbox checked={field.value} onCheckedChange={field.onChange} id="order_status" />
 								</FormControl>
 								<FormLabel htmlFor="order_status" className="mb-0">
-									Ordering for someone else
+									Ordering for someone else?
 								</FormLabel>
 								<FormMessage />
 							</FormItem>
