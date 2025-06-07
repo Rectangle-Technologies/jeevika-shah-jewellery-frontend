@@ -14,23 +14,17 @@ List of tasks:
 - [x] After the APIs are provided, integrate them.
 - [x] Navigate to home on clicking the logo
 - [x] Add filters on collections page. See the reference website
-- [ ] In the menu list in desktop view, add a bit padding of around 3
 - [x] Try to use the burgandy logo everywhere. If not possible everywhere, then use it wherever the background is white
 - [x] Remove explore options from Product Card and remove the Modal as well
-- [ ] On the product page, implement zoom on hover for images
 - [x] Change footer background color to burgandy
 - [x] Add breadcrumbs on top
 - [x] Recuce the font weight on the product page. Use lighter fonts everywhere
 - [x] Add some gaps between the plus and minus buttons and the quantity on the product page
-- [ ] Keep the layout on the product page exactly as the reference website
 - [x] Add to cart button is not there on product page
 - [x] How will you display previous orders?
 - [x] Add a page for order details
-- [ ] In page.tsx, line no. 46, add the logic to check if last name exists before the div i.e. on line 44 so that the title "Last Name:" is also not displayed if last name doesn't exist.
 - [x] Email is an optional field, so add a check to see if it exists. Make it optional in the interface as well.
-- [ ] In address line2 is also optional. So the comma after line2 should come only if line2 exists. Make it optional in the interface as well.
 - [x] Make the entire Product Card a link i.e. customer should be directed to the product page on clicking anywhere on the card, not just on the title.
-- [ ] Size should be a drop-down menu and it should only show the displayName property, not the weightOfMetal. weightOfMetal is for internal use
 - [x] Shop Now button on cart page when cart is empty should navigate to the all products page.
 - [x] On policy pages, center the title, add some bottom margin to the title and increase the line height of the content.
 - [x] In mobile view, when the menu bar is open, on clicking on any item, menu bar should collapse.
@@ -42,8 +36,6 @@ List of tasks:
 - [x] On the product page, for the active image, make the selector black so that it is more evident. ![alt text](image-1.png)
 - [x] Reduce this space on brand journey. Same issue on policy pages ![alt text](image-2.png)
 - [x] In the mobile menu, add an option to navigate to Profile Page.
-- [ ] This issue is there everywhere where an image is being displayed. ![alt text](image-3.png)
-- [ ] Will clicking on social share buttons on product page share the product?
 - [x] Default size should be the first size on the product page
 - [x] On the landing page in the categories section, clicking on the photo of any 1 category should navigate to products of that category.
 - [x] On the landing page, clicking on the View All should navigate to all products.
@@ -62,6 +54,17 @@ List of tasks:
 - [ ] User's mobile is not displaying in Customer Details
 - [ ] Scorlling issue there on profile page. ![alt text](image-6.png)
 - [ ] On the Checkout page, it is still USD.
+- [ ] In the menu list in desktop view, add a bit padding of around 3
+- [ ] On the product page, implement zoom on hover for images
+- [ ] Keep the layout on the product page exactly as the reference website
+- [ ] In page.tsx, line no. 46, add the logic to check if last name exists before the div i.e. on line 44 so that the title "Last Name:" is also not displayed if last name doesn't exist.
+- [ ] In address line2 is also optional. So the comma after line2 should come only if line2 exists. Make it optional in the interface as well.
+- [ ] Size should be a drop-down menu and it should only show the displayName property, not the weightOfMetal. weightOfMetal is for internal use
+- [ ] This issue is there everywhere where an image is being displayed. ![alt text](image-3.png)
+- [ ] Will clicking on social share buttons on product page share the product?
+
+
+
 
 Flow for user authentication:
 Login:
