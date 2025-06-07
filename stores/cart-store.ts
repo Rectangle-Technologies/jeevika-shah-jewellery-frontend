@@ -9,7 +9,7 @@ export type CartState = {
 
 export type CartActions = {
     addToCart: (itemId: string, item: Item, size: string, type: string, count?: number,) => Promise<void>;
-    removeItems: (item: Item) => Promise<void>;
+    removeItems: (item: Item, action: string) => Promise<void>;
     removeItemsLocally: (item: Item) => void;
     getCartLength: () => number;
     fetchCartItems: () => Promise<void>;
@@ -70,7 +70,7 @@ export const createCartStore = (
                         }));
                     }
                 },
-                async removeItems(item) {
+                async removeItems(item, action) {
                     // make an api call to update the cart as well if user is logged in
                     const token = localStorage.getItem("at");
                     if (token) {
@@ -78,7 +78,7 @@ export const createCartStore = (
                             `${process.env.NEXT_PUBLIC_API_URL}/cart/remove-product`,
                             {
                                 productId: item._id,
-                                action: "delete",
+                                action: action,
                             },
                             {
                                 headers: {
@@ -90,6 +90,20 @@ export const createCartStore = (
                             toast.error(res.data.message);
                             return;
                         }
+                    }
+                    if (action === "reduce") {
+                        // Find the item in the cart and reduce its quantity by 1
+                        set((state) => {
+                            const updatedCartItems = state.cartItems
+                                .map((i) =>
+                                    i.productId === item._id
+                                        ? { ...i, quantity: i.quantity - 1 }
+                                        : i
+                                )
+                                .filter((i) => i.quantity > 0);
+                            return { cartItems: updatedCartItems };
+                        });
+                        return;
                     }
                     set((state) => ({
                         cartItems: state.cartItems.filter(

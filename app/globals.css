@@ -356,3 +356,10 @@ input[type="date"] {
     overflow: hidden;
   }
 }
+
+
+.carousel .control-dots .dot.selected {
+  background: #000 !important;
+  /* Black for active dot */
+  box-shadow: 0 0 2px #000;
+}

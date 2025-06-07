@@ -8,6 +8,7 @@ import Footer from "@/components/common/Footer";
 import Script from "next/script";
 import { CartStoreProvider } from "@/providers/cart-store-providers";
 import { getNavbarOptions } from "@/utils/functions/collection";
+import AuthInitializer from "@/components/auth/AuthInitializer";
 
 const poppins = Poppins({
 	subsets: ["latin"],
@@ -58,6 +59,7 @@ export default async function RootLayout({
 			</head>
 			<body className={`${poppins.variable} antialiased`}>
 				<CartStoreProvider>
+					<AuthInitializer />
 					<Navbar navbarLinks={navbarLinks} />
 					{children}
 					<Footer />

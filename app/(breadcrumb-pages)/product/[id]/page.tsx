@@ -8,11 +8,11 @@ async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
 	const { id } = await params;
 
 	const product = await getProductDetails(id);
-	const relatedProducts = await getProducts(1, 20, product?.category || "all", false);
+	const relatedProducts = product?.recommendations || (await getProducts(1, 5, product?.category || "", false));
 	return (
 		<div className=" pb-3 md:px-3">
 			{product && <MainDisplay jewellery={product} />}
-			<YouMayAlsoLike suggestedItems={relatedProducts.filter((item) => item._id !== product?._id)} />
+			<YouMayAlsoLike suggestedItems={relatedProducts} />
 		</div>
 	);
 }

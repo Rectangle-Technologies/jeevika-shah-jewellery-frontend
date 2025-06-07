@@ -8,12 +8,13 @@ import { UseFormReturn } from "react-hook-form";
 export const step1Schema = z.object({
 	first_name: z.string().trim().min(2, { message: "First name must be at least 2 characters long" }).max(50, { message: "First name must be at most 50 characters long" }),
 	last_name: z.string().trim(),
-	email: z.string().trim().email().optional(),
+	email: z.string().trim().email().or(z.literal("")),
 	phone: z
 		.string()
 		.trim()
 		.regex(/^[6-9]\d{9}$/, { message: "Phone number must be a valid 10-digit Indian number" }),
 	line1: z.string().trim().min(2, { message: "Address line 1 must be at least 2 characters long" }).max(150, { message: "Address line 1 must be at most 150 characters long" }),
+	line2: z.string().trim().max(150, { message: "Address line 2 must be at most 150 characters long" }).or(z.literal("")),
 	city: z.string().trim().min(2, { message: "City must be at least 2 characters long" }).max(50, { message: "City must be at most 50 characters long" }),
 	state: z.string().trim().min(2, { message: "State must be at least 2 characters long" }).max(50, { message: "State must be at most 50 characters long" }),
 	country: z.string().trim().min(2, { message: "Country must be at least 2 characters long" }).max(50, { message: "Country must be at most 50 characters long" }),
@@ -25,7 +26,9 @@ export const step1DefaultValues = {
 	first_name: "",
 	last_name: "",
 	phone: "",
+	email: "",
 	line1: "",
+	line2: "",
 	city: "",
 	state: "",
 	country: "",
@@ -98,6 +101,21 @@ function Step1({ form }: { form: UseFormReturn<z.infer<typeof step1Schema>> }) {
 						<FormLabel>Address Line 1</FormLabel>
 						<FormControl>
 							<Input placeholder="Enter address line 1" {...field} />
+						</FormControl>
+						<FormMessage />
+					</FormItem>
+				)}
+			/>
+			<FormField
+				control={form.control}
+				name="line2"
+				render={({ field }) => (
+					<FormItem>
+						<FormLabel>
+							Address Line 2 <span className="text-gray-400">(Optional)</span>
+						</FormLabel>
+						<FormControl>
+							<Input placeholder="Enter address line 2" {...field} />
 						</FormControl>
 						<FormMessage />
 					</FormItem>

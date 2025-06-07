@@ -5,7 +5,7 @@ import Link from "next/link";
 import { imgSrcModifier } from "@/utils/functions/image";
 
 interface JewelleryCardProps {
-	jewelleryItem: Item;
+	jewelleryItem: Item | { _id: string; name: string; images: string[] };
 }
 function JewelleryCard({ jewelleryItem }: JewelleryCardProps) {
 	const [hovered, setHovered] = React.useState(false);
@@ -28,7 +28,9 @@ function JewelleryCard({ jewelleryItem }: JewelleryCardProps) {
 
 					<div className="p-3">
 						<CardTitle className="text-center font-normal">{jewelleryItem.name}</CardTitle>
-						<CardDescription className="text-center mt-10">From &#8377; {jewelleryItem.costOfDiamond + jewelleryItem.costOfLabour + jewelleryItem.miscellaneousCost}</CardDescription>
+						{"costOfDiamond" in jewelleryItem && "costOfLabour" in jewelleryItem && "miscellaneousCost" in jewelleryItem && (
+							<CardDescription className="text-center mt-10">From &#8377; {jewelleryItem.costOfDiamond + jewelleryItem.costOfLabour + jewelleryItem.miscellaneousCost}</CardDescription>
+						)}
 					</div>
 				</CardContent>
 			</Card>

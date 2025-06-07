@@ -48,10 +48,16 @@ function NavbarSheet({ navbarLinks }: NavbarSheetProps) {
 						}
 					})}
 					{isAuthenticated && (
-						<Button variant="link" className="text-xl font-normal flex px-0 mx-0 cursor-pointer" onClick={logout}>
-							Logout
-							{/* <LogOutIcon className="px-0 mx-0" /> */}
-						</Button>
+						<div className="mt-3">
+							<Link href={"/profile"} className=" flex text-xl font-normal px-0 mx-0 cursor-pointer">
+								Profile
+							</Link>
+
+							<Button variant="link" className=" flex text-xl font-normal px-0 mx-0 cursor-pointer" onClick={logout}>
+								Logout
+								{/* <LogOutIcon className="px-0 mx-0" /> */}
+							</Button>
+						</div>
 					)}
 					<div className="flex pb-8 gap-2 my-5 w-full">
 						<Link href={process.env.NEXT_PUBLIC_FACEBOOK_LINK!} className="hover:underline py-1">

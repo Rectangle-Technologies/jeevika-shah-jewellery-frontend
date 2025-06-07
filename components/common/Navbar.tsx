@@ -61,7 +61,7 @@ function Navbar({ navbarLinks }: NavbarProps) {
 				</div>
 			) : (
 				<div className="flex items-center justify-between px-4 md:w-[90%] mx-auto">
-					<Link href="/" className="relative w-[60px] h-[60px] md:w-[100px] md:h-[100px]">
+					<Link href="/" className="relative w-[60px] h-[60px] md:w-[100px] md:h-[100px] mx-auto">
 						<Image src="/assets/logo-secondary.png" alt="Jeevika Shah Jewellery logo" fill className="object-contain" />
 					</Link>
 				</div>

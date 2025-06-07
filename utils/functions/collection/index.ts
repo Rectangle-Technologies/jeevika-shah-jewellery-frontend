@@ -13,6 +13,7 @@ export async function getNavbarOptions() {
     const data = await res.json();
     if (data.result && data.result.toLocaleLowerCase() === 'success') {
       const collections = data.body;
+
       const collectionLinks = {
         title: "Collections",
         subLinks: collections.map((collection: any) => ({
@@ -20,6 +21,11 @@ export async function getNavbarOptions() {
           link: `/collections/${collection.toLowerCase()}`
         }))
       }
+
+      collectionLinks.subLinks.push({
+        title: 'Shop All',
+        link: '/collections/all'
+      })
       // keep the collections tab on the top
       navbarLinks.unshift(collectionLinks);
     }

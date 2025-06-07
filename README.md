@@ -35,13 +35,13 @@ List of tasks:
 - [x] On policy pages, center the title, add some bottom margin to the title and increase the line height of the content.
 - [x] In mobile view, when the menu bar is open, on clicking on any item, menu bar should collapse.
 - [x] Make page for `/collections/all`.
-- [ ] In Collections in navbar, "Shop All" is missing
-- [ ] On the login page, shift the logo to center.
-- [ ] On the signup page, add input for address line 2
-- [ ] In the product response, there is "suggestions". Use those products in "You May Also Like".
-- [ ] On the product page, for the active image, make the selector black so that it is more evident. ![alt text](image-1.png)
-- [ ] Reduce this space on brand journey. Same issue on policy pages ![alt text](image-2.png)
-- [ ] In the mobile menu, add an option to navigate to Profile Page.
+- [x] In Collections in navbar, "Shop All" is missing
+- [x] On the login page, shift the logo to center.
+- [x] On the signup page, add input for address line 2
+- [x] In the product response, there is "suggestions". Use those products in "You May Also Like".
+- [x] On the product page, for the active image, make the selector black so that it is more evident. ![alt text](image-1.png)
+- [x] Reduce this space on brand journey. Same issue on policy pages ![alt text](image-2.png)
+- [x] In the mobile menu, add an option to navigate to Profile Page.
 - [ ] This issue is there everywhere where an image is being displayed. ![alt text](image-3.png)
 - [ ] Will clicking on social share buttons on product page share the product?
 - [x] Default size should be the first size on the product page
@@ -49,7 +49,7 @@ List of tasks:
 - [x] On the landing page, clicking on the View All should navigate to all products.
 - [x] Update the policies as discussed.
 - [x] The number indicator besides cart icon is not showing a correct number. It is showing the total quantity, but it should show the number of products. For e.g., if I add 3 quantity of 1 product, it should show 1, not 3. ![alt text](image-4.png)
-- [ ] The minus button on cart is removing the product from cart. It should reduce the quantity by 1. If the quantity is 1, only then it should remove from cart.
+- [x] The minus button on cart is removing the product from cart. It should reduce the quantity by 1. If the quantity is 1, only then it should remove from cart.
 - [x] Remove the text "Taxes and shipping calculated at checkout." from cart.
 - [x] Show the diamond type selected on cart page.
 - [x] On the checkout page, when ordering for someone else, take input of name and phone as well.

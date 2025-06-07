@@ -82,7 +82,7 @@ function SignUpForm() {
 				...step1Data,
 				name: step1Data?.first_name + " " + step1Data?.last_name,
 				address: {
-					line1: step1Data.line1,
+					line1: `${step1Data.line1}, ${step1Data.line2 ? step1Data.line2 : null}`,
 					city: step1Data.city,
 					state: step1Data.state,
 					country: step1Data.country,
