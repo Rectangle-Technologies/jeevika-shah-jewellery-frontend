@@ -56,7 +56,12 @@ List of tasks:
 - [x] Clear the cart once order is placed.
 - [x] Display order total on the profile page where all orders are shown.
 - [x] All prices are in INR, so should be displayed with the rupee symbol.
-
+- [ ] When a user registers, they should be logged in as well. After registering, they don't need to sign in. In the response of verifyOtp, token also comes.
+- [ ] Add a functionality on the Enter OTP page to scroll to top.
+- [ ] Here order._id should be displayed. ![alt text](image-5.png)
+- [ ] User's mobile is not displaying in Customer Details
+- [ ] Scorlling issue there on profile page. ![alt text](image-6.png)
+- [ ] On the Checkout page, it is still USD.
 
 Flow for user authentication:
 Login:
