@@ -5,7 +5,12 @@ import CheckoutSkeleton from "./CheckoutSkeleton";
 import CheckoutForm from "./CheckoutForm";
 import { ToastContainer } from "react-toastify";
 
-function RightSection() {
+interface RightSectionProps {
+	isPaymentPending: boolean;
+	orderId?: string;
+}
+
+function RightSection({ isPaymentPending, orderId }: RightSectionProps) {
 	const [user, setUser] = React.useState<User | null>(null);
 	const [loadingUserData, setLoadingUserData] = React.useState<boolean>(true);
 
@@ -25,7 +30,7 @@ function RightSection() {
 				<CheckoutSkeleton />
 			) : (
 				<div>
-					<CheckoutForm userDetails={user!} />
+					<CheckoutForm isOrderPaymentPending={isPaymentPending} userDetails={user!} orderId={orderId} />
 				</div>
 			)}
 			<ToastContainer />

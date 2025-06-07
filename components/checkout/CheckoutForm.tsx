@@ -12,83 +12,71 @@ import { createOrder, createRazorpayOrder, updateOrderStatus, updatePaymentDetai
 import { useRouter } from "next/navigation";
 import { encodeMsg } from "@/utils/functions/order/encode";
 
-const formSchema = z
-	.object({
-		email: z.string().email().optional(),
-		phone: z
-			.string()
-			.trim()
-			.regex(/^[6-9]\d{9}$/, { message: "Phone number must be a valid 10-digit Indian number" }),
-		line1: z.string().trim().min(2, { message: "Address line 1 must be at least 2 characters long" }).max(150, { message: "Address line 1 must be at most 150 characters long" }),
-		city: z.string().trim().min(2, { message: "City must be at least 2 characters long" }).max(50, { message: "City must be at most 50 characters long" }),
-		state: z.string().trim().min(2, { message: "State must be at least 2 characters long" }).max(50, { message: "State must be at most 50 characters long" }),
-		country: z.string().trim().min(2, { message: "Country must be at least 2 characters long" }).max(50, { message: "Country must be at most 50 characters long" }),
-		zip: z.string().trim().min(6, { message: "Zip code must be at least 6 characters long" }).max(6, { message: "Zip code must be at most 6 digits long" }),
-		order_status: z.boolean().optional(),
-		recipient_name: z.string().min(2, "Name is required").optional(),
-		recipient_phone: z
-			.string()
-			.regex(/^[6-9]\d{9}$/, { message: "Phone number must be a valid 10-digit Indian number" })
-			.optional(),
-	})
-	.superRefine((data, ctx) => {
-		if (data.order_status) {
-			if (!data.recipient_name || data.recipient_name.trim().length < 2) {
-				ctx.addIssue({
-					code: z.ZodIssueCode.custom,
-					message: "Recipient name is required",
-					path: ["recipient_name"],
-				});
-			}
-			if (!data.recipient_phone || !/^[6-9]\d{9}$/.test(data.recipient_phone)) {
-				ctx.addIssue({
-					code: z.ZodIssueCode.custom,
-					message: "Recipient phone is required and must be a valid 10-digit Indian number",
-					path: ["recipient_phone"],
-				});
-			}
-		}
-	});
+const formSchema = z.object({
+	email: z.string().email().optional(),
+	phone: z
+		.string()
+		.trim()
+		.regex(/^[6-9]\d{9}$/, { message: "Phone number must be a valid 10-digit Indian number" }),
+	line1: z.string().trim().min(2, { message: "Address line 1 must be at least 2 characters long" }).max(150, { message: "Address line 1 must be at most 150 characters long" }),
+	line2: z.string().trim().max(150, { message: "Address line 2 must be at most 150 characters long" }).optional(),
+	city: z.string().trim().min(2, { message: "City must be at least 2 characters long" }).max(50, { message: "City must be at most 50 characters long" }),
+	state: z.string().trim().min(2, { message: "State must be at least 2 characters long" }).max(50, { message: "State must be at most 50 characters long" }),
+	country: z.string().trim().min(2, { message: "Country must be at least 2 characters long" }).max(50, { message: "Country must be at most 50 characters long" }),
+	zip: z.string().trim().min(6, { message: "Zip code must be at least 6 characters long" }).max(6, { message: "Zip code must be at most 6 digits long" }),
+	recipient_name: z.string().min(2, "Name is required").optional().or(z.literal("")),
+	recipient_phone: z
+		.string()
+		.regex(/^[6-9]\d{9}$/, { message: "Phone number must be a valid 10-digit Indian number" })
+		.optional()
+		.or(z.literal("")),
+});
 
 interface CheckoutFormProps {
 	userDetails: User;
+	isOrderPaymentPending: boolean;
+	orderId?: string;
 }
 
-function CheckoutForm({ userDetails }: CheckoutFormProps) {
-	const { cartItems, removeItemsLocally } = useCounterStore((state) => state);
-
-	const router = useRouter();
-
+function CheckoutForm({ userDetails, isOrderPaymentPending, orderId }: CheckoutFormProps) {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			email: userDetails.email,
 			phone: userDetails.phone,
 			line1: userDetails.address?.line1,
+			line2: userDetails.address?.line2,
 			city: userDetails.address?.city,
 			state: userDetails.address?.state,
 			country: userDetails.address?.country,
 			zip: userDetails.address?.zip,
-			order_status: false,
 			recipient_name: "",
 			recipient_phone: "",
 		},
 	});
+	const { cartItems, removeItemsLocally } = useCounterStore((state) => state);
+	const [orderForSomeoneElse, setOrderForSomeoneElse] = React.useState(false);
+	const router = useRouter();
 
-	const orderForSomeoneElse = form.watch("order_status");
 	async function onSubmit(values: z.infer<typeof formSchema>) {
 		// 1. Create order
 		const receiverDetails: ReceiverDetails = orderForSomeoneElse
 			? { name: values.recipient_name!, phone: values.recipient_phone!, address: { line1: values.line1!, city: values.city!, state: values.state!, country: values.country!, zip: values.zip! } }
 			: { name: userDetails.name, phone: userDetails.phone!, address: { line1: values.line1!, city: values.city!, state: values.state!, country: values.country!, zip: values.zip! } };
-		const orderRes = await createOrder(cartItems, receiverDetails);
-		if (!orderRes.isOrderCreated || !orderRes.orderId) {
-			router.push(`/order-status?error=${encodeMsg("Order could not be created, please try again later.")}`);
-			return;
+
+		let orderRes: { isOrderCreated: boolean; orderId?: string } = { isOrderCreated: false, orderId: "" };
+		if (isOrderPaymentPending) {
+			orderRes = { isOrderCreated: true, orderId: orderId };
+		} else {
+			orderRes = await createOrder(cartItems, receiverDetails);
+			if (!orderRes.isOrderCreated || !orderRes.orderId) {
+				router.push(`/order-status?error=${encodeMsg("Order could not be created, please try again later.")}`);
+				return;
+			}
 		}
 
 		// 3. Create Razorpay order
-		const razorpayRes = await createRazorpayOrder(orderRes.orderId);
+		const razorpayRes = await createRazorpayOrder(orderRes.orderId || "");
 		if (!razorpayRes.isOrderCreated || !razorpayRes.razorpayOrderId) {
 			router.push(`/order-status?error=${encodeMsg("There was an error completing the payment. Don't worry your order has been successfully placed, you can complete your payment here.")}&orderId=${orderRes.orderId}`);
 			return;
@@ -154,7 +142,14 @@ function CheckoutForm({ userDetails }: CheckoutFormProps) {
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+			<form
+				onSubmit={(e) => {
+					e.preventDefault();
+					console.log(form.formState.errors);
+					form.handleSubmit(onSubmit)();
+				}}
+				className="space-y-8"
+			>
 				<div className="flex flex-col gap-4">
 					<p className="text-xl font-semibold">Contact</p>
 					{/* email */}
@@ -199,21 +194,21 @@ function CheckoutForm({ userDetails }: CheckoutFormProps) {
 				{/* Address */}
 				<div className="flex flex-col gap-4">
 					{/* ordering for someone else checkbox */}
-					<FormField
-						control={form.control}
-						name="order_status"
-						render={({ field }) => (
-							<FormItem className="flex flex-row items-center gap-2 space-y-0">
-								<FormControl>
-									<Checkbox checked={field.value} onCheckedChange={field.onChange} id="order_status" />
-								</FormControl>
-								<FormLabel htmlFor="order_status" className="mb-0">
-									Ordering for someone else?
-								</FormLabel>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
+					<FormItem className="flex flex-row items-center gap-2 space-y-0">
+						<FormControl>
+							<Checkbox
+								checked={orderForSomeoneElse}
+								onCheckedChange={(checked) => {
+									setOrderForSomeoneElse(!!checked);
+								}}
+								id="order_status"
+							/>
+						</FormControl>
+						<FormLabel htmlFor="order_status" className="mb-0">
+							Ordering for someone else?
+						</FormLabel>
+						<FormMessage />
+					</FormItem>
 					{orderForSomeoneElse && (
 						<>
 							<FormField
@@ -253,6 +248,20 @@ function CheckoutForm({ userDetails }: CheckoutFormProps) {
 								<FormLabel>Address Line 1</FormLabel>
 								<FormControl>
 									<Input placeholder="Enter address line 1" {...field} disabled={!orderForSomeoneElse} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					{/* line 2 */}
+					<FormField
+						control={form.control}
+						name="line2"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Address Line 2</FormLabel>
+								<FormControl>
+									<Input placeholder="Enter address line 2" {...field} disabled={!orderForSomeoneElse} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>

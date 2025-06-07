@@ -3,7 +3,18 @@ import Image from "next/image";
 import React from "react";
 
 interface CheckoutItemProps {
-	item: IndividualCartItem;
+	item: {
+		productId: {
+			_id: string;
+			name: string;
+			images: string[];
+		};
+		quantity: number;
+		price: number;
+		size: string;
+		diamondType: string;
+		_id: string;
+	};
 }
 
 function CheckoutItem({ item }: CheckoutItemProps) {
@@ -12,19 +23,21 @@ function CheckoutItem({ item }: CheckoutItemProps) {
 			<div className="flex items-center gap-3">
 				{/* image */}
 				<div className="w-24 h-24 relative">
-					<Image src={imgSrcModifier(item.item.images[0])} alt={item.item.name} fill className="object-cover" />
+					<Image src={imgSrcModifier(item.productId.images[0])} alt={item.productId.name} fill className="object-cover" />
 					<div className="absolute top-0 right-0 bg-gray-400 text-white text-sm px-2 py-1 rounded-full">
 						<p>{item.quantity}</p>
 					</div>
 				</div>
 				{/* item details */}
 				<div className="">
-					<p className="text-lg font-semibold">{item.item.name}</p>
+					<p className="text-lg font-semibold">{item.productId.name}</p>
 					<p>{item.size}</p>
+					{/* price */}
+					<p className="md:hidden items-center">&#8377; {item.price.toFixed(2)}</p>
 				</div>
 			</div>
 			{/* price */}
-			<p className=" items-center">USD {(item.item.costOfDiamond + item.item.costOfLabour + item.item.miscellaneousCost).toFixed(2)}</p>
+			<p className="hidden md:flex items-center">&#8377; {(item.price * item.quantity).toFixed(2)}</p>
 		</div>
 	);
 }

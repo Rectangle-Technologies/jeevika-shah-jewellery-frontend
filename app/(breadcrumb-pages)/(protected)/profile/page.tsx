@@ -67,7 +67,7 @@ function ProfilePage() {
 					))}
 				</div>
 			)}
-			<div className="w-full flex flex-col gap-4 lg:gap-8 mt-10">
+			<div className="w-full flex flex-col gap-4 lg:gap-8 my-10">
 				<p className="text-2xl">Customer Details</p>
 				<div className="flex flex-col md:flex-row items-start md:items-center justify-between w-full md:w-3/5 lg:w-2/5">
 					<div className="">
@@ -95,13 +95,17 @@ function ProfilePage() {
 					{!userDetails ? <Skeleton className="h-6 w-48" /> : <p className="text-gray-700">{userDetails.email ? userDetails.email : "Not Provided"}</p>}
 				</div>
 				<div className="">
+					<p>Phone:</p>
+					{!userDetails ? <Skeleton className="h-6 w-24" /> : <p className="text-gray-700">{userDetails.phone ? userDetails.phone : "Not Provided"}</p>}
+				</div>
+				<div className="">
 					<p>Address:</p>
 					{!userDetails ? (
 						<Skeleton className="h-6 w-64" />
 					) : (
 						userDetails.address && (
 							<p className="text-gray-700">
-								{userDetails.address.line1}, {userDetails.address.line2}, {userDetails.address.city}, {userDetails.address.state}, {userDetails.address.country}, {userDetails.address.zip}
+								{userDetails.address.line1}, {userDetails.address.line2 && `${userDetails.address.line2},`} {userDetails.address.city}, {userDetails.address.state}, {userDetails.address.country}, {userDetails.address.zip}
 							</p>
 						)
 					)}

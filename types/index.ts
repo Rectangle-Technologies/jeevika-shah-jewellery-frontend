@@ -57,7 +57,7 @@ interface ReceiverDetails {
 
 interface OrderProduct {
     receiverDetails: ReceiverDetails;
-        customOrderDetails: {
+    customOrderDetails: {
         isCustomOrder: boolean;
     };
     _id: string;
@@ -69,6 +69,7 @@ interface OrderProduct {
         productId: {
             _id: string;
             name: string;
+            images: string[];
         };
         quantity: number;
         price: number;

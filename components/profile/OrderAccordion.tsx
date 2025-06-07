@@ -3,6 +3,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
+import Link from "next/link";
+import { encodeMsg } from "@/utils/functions/order/encode";
 
 interface OrderAccordionProps {
 	order: OrderProduct;
@@ -13,7 +15,7 @@ function OrderAccordion({ order, index }: OrderAccordionProps) {
 		<Accordion type="single" collapsible>
 			<AccordionItem value="item-1" className=" rounded-md px-2">
 				<AccordionTrigger className="">
-					<div className="w-full flex items-center justify-between ">
+					<div className="w-full flex flex-col md:flex-row gap-2 items-start justify-between ">
 						<p>Order #{order._id}</p>
 						<div className="flex items-center gap-2">
 							<Badge variant="secondary">{order.status}</Badge>
@@ -69,8 +71,8 @@ function OrderAccordion({ order, index }: OrderAccordionProps) {
 						<p>Payment Status: {order.paymentStatus}</p>
 						{order.paymentStatus.toLowerCase() === "completed" && <p>Payment ID: {order.razorpayPaymentId}</p>}
 						{order.paymentStatus.toLowerCase() === "pending" && (
-							<Button className="w-full mx-auto md:w-[200px]" variant={"secondary"}>
-								Complete Payment
+							<Button asChild className="w-full mx-auto md:w-[200px] cursor-pointer" variant={"secondary"}>
+								<Link href={`/checkout?isOrderPaymentPending=${encodeMsg("true")}&orderId=${order._id}`}>Complete Payment</Link>
 							</Button>
 						)}
 					</div>

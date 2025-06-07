@@ -48,20 +48,18 @@ List of tasks:
 - [x] Clear the cart once order is placed.
 - [x] Display order total on the profile page where all orders are shown.
 - [x] All prices are in INR, so should be displayed with the rupee symbol.
-- [ ] When a user registers, they should be logged in as well. After registering, they don't need to sign in. In the response of verifyOtp, token also comes.
-- [ ] Add a functionality on the Enter OTP page to scroll to top.
-- [ ] Here order._id should be displayed. ![alt text](image-5.png)
-- [ ] User's mobile is not displaying in Customer Details
-- [ ] Scorlling issue there on profile page. ![alt text](image-6.png)
-- [ ] On the Checkout page, it is still USD.
+- [x] Here order._id should be displayed. ![alt text](image-5.png)
+- [x] User's mobile is not displaying in Customer Details
+- [x] On the Checkout page, it is still USD.
+- [x] In page.tsx, line no. 46, add the logic to check if last name exists before the div i.e. on line 44 so that the title "Last Name:" is also not displayed if last name doesn't exist.
+- [x] In address line2 is also optional. So the comma after line2 should come only if line2 exists. Make it optional in the interface as well.
+- [x] Scorlling issue there on profile page. ![alt text](image-6.png)
+- [x] Add a functionality on the Enter OTP page to scroll to top.
+- [ ] This issue is there everywhere where an image is being displayed. ![alt text](image-3.png)
 - [ ] In the menu list in desktop view, add a bit padding of around 3
 - [ ] On the product page, implement zoom on hover for images
-- [ ] Keep the layout on the product page exactly as the reference website
-- [ ] In page.tsx, line no. 46, add the logic to check if last name exists before the div i.e. on line 44 so that the title "Last Name:" is also not displayed if last name doesn't exist.
-- [ ] In address line2 is also optional. So the comma after line2 should come only if line2 exists. Make it optional in the interface as well.
 - [ ] Size should be a drop-down menu and it should only show the displayName property, not the weightOfMetal. weightOfMetal is for internal use
-- [ ] This issue is there everywhere where an image is being displayed. ![alt text](image-3.png)
-- [ ] Will clicking on social share buttons on product page share the product?
+- [ ] When a user registers, they should be logged in as well. After registering, they don't need to sign in. In the response of verifyOtp, token also comes.
 
 
 

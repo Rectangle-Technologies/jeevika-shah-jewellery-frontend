@@ -56,6 +56,11 @@ function SignUpForm() {
 			setVerificationId(otpRes.data.body.data.verificationId);
 			setStep1Data(values);
 			setCurrentStep(2);
+			// scroll to the top
+			window.scrollTo({
+				top: 0,
+				behavior: "smooth",
+			});
 		} catch (err: any) {
 			toast.error(err?.response?.data?.message || "Failed to send OTP.", {
 				type: "error",
@@ -82,7 +87,8 @@ function SignUpForm() {
 				...step1Data,
 				name: step1Data?.first_name + " " + step1Data?.last_name,
 				address: {
-					line1: `${step1Data.line1}, ${step1Data.line2 ? step1Data.line2 : null}`,
+					line1: step1Data.line1,
+					line2: step1Data.line2,
 					city: step1Data.city,
 					state: step1Data.state,
 					country: step1Data.country,
