@@ -14,7 +14,7 @@ function OrderAccordion({ order, index }: OrderAccordionProps) {
 			<AccordionItem value="item-1" className=" rounded-md px-2">
 				<AccordionTrigger className="">
 					<div className="w-full flex items-center justify-between ">
-						<p>Order #{index}</p>
+						<p>Order #{order._id}</p>
 						<div className="flex items-center gap-2">
 							<Badge variant="secondary">{order.status}</Badge>
 							<Badge variant="outline">Payment {order.paymentStatus}</Badge>
