@@ -56,3 +56,31 @@ export async function verifyToken(token: string) {
         return false;
     }
 }
+
+
+export async function updateProfile(profileDetails: User): Promise<boolean> {
+    try {
+        const token = localStorage.getItem('at');
+        if (!token) {
+            return false;
+        }
+        const res = await axios.post(
+            `${process.env.NEXT_PUBLIC_API_URL}/user/update`,
+            profileDetails,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                }
+            }
+        );
+        if (res.data.result && res.data.result.toLocaleLowerCase() === 'success') {
+            return true;
+        } else {
+            return false
+        }
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+}
