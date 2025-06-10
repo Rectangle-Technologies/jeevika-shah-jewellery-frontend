@@ -28,7 +28,7 @@ export function Breadcrumbs() {
 				if (pathSegments.length > 1) {
 					const product = await getProductDetails(pathSegments[1]);
 					crumbs.push({
-						name: product?.name || "Product",
+						name: product?.product[0]?.name || "Product",
 						href: `/product/${pathSegments[1]}`,
 					});
 				}

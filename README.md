@@ -58,7 +58,6 @@ List of tasks:
 - [ ] This issue is there everywhere where an image is being displayed. ![alt text](image-3.png)
 - [ ] On the product page, implement zoom on hover for images
 - [ ] Size should be a drop-down menu and it should only show the displayName property, not the weightOfMetal. weightOfMetal is for internal use
-- [ ] When a user registers, they should be logged in as well. After registering, they don't need to sign in. In the response of verifyOtp, token also comes.
 
 
 

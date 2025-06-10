@@ -7,8 +7,9 @@ import React from "react";
 async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
 	const { id } = await params;
 
-	const product = await getProductDetails(id);
-	const relatedProducts = product?.recommendations || (await getProducts(1, 5, product?.category || "", false));
+	const details = await getProductDetails(id);
+	const product = details?.product[0];
+	const relatedProducts = details?.recommendations || (await getProducts(1, 5, product?.category || "", false));
 	return (
 		<div className=" pb-3 md:px-3">
 			{product && <MainDisplay jewellery={product} />}

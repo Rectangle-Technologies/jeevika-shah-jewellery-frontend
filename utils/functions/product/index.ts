@@ -1,7 +1,19 @@
 'use server';
 
-interface ServerResponse extends Item {
-    recommendations: { _id: string, name: string, images: string[] }[];
+
+interface MetalPrices {
+    _id: string;
+    goldPricePerGram: number;
+    naturalDiamondPricePerCarat: number;
+    labDiamondPricePerCarat: number;
+    __v: number;
+}
+
+
+interface ServerResponse {
+    product: Item[];
+    recommendations: Item[];
+    metalPrices: MetalPrices;
 }
 
 export async function getProductDetails(productId: string): Promise<ServerResponse | null> {

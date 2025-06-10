@@ -10,6 +10,7 @@ import { useCounterStore } from "@/providers/cart-store-providers";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import SocialShareButtons from "./SocialShareButton";
 import JewellerySizeDropdown from "./JewellerySizeDropdown";
+import { useRouter } from "next/navigation";
 
 interface MainDisplayProps {
 	jewellery: Item;
@@ -17,23 +18,26 @@ interface MainDisplayProps {
 
 function MainDisplay({ jewellery }: MainDisplayProps) {
 	const { addToCart, cartItems } = useCounterStore((state) => state);
+	const router = useRouter();
 	const [count, setCount] = React.useState(cartItems.find((item) => item.productId === jewellery._id)?.quantity || 1);
 	const [size, setSize] = React.useState(cartItems.find((item) => item.productId === jewellery._id)?.size || jewellery.sizes[0].displayName);
-	const [type, setType] = React.useState(cartItems.find((item) => item.productId === jewellery._id)?.diamondType || 'natural');
+	const [type, setType] = React.useState(cartItems.find((item) => item.productId === jewellery._id)?.diamondType || "natural");
 
 	return (
-		<div className="w-full md:w-[95%] mx-auto flex flex-col md:flex-row md:items-center gap-4 text-md">
-			<div className="w-full  md:w-1/2 px-3">
+		<div className="w-full md:w-[95%] mx-auto flex flex-col md:flex-row md:items-center gap-4 text-md mt-5">
+			<div className="w-full  md:w-1/2">
 				<JewelleryDialogCarousel imageList={jewellery.images} />
 			</div>
 			<div className="text-start w-full md:w-1/2 px-3 flex flex-col items-start gap-6 text-gray-600">
-				<p className="text-2xl text-black">{jewellery.name}</p>
+				<p className="text-3xl font-bold text-gray-800">{jewellery.name}</p>
 				<p className="text-md">&#8377; {jewellery.costOfDiamond + jewellery.costOfLabour + jewellery.miscellaneousCost}</p>
 				<p className="text-md">{jewellery.description}</p>
-				<div className="">Metal: {jewellery.karatOfGold}K Gold</div>
+				<p className="">Metal: {jewellery.karatOfGold} Karat of Gold</p>
+				<p>Weight of Gold: {jewellery.weightOfGold} gm</p>
+				<p>Diamond: {jewellery.karatOfDiamond} Karat of Diamond</p>
 				{/* <JewewllerySizeTable jewellerySizes={jewellery.sizes} /> */}
 				<JewellerySizeDropdown jewellerySizes={jewellery.sizes} setSize={setSize} />
-				<JewelleryOriginTab setType={setType} />
+				{Object.keys(jewellery).includes("isNaturalDiamond") && Object.keys(jewellery).includes("isLabDiamond") && <JewelleryOriginTab setType={setType} />}
 				<div className="w-full flex flex-col justify-between gap-6">
 					<div className="flex items-center lg:justify-between gap-2 lg:gap-6">
 						<div className="flex items-center gap-3 lg:gap-6 lg:w-1/3">
@@ -61,7 +65,14 @@ function MainDisplay({ jewellery }: MainDisplayProps) {
 						</Button>
 					</div>
 					<div className="flex items-center justify-between">
-						<Button type="button" className=" cursor-pointer w-[90%]">
+						<Button
+							type="button"
+							className=" cursor-pointer w-[90%]"
+							onClick={() => {
+								addToCart(jewellery._id, jewellery, size, type, count);
+								router.push("/checkout");
+							}}
+						>
 							Buy it now
 						</Button>
 						<TooltipProvider>
