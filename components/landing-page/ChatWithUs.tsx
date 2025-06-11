@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 interface ChatWithUsProps {
 	bgImageSrc?: string;
@@ -12,8 +13,10 @@ function ChatWithUs({ bgImageSrc }: ChatWithUsProps) {
 			<div className="z-30 h-full w-full flex flex-col items-center justify-center gap-4 text-center md:text-2xl md:font-semibold ">
 				<p>LET'S SHARE THE PASSION & HELP YOU CREATE A PIECE.</p>
 				<p>JUST FOR YOU.</p>
-				<Button type="button" className="rounded-none border border-white hover:bg-white hover:text-black p-6 bg-transparent text-xl cursor-pointer mt-10">
-					CHAT WITH US
+				<Button type="button" asChild className="rounded-none border border-white hover:bg-white hover:text-black p-6 bg-transparent text-xl cursor-pointer mt-10">
+					<Link href="https://wa.me/9879438794" target="_blank" rel="noopener noreferrer">
+						CHAT WITH US
+					</Link>
 				</Button>
 			</div>
 		</div>

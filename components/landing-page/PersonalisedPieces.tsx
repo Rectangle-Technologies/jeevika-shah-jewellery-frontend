@@ -2,6 +2,7 @@
 import Image from "next/image";
 import React from "react";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 interface PersonalisedPiecesProps {
 	bgImageSrc?: string;
@@ -16,7 +17,11 @@ function PersonalisedPieces({ bgImageSrc }: PersonalisedPiecesProps) {
 			<div className="relative w-full md:w-[300px] h-[400px] md:h-[350px] mt-4">
 				<Image src={bgImageSrc as string} alt="Personalised Pieces" fill className={`object-cover transition-opacity duration-500`} />
 			</div>
-			<Button className="p-6 mt-2 font-normal cursor-pointer">Customise via WhatsApp</Button>
+			<Button asChild type="button" className="p-6 mt-2 font-normal cursor-pointer">
+				<Link href="https://wa.me/9879438794" target="_blank" rel="noopener noreferrer">
+					Customise via WhatsApp
+				</Link>
+			</Button>
 		</div>
 	);
 }

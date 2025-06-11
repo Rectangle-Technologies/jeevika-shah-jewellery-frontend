@@ -44,7 +44,7 @@ function Navbar({ navbarLinks }: NavbarProps) {
 						<NavigationMenuDemo navbarLinks={navbarLinks} />
 					</div>
 					<Link href="/" className="relative w-[60px] h-[60px] md:w-[100px] md:h-[100px]">
-						<Image src="/assets/logo-secondary.png" alt="Jeevika Shah Jewellery logo" fill className="object-contain" />
+						<Image src={scrolled || hovered || path !== "/" ? `/assets/logo-secondary.png` : `/assets/logo-primary.png`} alt="Jeevika Shah Jewellery logo" fill className="object-contain" />
 					</Link>
 					<div className="flex items-center justify-end gap-2 md:gap-3 md:w-1/4">
 						<Link href={"/profile"} className="hidden md:flex">
