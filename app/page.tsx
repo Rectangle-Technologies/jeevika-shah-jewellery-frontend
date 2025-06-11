@@ -8,6 +8,7 @@ import WhyWeAreHere from "@/components/landing-page/WhyWeAreHere";
 import { getProducts } from "@/utils/functions/collection";
 import axios from "axios";
 import type { Metadata } from "next";
+import { ToastContainer } from "react-toastify";
 
 export const metadata: Metadata = {
 	title: "Jeevika Shah Jewellery | Timeless Designs",
@@ -67,6 +68,7 @@ export default async function Home() {
 			<PersonalisedPieces bgImageSrc={data[data.findIndex((item: any) => item.key === "personalizedPiecesBackground")].value as string} />
 			<WhyWeAreHere bgImageSrc={data[data.findIndex((item: any) => item.key === "whyHereBackgroundImage")].value as string} />
 			<ContactUsForm />
+			<ToastContainer/>
 		</div>
 	);
 }

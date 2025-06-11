@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
@@ -8,6 +8,9 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { z } from "zod";
 import { Textarea } from "../ui/textarea";
+import axios from "axios";
+import { Loader2 } from "lucide-react";
+import { toast } from "react-toastify";
 
 const formSchema = z.object({
 	name: z.string({ required_error: "Name is required" }).trim().min(2, { message: "Name must be at least 2 characters long" }).max(50, { message: "Name must be at most 50 characters long" }),
@@ -25,6 +28,8 @@ const formSchema = z.object({
 });
 
 function ContactUsForm() {
+	const [loading, setLoading] = useState(false);
+
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
@@ -35,9 +40,28 @@ function ContactUsForm() {
 		},
 	});
 
-	function onSubmit(values: z.infer<typeof formSchema>) {
-		console.log(values);
+	async function onSubmit(values: z.infer<typeof formSchema>) {
+		setLoading(true);
+		try {
+			const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/enquiry/create`, {
+				name: values.name,
+				email: values.email,
+				message: values.message,
+				phone: values.phone_number,
+			});
+			if (response.data.result && response.data.result.toLowerCase() === "success") {
+				toast.success("Your enquiry has been submitted successfully!", { position: "bottom-right" });
+				form.reset();
+			} else {
+				toast.error(response.data.message || "Something went wrong. Please try again later.", { position: "bottom-right" });
+			}
+		} catch (error: any) {
+			toast.error(error?.response?.data?.message || "Something went wrong. Please try again later.", { position: "bottom-right" });
+		} finally {
+			setLoading(false);
+		}
 	}
+
 	return (
 		<div className="w-full md:w-1/2 mx-auto p-3 flex flex-col items-center">
 			<Form {...form}>
@@ -49,7 +73,7 @@ function ContactUsForm() {
 							<FormItem>
 								<FormLabel>YOUR NAME:</FormLabel>
 								<FormControl>
-									<Input placeholder="John Doe" {...field} />
+									<Input placeholder="John Doe" {...field} disabled={loading} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -62,7 +86,7 @@ function ContactUsForm() {
 							<FormItem>
 								<FormLabel>YOUR EMAIL:</FormLabel>
 								<FormControl>
-									<Input placeholder="john.doe@email.com" {...field} />
+									<Input placeholder="john.doe@email.com" {...field} disabled={loading} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -75,7 +99,7 @@ function ContactUsForm() {
 							<FormItem>
 								<FormLabel>YOUR PHONE NUMBER:</FormLabel>
 								<FormControl>
-									<Input placeholder="1234567890" {...field} />
+									<Input placeholder="9876543210" {...field} disabled={loading} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -83,20 +107,27 @@ function ContactUsForm() {
 					/>
 					<FormField
 						control={form.control}
-						name="name"
+						name="message"
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>YOUR MESSAGE:</FormLabel>
 								<FormControl>
-									<Textarea className="h-[200px]" placeholder="Write your message here" {...field} />
+									<Textarea className="h-[200px]" placeholder="Write your message here" {...field} disabled={loading} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
 						)}
 					/>
 
-					<Button type="submit" className="w-full md:w-auto mx-auto cursor-pointer p-6">
-						SEND MESSAGE
+					<Button type="submit" className="w-full md:w-auto mx-auto cursor-pointer p-6 flex items-center justify-center" disabled={loading}>
+						{loading ? (
+							<>
+								<Loader2 className="animate-spin mr-2 h-5 w-5" />
+								SENDING...
+							</>
+						) : (
+							"SEND MESSAGE"
+						)}
 					</Button>
 				</form>
 			</Form>
