@@ -12,13 +12,13 @@ export async function getNavbarOptions() {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories/get-all`);
     const data = await res.json();
     if (data.result && data.result.toLocaleLowerCase() === 'success') {
-      const collections = data.body;
+      const collections = data.body.categories;
 
       const collectionLinks = {
         title: "Collections",
-        subLinks: collections.map((collection: any) => ({
-          title: collection,
-          link: `/collections/${collection.toLowerCase()}`
+        subLinks: collections.map((collection: { name: string, image: string }) => ({
+          title: collection.name,
+          link: `/collections/${collection.name.toLowerCase()}`
         }))
       }
 
@@ -60,4 +60,19 @@ export async function getProducts(pageNo: number, pageSize: number, category: st
   }
 }
 
+export async function getCategories(): Promise<{ name: string, image: string }[]> {
+  try {
+    const res = await fetch(`${process.env.API_URL}/categories/get-all`);
+    const data = await res.json();
+    if (data.result && data.result.toLocaleLowerCase() === 'success') {
+      return data.body.categories;
+    } else {
+      console.log(data);
+      return [];
+    }
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+}
 

@@ -55,11 +55,7 @@ export default async function Home() {
 	const jewelleryItems = await getProducts(1, 12, "", true);
 	const res = await axios.get(`${process.env.API_URL}/home-content/get`);
 	const data = await res.data.body.homeContent;
-	// const jewelleryCategoryBgImages = data.map((item: any) => {
-	// 	if (item.key === "braceletBackground" || item.key === "earringsBackground" || item.key === "ringsBackground" || item.key === "necklaceBackground") {
-	// 		return item.value;
-	// 	}
-	// });
+
 	return (
 		<div>
 			<Banner bgImageSrc={data[data.findIndex((item: any) => item.key === "mainBanner")].value as string} />

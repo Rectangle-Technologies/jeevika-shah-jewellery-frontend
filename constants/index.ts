@@ -142,11 +142,11 @@ export const jewelleryItems: Item[] = [
 ];
 
 
-export const jewelleryCategories: { title: string, image_url: string }[] = [
-    { title: 'Bracelet', image_url: '/assets/landing-page/bracelet.jpeg' },
-    { title: 'Necklace', image_url: '/assets/landing-page/necklace.jpeg' },
-    { title: 'Earrings', image_url: '/assets/landing-page/earrings.webp' },
-    { title: 'Rings', image_url: '/assets/landing-page/rings.jpeg' },
+export const jewelleryCategories: { title: string, image: string }[] = [
+    { title: 'Bracelet', image: '/assets/landing-page/bracelet.jpeg' },
+    { title: 'Necklace', image: '/assets/landing-page/necklace.jpeg' },
+    { title: 'Earrings', image: '/assets/landing-page/earrings.webp' },
+    { title: 'Rings', image: '/assets/landing-page/rings.jpeg' },
 ];
 
 
