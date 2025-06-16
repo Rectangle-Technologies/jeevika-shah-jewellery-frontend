@@ -4,9 +4,12 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
-import { navbarLinks } from "@/constants";
 
-export default function NavigationMenuDemo() {
+interface NavigationMenuDemoProps {
+	navbarLinks: { title: string; link?: string; subLinks?: { title: string; link: string }[] }[];
+}
+
+export default function NavigationMenuDemo({ navbarLinks }: NavigationMenuDemoProps) {
 	return (
 		<NavigationMenu>
 			<NavigationMenuList className="flex flex-col md:flex-row gap-4">

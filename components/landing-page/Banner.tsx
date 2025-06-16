@@ -2,9 +2,13 @@ import React from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 
-function Banner() {
+interface BannerProps {
+	bgImageSrc?: string;
+}
+
+function Banner({ bgImageSrc }: BannerProps) {
 	return (
-		<div className="h-[calc(100vh-64px)] md:h-screen bg-[url('/assets/landing-page/background-mobile.webp')] bg-top-right md:bg-right-bottom bg-cover bg-no-repeat flex flex-col items-center justify-center relative overflow-hidden">
+		<div className={`h-[calc(100vh-64px)] md:h-screen bg-top-right md:bg-right-bottom bg-cover bg-no-repeat flex flex-col items-center justify-center relative overflow-hidden`} style={bgImageSrc ? { backgroundImage: `url(${bgImageSrc})` } : undefined}>
 			<div className="absolute h-full w-full bg-black opacity-30 md:opacity-20 z-10"></div>
 
 			<Button

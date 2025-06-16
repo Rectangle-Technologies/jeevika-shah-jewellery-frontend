@@ -17,10 +17,10 @@ function Footer() {
 				))}
 			</div>
 			<div className="flex items-center justify-center pb-8 gap-2 my-5 border-b-2 border-white w-full">
-				<Link href={process.env.NEXT_PUBLIC_FACEBOOK_LINK!} className="hover:underline py-1">
+				<Link href={process.env.NEXT_PUBLIC_FACEBOOK_LINK!} target='_blank' className="hover:underline py-1">
 					<FacebookIcon />
 				</Link>
-				<Link href={process.env.NEXT_PUBLIC_INSTAGRAM_LINK!} className="hover:underline py-1">
+				<Link href={process.env.NEXT_PUBLIC_INSTAGRAM_LINK!} target='_blank' className="hover:underline py-1">
 					<InstagramIcon />
 				</Link>
 			</div>

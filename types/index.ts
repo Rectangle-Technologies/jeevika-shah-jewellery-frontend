@@ -21,9 +21,17 @@ interface Item {
     isActive: boolean
 }
 
+interface IndividualCartItem {
+    productId: string;
+    quantity: number;
+    size: string;
+    diamondType: string;
+    item: Item
+}
+
 interface Address {
     line1: string;
-    line2: string;
+    line2?: string;
     city: string;
     state: string;
     country: string;
@@ -34,10 +42,48 @@ interface CartProduct {
     productId: string; // assuming _id from MongoDB, so it's a string
     quantity: number;
     size: string;
+    diamondType?: string;
 }
 
 interface Cart {
     products: CartProduct[];
+}
+
+interface ReceiverDetails {
+    address: Address;
+    name: string;
+    phone: string;
+}
+
+interface OrderProduct {
+    receiverDetails: ReceiverDetails;
+    customOrderDetails: {
+        isCustomOrder: boolean;
+    };
+    _id: string;
+    userId: {
+        _id: string;
+        name: string;
+    };
+    products: Array<{
+        productId: {
+            _id: string;
+            name: string;
+            images: string[];
+        };
+        quantity: number;
+        price: number;
+        size: string;
+        diamondType: string;
+        _id: string;
+    }>;
+    totalAmount: number;
+    status: string;
+    paymentStatus: string;
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
+    razorpayPaymentId?: string; // Optional, as not all objects have this
 }
 
 interface User {

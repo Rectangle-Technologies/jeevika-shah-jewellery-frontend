@@ -16,7 +16,7 @@ function CartPage() {
 					<ShoppingCartIcon height={70} width={70} />
 					<p className="">Your cart is empty</p>
 					<Button asChild className="mt-4">
-						<Link href="/">Shop Now</Link>
+						<Link href="/collections/all">Shop Now</Link>
 					</Button>
 				</div>
 			)}
@@ -31,20 +31,15 @@ function CartPage() {
 				<div>
 					<div className="flex justify-between items-end text-lg text-gray-500 border-y py-3 my-2">
 						<p>Subtotal:</p>
-						<p className="">$ {cartItems.reduce((total, item) => total + item.count * (item.item.costOfDiamond + item.item.costOfLabour + item.item.miscellaneousCost), 0)}</p>
+						<p className="">&#8377; {cartItems.reduce((total, item) => total + item.quantity * (item.item.costOfDiamond + item.item.costOfLabour + item.item.miscellaneousCost), 0)}</p>
 					</div>
-					<div className=" flex flex-col gap-4 items-end">
-						<Link href="/collections/all">Continue Shopping</Link>
-						<Button>Proceed to Checkout</Button>
-						<div className="text-sm">
-							<p>
-								Taxes and{" "}
-								<Link href="" className="underline cursor-pointer">
-									shipping
-								</Link>{" "}
-								calculated at checkout.
-							</p>
-						</div>
+					<div className="flex flex-row gap-4 items-center justify-between my-10">
+						<Link href="/collections/all" className="hover:underline cursor-pointer">
+							Continue Shopping
+						</Link>
+						<Button asChild>
+							<Link href="/checkout">Proceed to Checkout</Link>
+						</Button>
 					</div>
 				</div>
 			)}

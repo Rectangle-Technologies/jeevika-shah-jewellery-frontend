@@ -7,6 +7,8 @@ import WhatsAppFloatingButton from "@/components/landing-page/WhatsAppFloatingBu
 import Footer from "@/components/common/Footer";
 import Script from "next/script";
 import { CartStoreProvider } from "@/providers/cart-store-providers";
+import { getNavbarOptions } from "@/utils/functions/collection";
+import AuthInitializer from "@/components/auth/AuthInitializer";
 
 const poppins = Poppins({
 	subsets: ["latin"],
@@ -21,14 +23,15 @@ export const metadata: Metadata = {
 		icon: "/favicon.ico",
 		apple: "/apple-touch-icon.png",
 	},
-	manifest: "/site.webmanifest",
+	// manifest: "/site.webmanifest",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const navbarLinks = await getNavbarOptions();
 	return (
 		<html lang="en">
 			<head>
@@ -56,7 +59,8 @@ export default function RootLayout({
 			</head>
 			<body className={`${poppins.variable} antialiased`}>
 				<CartStoreProvider>
-					<Navbar />
+					<AuthInitializer />
+					<Navbar navbarLinks={navbarLinks} />
 					{children}
 					<Footer />
 					<WhatsAppFloatingButton />
