@@ -18,7 +18,8 @@ interface Item {
     isCentralisedDiamond: boolean,
     isNaturalDiamond: boolean,
     isLabDiamond: boolean,
-    isActive: boolean
+    isActive: boolean,
+    calculatedPrice?: number
 }
 
 interface IndividualCartItem {

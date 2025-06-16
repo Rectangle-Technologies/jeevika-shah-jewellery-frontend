@@ -34,11 +34,11 @@ export default async function CollectionsPage({ params, searchParams }: { params
 	let modifiedSlug = slug.charAt(0).toUpperCase() + slug.slice(1);
 	let items = await getProducts(1, 20, modifiedSlug, false);
 
-	const originalMaxValue = items.reduce((max, item) => Math.max(max, item.costOfDiamond + item.costOfLabour + item.miscellaneousCost), 0);
+	const originalMaxValue = items.reduce((max, item) => Math.max(max, item.calculatedPrice || item.costOfDiamond + item.costOfLabour + item.miscellaneousCost), 0);
 
 	// Filter based on price range
 	items = items.filter((item) => {
-		const totalCost = item.costOfDiamond + item.costOfLabour + item.miscellaneousCost;
+		const totalCost = item.calculatedPrice || item.costOfDiamond + item.costOfLabour + item.miscellaneousCost;
 		return totalCost >= minPrice && totalCost <= maxPrice;
 	});
 
