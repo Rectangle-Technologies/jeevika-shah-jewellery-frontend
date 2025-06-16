@@ -58,7 +58,8 @@ List of tasks:
 - [ ] This issue is there everywhere where an image is being displayed. ![alt text](image-3.png)
 - [ ] On the product page, implement zoom on hover for images
 - [ ] Size should be a drop-down menu and it should only show the displayName property, not the weightOfMetal. weightOfMetal is for internal use
-
+- [ ] When the user is not logged in, the plus and minus button on the cart are not working.
+- [ ] In mobile view, on clicking the Profile button, menu bar is not collapsing
 
 
 

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { CircleXIcon, MinusIcon, PlusIcon } from "lucide-react";
 import { useCounterStore } from "@/providers/cart-store-providers";
 import { imgSrcModifier } from "@/utils/functions/image";
+import { formatDiamondType } from "@/utils/functions/checkout";
 
 interface CartSheetItemCardProps {
 	cartItem: IndividualCartItem;
@@ -19,7 +20,7 @@ function CartSheetItemCard({ cartItem }: CartSheetItemCardProps) {
 
 			<CardHeader>
 				<CardTitle>{cartItem.item.name}</CardTitle>
-				<CardDescription>{cartItem.diamondType.charAt(0).toUpperCase() + cartItem.diamondType.slice(1)}</CardDescription>
+				<CardDescription>{formatDiamondType(cartItem.diamondType)} diamond</CardDescription>
 			</CardHeader>
 			<CardContent className="flex flex-col md:flex-row items-center gap-5 relative">
 				<div className="relative h-[200px] w-full md:w-1/3">

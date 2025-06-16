@@ -94,3 +94,14 @@ export async function updateOrderStatus(orderId: string, status: string): Promis
         return { isOrderUpdated: false };
     }
 }
+
+export function formatDiamondType(diamondType: string): string {
+    switch (diamondType) {
+        case "natural":
+            return "Natural";
+        case "lab-grown":
+            return "Lab Grown";
+        default:
+            return diamondType.charAt(0).toUpperCase() + diamondType.slice(1);
+    }
+}

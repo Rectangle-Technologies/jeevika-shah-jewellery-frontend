@@ -15,8 +15,6 @@ function JewelleryOriginTab({ setType }: JwelleryOriginTabProps) {
 					<TabsTrigger value={"natural"}>Natural Diamond</TabsTrigger>
 					<TabsTrigger value={"lab-grown"}>Lab Grown Diamond</TabsTrigger>
 				</TabsList>
-				<TabsContent value="natural">Natural</TabsContent>
-				<TabsContent value="lab-grown">Lab Grown</TabsContent>
 			</Tabs>
 		</div>
 	);

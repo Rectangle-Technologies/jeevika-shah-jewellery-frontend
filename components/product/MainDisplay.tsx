@@ -30,11 +30,11 @@ function MainDisplay({ jewellery }: MainDisplayProps) {
 			</div>
 			<div className="text-start w-full md:w-1/2 px-3 flex flex-col items-start gap-6 text-gray-600">
 				<p className="text-3xl font-bold text-gray-800">{jewellery.name}</p>
-				<p className="text-md">&#8377; {jewellery.costOfDiamond + jewellery.costOfLabour + jewellery.miscellaneousCost}</p>
+				<p className="text-xl">&#8377; {jewellery.costOfDiamond + jewellery.costOfLabour + jewellery.miscellaneousCost}</p>
 				<p className="text-md">{jewellery.description}</p>
-				<p className="">Metal: {jewellery.karatOfGold} Karat of Gold</p>
-				<p>Weight of Gold: {jewellery.weightOfGold} gm</p>
-				<p>Diamond: {jewellery.karatOfDiamond} Karat of Diamond</p>
+				<p className="">Metal: {jewellery.karatOfGold} Karat Gold</p>
+				<p>Weight: Approx {jewellery.weightOfGold} gm (Weight is subject to change depending on the size)</p>
+				<p>Diamond: {jewellery.karatOfDiamond} Karat</p>
 				{/* <JewewllerySizeTable jewellerySizes={jewellery.sizes} /> */}
 				<JewellerySizeDropdown jewellerySizes={jewellery.sizes} setSize={setSize} />
 				{Object.keys(jewellery).includes("isNaturalDiamond") && Object.keys(jewellery).includes("isLabDiamond") && <JewelleryOriginTab setType={setType} />}
@@ -88,6 +88,7 @@ function MainDisplay({ jewellery }: MainDisplayProps) {
 					</div>
 				</div>
 				<p>Please Allow Between 2 to 3 Weeks To Finalize And Deliver Your Product.</p>
+				<p>The price shown is inclusive of all taxes and fees.</p>
 				{/* store information */}
 				<div className="">
 					<p></p>

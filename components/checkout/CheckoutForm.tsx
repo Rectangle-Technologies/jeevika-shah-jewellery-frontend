@@ -87,7 +87,7 @@ function CheckoutForm({ userDetails, isOrderPaymentPending, orderId }: CheckoutF
 			key: razorpayRes.razorpayKey,
 			amount: razorpayRes.amount, // You should calculate the total amount here
 			currency: razorpayRes.currency,
-			name: "Jeevika Shah Jewellery",
+			name: "Jeevika Shah",
 			description: "Order Payment",
 			image: `${process.env.NEXT_PUBLIC_BASE_URL}/assets/logo-seconday.png`,
 			order_id: razorpayRes.razorpayOrderId,

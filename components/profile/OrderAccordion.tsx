@@ -69,7 +69,6 @@ function OrderAccordion({ order, index }: OrderAccordionProps) {
 					<div className="flex flex-col gap-2">
 						<p>Order Status: {order.status}</p>
 						<p>Payment Status: {order.paymentStatus}</p>
-						{order.paymentStatus.toLowerCase() === "completed" && <p>Payment ID: {order.razorpayPaymentId}</p>}
 						{order.paymentStatus.toLowerCase() === "pending" && (
 							<Button asChild className="w-full mx-auto md:w-[200px] cursor-pointer" variant={"secondary"}>
 								<Link href={`/checkout?isOrderPaymentPending=${encodeMsg("true")}&orderId=${order._id}`}>Complete Payment</Link>

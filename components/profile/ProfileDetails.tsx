@@ -114,7 +114,7 @@ function ProfileDetails({ userDetails }: ProfileDetailsProps) {
 	};
 
 	return (
-		<div className="w-full flex flex-col gap-4 lg:gap-8 my-10">
+		<div className="w-full flex flex-col gap-4 lg:gap-8 my-5">
 			<p className="text-2xl">Customer Details</p>
 			{editMode ? (
 				<Form {...form}>
@@ -164,6 +164,7 @@ function ProfileDetails({ userDetails }: ProfileDetailsProps) {
 							<FormField
 								control={form.control}
 								name="phone"
+								disabled
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>Phone</FormLabel>
