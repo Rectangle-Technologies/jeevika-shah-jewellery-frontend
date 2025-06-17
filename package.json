@@ -30,6 +30,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.56.4",
+    "react-inner-image-zoom": "^4.0.1",
     "react-responsive-carousel": "^3.2.23",
     "react-share": "^5.2.2",
     "react-toastify": "^11.0.5",

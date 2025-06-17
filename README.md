@@ -55,11 +55,12 @@ List of tasks:
 - [x] In address line2 is also optional. So the comma after line2 should come only if line2 exists. Make it optional in the interface as well.
 - [x] Scorlling issue there on profile page. ![alt text](image-6.png)
 - [x] Add a functionality on the Enter OTP page to scroll to top.
-- [ ] This issue is there everywhere where an image is being displayed. ![alt text](image-3.png)
-- [ ] On the product page, implement zoom on hover for images
-- [ ] Size should be a drop-down menu and it should only show the displayName property, not the weightOfMetal. weightOfMetal is for internal use
+- [x] This issue is there everywhere where an image is being displayed. ![alt text](image-3.png)
+- [x] Size should be a drop-down menu and it should only show the displayName property, not the weightOfMetal. weightOfMetal is for internal use
+- [x] In mobile view, on clicking the Profile button, menu bar is not collapsing
+- [x] On the product page, implement zoom on hover for images
 - [ ] When the user is not logged in, the plus and minus button on the cart are not working.
-- [ ] In mobile view, on clicking the Profile button, menu bar is not collapsing
+
 
 
 

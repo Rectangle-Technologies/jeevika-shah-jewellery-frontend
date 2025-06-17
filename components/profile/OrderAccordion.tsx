@@ -47,8 +47,6 @@ function OrderAccordion({ order, index }: OrderAccordionProps) {
 				// 9. Send confirmation
 				await updateOrderStatus(orderId!, "confirmed");
 
-				setIsPaymentBeingProcessed(false);
-
 				// 10. Redirect to confirmation with success
 				router.push(`/order-status?success=${encodeMsg("Your order has been placed successfully.")}&orderId=${orderId}`);
 			},
@@ -73,6 +71,7 @@ function OrderAccordion({ order, index }: OrderAccordionProps) {
 				// @ts-ignore
 				const rzp = new window.Razorpay(options);
 				rzp.open();
+				setIsPaymentBeingProcessed(false);
 			};
 			document.body.appendChild(script);
 		}
@@ -143,6 +142,7 @@ function OrderAccordion({ order, index }: OrderAccordionProps) {
 								}}
 								className="w-full mx-auto md:w-[200px] cursor-pointer"
 								variant={"secondary"}
+								disabled={isPaymentBeingProcessed}
 							>
 								{isPaymentBeingProcessed ? "Processing Payment..." : "Complete Payment"}
 							</Button>
