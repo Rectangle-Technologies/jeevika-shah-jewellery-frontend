@@ -59,7 +59,8 @@ List of tasks:
 - [x] Size should be a drop-down menu and it should only show the displayName property, not the weightOfMetal. weightOfMetal is for internal use
 - [x] In mobile view, on clicking the Profile button, menu bar is not collapsing
 - [x] On the product page, implement zoom on hover for images
-- [ ] When the user is not logged in, the plus and minus button on the cart are not working.
+- [ ] The currency is filter is dollar. Make it INR.
+- [ ] In the filter, set the maximum to 7,00,000.
 
 
 

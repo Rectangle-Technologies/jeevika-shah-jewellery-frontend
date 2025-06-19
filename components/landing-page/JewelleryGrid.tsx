@@ -3,6 +3,7 @@ import React from "react";
 import JewelleryCard from "./JewelleryCard";
 import { Button } from "../ui/button";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 interface JewelleryGridProps {
 	jewelleryItems?: Item[];
@@ -28,7 +29,7 @@ function JewelleryGrid({ jewelleryItems, suggestions }: JewelleryGridProps) {
 					})}
 				</div>
 			)}
-			{path === "/" && <Button className="p-6 w-[200px] cursor-pointer">VIEW ALL</Button>}
+			{path === "/" && <Button className="p-6 w-[200px] cursor-pointer"><Link href="/collections/all">VIEW ALL</Link></Button>}
 		</div>
 	);
 }
