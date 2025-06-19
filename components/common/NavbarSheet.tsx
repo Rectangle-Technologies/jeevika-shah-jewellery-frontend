@@ -48,12 +48,11 @@ function NavbarSheet({ navbarLinks }: NavbarSheetProps) {
 							);
 						}
 					})}
+					<SheetClose asChild className=" flex text-xl font-normal px-0 mx-0 cursor-pointer mt-3">
+						<Link href={"/profile"}>Profile</Link>
+					</SheetClose>
 					{isAuthenticated && (
 						<div className="mt-3">
-							<SheetClose asChild className=" flex text-xl font-normal px-0 mx-0 cursor-pointer">
-								<Link href={"/profile"}>Profile</Link>
-							</SheetClose>
-
 							<Button variant="link" className=" flex text-xl font-normal px-0 mx-0 cursor-pointer" onClick={logout}>
 								Logout
 								{/* <LogOutIcon className="px-0 mx-0" /> */}
