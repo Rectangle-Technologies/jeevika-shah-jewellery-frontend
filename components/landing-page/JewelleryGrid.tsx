@@ -25,7 +25,7 @@ function JewelleryGrid({ jewelleryItems, suggestions }: JewelleryGridProps) {
 			{suggestions && (
 				<div className=" grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 my-5 w-full">
 					{suggestions?.map((item, index) => {
-						return <JewelleryCard key={item.name + index.toString()} jewelleryItem={item} />;
+						return <JewelleryCard key={item.name + index.toString()} jewelleryItem={item as Item} />;
 					})}
 				</div>
 			)}
