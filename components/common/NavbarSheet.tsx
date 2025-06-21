@@ -24,15 +24,15 @@ function NavbarSheet({ navbarLinks }: NavbarSheetProps) {
 					<SheetDescription></SheetDescription>
 				</SheetHeader>
 				<div className="p-3 text-xl">
-					{navbarLinks.map((link) => {
+					{navbarLinks.map((link, index) => {
 						if (link.subLinks) {
 							return (
-								<Accordion key={link.title} type="single" collapsible>
+								<Accordion key={link.title + index.toString()} type="single" collapsible>
 									<AccordionItem value="item-1">
 										<AccordionTrigger className="text-xl">{link.title}</AccordionTrigger>
 										<AccordionContent className="px-3 flex flex-col">
 											{link.subLinks.map((subLink) => (
-												<SheetClose asChild key={subLink.title} className="text-sm my-1 font-normal">
+												<SheetClose asChild key={subLink.title + index.toString()} className="text-sm my-1 font-normal">
 													<Link href={subLink.link}>{subLink.title}</Link>
 												</SheetClose>
 											))}

@@ -11,6 +11,8 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import SocialShareButtons from "./SocialShareButton";
 import JewellerySizeDropdown from "./JewellerySizeDropdown";
 import { useRouter } from "next/navigation";
+import { calculatePricing } from "js-product-pricing-calculator";
+import { centralPricing } from "@/constants";
 
 interface MainDisplayProps {
 	jewellery: Item;
@@ -30,11 +32,17 @@ function MainDisplay({ jewellery }: MainDisplayProps) {
 			</div>
 			<div className="text-start w-full md:w-1/2 px-3 flex flex-col items-start gap-6 text-gray-600">
 				<p className="text-3xl font-bold text-gray-800">{jewellery.name}</p>
-				<p className="text-xl">&#8377; {jewellery.costOfDiamond + jewellery.costOfLabour + jewellery.miscellaneousCost}</p>
+				<p className="text-xl">
+					&#8377;{" "}
+					{calculatePricing(
+						jewellery,
+						centralPricing,
+						jewellery.sizes.filter((jewellerySize) => jewellerySize.displayName === size)
+					).finalPrice.toFixed(2)}
+				</p>
 				<p className="text-md">{jewellery.description}</p>
 				<p className="">Metal: {jewellery.karatOfGold} Karat Gold</p>
 				<p>Weight: Approx {jewellery.weightOfGold} gm (Weight is subject to change depending on the size)</p>
-				<p>Diamond: {jewellery.karatOfDiamond} Karat</p>
 				{/* <JewewllerySizeTable jewellerySizes={jewellery.sizes} /> */}
 				<JewellerySizeDropdown jewellerySizes={jewellery.sizes} setSize={setSize} />
 				{Object.keys(jewellery).includes("isNaturalDiamond") && Object.keys(jewellery).includes("isLabDiamond") && <JewelleryOriginTab setType={setType} />}

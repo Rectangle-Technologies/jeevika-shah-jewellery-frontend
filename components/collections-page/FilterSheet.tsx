@@ -51,7 +51,7 @@ function FilterSheet({ maxPrice }: FilterSheetProps) {
 							<AccordionContent className="p-3 flex flex-col gap-4">
 								<Slider value={price} onValueChange={setPrice} min={0} max={maxPrice} step={1} />
 								<p>
-									Price: ${price[0]} - ${price[1]}
+									Price: ₹{price[0].toLocaleString("en-IN")} - ₹{price[1].toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
 								</p>
 							</AccordionContent>
 						</AccordionItem>

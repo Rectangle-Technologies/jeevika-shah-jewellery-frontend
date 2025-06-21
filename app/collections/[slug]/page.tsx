@@ -2,6 +2,8 @@ import { getProducts } from "@/utils/functions/collection";
 import JewelleryGrid from "@/components/landing-page/JewelleryGrid";
 import SortDropdown from "@/components/collections-page/SortDropDown";
 import FilterSheet from "@/components/collections-page/FilterSheet";
+import { centralPricing } from "@/constants";
+import { calculatePricing } from "js-product-pricing-calculator";
 
 function sortItems(items: any[], sortBy: string) {
 	switch (sortBy) {
@@ -34,11 +36,14 @@ export default async function CollectionsPage({ params, searchParams }: { params
 	let modifiedSlug = slug.charAt(0).toUpperCase() + slug.slice(1);
 	let items = await getProducts(1, 20, modifiedSlug, false);
 
-	const originalMaxValue = items.reduce((max, item) => Math.max(max, item.calculatedPrice || item.costOfDiamond + item.costOfLabour + item.miscellaneousCost), 0);
+	const originalMaxValue = Math.min(
+		items.reduce((max, item) => Math.max(max, calculatePricing(item, centralPricing, item.sizes[0])), 0),
+		700000
+	);
 
 	// Filter based on price range
 	items = items.filter((item) => {
-		const totalCost = item.calculatedPrice || item.costOfDiamond + item.costOfLabour + item.miscellaneousCost;
+		const totalCost = calculatePricing(item, centralPricing, item.sizes[0]);
 		return totalCost >= minPrice && totalCost <= maxPrice;
 	});
 
