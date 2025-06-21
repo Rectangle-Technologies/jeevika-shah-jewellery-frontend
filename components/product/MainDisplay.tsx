@@ -25,6 +25,14 @@ function MainDisplay({ jewellery }: MainDisplayProps) {
 	const [size, setSize] = React.useState(cartItems.find((item) => item.productId === jewellery._id)?.size || jewellery.sizes[0].displayName);
 	const [type, setType] = React.useState(cartItems.find((item) => item.productId === jewellery._id)?.diamondType || "natural");
 
+	console.log(jewellery.sizes.filter((jewellerySize) => jewellerySize.displayName === size));
+	console.log(
+		calculatePricing(
+			jewellery,
+			centralPricing,
+			jewellery.sizes.filter((jewellerySize) => jewellerySize.displayName === size)
+		)
+	);
 	return (
 		<div className="w-full md:w-[95%] mx-auto flex flex-col md:flex-row md:items-center gap-4 text-md mt-5">
 			<div className="w-full  md:w-1/2">

@@ -2,6 +2,8 @@
 import { useCounterStore } from "@/providers/cart-store-providers";
 import React from "react";
 import CheckoutItem from "./CheckoutItem";
+import { centralPricing } from "@/constants";
+import { calculatePricing } from "js-product-pricing-calculator";
 
 interface LeftSectionProps {
 	orderItems?: {
@@ -26,7 +28,7 @@ const itemModifier = (item: IndividualCartItem) => {
 			images: item.item.images,
 		},
 		quantity: item.quantity,
-		price: item.item.costOfDiamond + item.item.costOfLabour + item.item.miscellaneousCost,
+		price: calculatePricing(item.item, centralPricing, item.item.sizes.filter((size) => size.displayName === item.size)).finalPrice.toFixed(2),
 		size: item.size,
 		diamondType: item.diamondType,
 		_id: item.item._id,
@@ -59,7 +61,7 @@ function LeftSection({ orderItems }: LeftSectionProps) {
 				{orderItems ? (
 					<p>&#8377; {orderItems.reduce((total, item) => total + item.quantity * item.price, 0).toFixed(2)}</p>
 				) : (
-					<p>&#8377; {cartItems.reduce((total, item) => total + item.quantity * (item.item.costOfDiamond + item.item.costOfLabour + item.item.miscellaneousCost), 0).toFixed(2)}</p>
+					<p>&#8377; {cartItems.reduce((total, item) => total + item.quantity * calculatePricing(item.item, centralPricing, item.item.sizes.filter((size) => size.displayName === item.size)).finalPrice, 0).toFixed(2)}</p>
 				)}
 			</div>
 		</section>

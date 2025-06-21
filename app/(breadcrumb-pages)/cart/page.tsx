@@ -1,10 +1,12 @@
 "use client";
 import CartSheetItemCard from "@/components/cart/CartSheetItemCard";
 import { Button } from "@/components/ui/button";
+import { centralPricing } from "@/constants";
 import { useCounterStore } from "@/providers/cart-store-providers";
 import { ShoppingCartIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import { calculatePricing } from "js-product-pricing-calculator";
 
 function CartPage() {
 	const { cartItems } = useCounterStore((state) => state);
@@ -31,7 +33,20 @@ function CartPage() {
 				<div>
 					<div className="flex justify-between items-end text-lg text-gray-500 border-y py-3 my-2">
 						<p>Subtotal:</p>
-						<p className="">&#8377; {cartItems.reduce((total, item) => total + item.quantity * (item.item.costOfDiamond + item.item.costOfLabour + item.item.miscellaneousCost), 0)}</p>
+						<p className="">
+							&#8377;{" "}
+							{cartItems.reduce(
+								(total, item) =>
+									total +
+									item.quantity *
+										calculatePricing(
+											item.item,
+											centralPricing,
+											item.item.sizes.filter((jewellerySize) => jewellerySize.displayName === item.size)
+										).finalPrice.toFixed(2),
+								0
+							)}
+						</p>
 					</div>
 					<div className="flex flex-row gap-4 items-center justify-between my-10">
 						<Link href="/collections/all" className="hover:underline cursor-pointer">

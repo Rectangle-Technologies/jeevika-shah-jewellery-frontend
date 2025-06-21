@@ -5,6 +5,8 @@ import { CircleXIcon, MinusIcon, PlusIcon } from "lucide-react";
 import { useCounterStore } from "@/providers/cart-store-providers";
 import { imgSrcModifier } from "@/utils/functions/image";
 import { formatDiamondType } from "@/utils/functions/checkout";
+import { centralPricing } from "@/constants";
+import { calculatePricing } from "js-product-pricing-calculator";
 
 interface CartSheetItemCardProps {
 	cartItem: IndividualCartItem;
@@ -34,7 +36,11 @@ function CartSheetItemCard({ cartItem }: CartSheetItemCardProps) {
 
 					<div className={itemDetailStyle}>
 						<p className={columnHeading}>Price</p>
-						{cartItem.item.costOfDiamond + cartItem.item.costOfLabour + cartItem.item.miscellaneousCost}
+						{calculatePricing(
+							cartItem.item,
+							centralPricing,
+							cartItem.item.sizes.filter((size) => size.displayName === cartItem.size)
+						).finalPrice.toFixed(2)}
 					</div>
 
 					<div className={itemDetailStyle}>
@@ -48,7 +54,12 @@ function CartSheetItemCard({ cartItem }: CartSheetItemCardProps) {
 
 					<div className={itemDetailStyle}>
 						<p className={columnHeading}>Total</p>
-						{cartItem.quantity * (cartItem.item.costOfDiamond + cartItem.item.costOfLabour + cartItem.item.miscellaneousCost)}
+						{cartItem.quantity *
+							calculatePricing(
+								cartItem.item,
+								centralPricing,
+								cartItem.item.sizes.filter((size) => size.displayName === cartItem.size)
+							).finalPrice.toFixed(2)}
 					</div>
 				</div>
 			</CardContent>

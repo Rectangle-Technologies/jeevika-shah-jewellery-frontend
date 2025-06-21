@@ -4,9 +4,10 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import Link from "next/link";
 import { imgSrcModifier } from "@/utils/functions/image";
 import Image from "next/image";
+import { centralPricing } from "@/constants";
 
 interface JewelleryCardProps {
-	jewelleryItem: Item | { _id: string; name: string; images: string[] };
+	jewelleryItem: Item;
 }
 function JewelleryCard({ jewelleryItem }: JewelleryCardProps) {
 	const [hovered, setHovered] = React.useState(false);
@@ -27,9 +28,7 @@ function JewelleryCard({ jewelleryItem }: JewelleryCardProps) {
 
 					<div className="p-3">
 						<CardTitle className="text-center font-normal">{jewelleryItem.name}</CardTitle>
-						{"costOfDiamond" in jewelleryItem && "costOfLabour" in jewelleryItem && "miscellaneousCost" in jewelleryItem && (
-							<CardDescription className="text-center mt-10">From &#8377; {jewelleryItem.costOfDiamond + jewelleryItem.costOfLabour + jewelleryItem.miscellaneousCost}</CardDescription>
-						)}
+						{<CardDescription className="text-center mt-10">From &#8377; {jewelleryItem.calculatedPrice?.toFixed(2)}</CardDescription>}
 					</div>
 				</CardContent>
 			</Card>
