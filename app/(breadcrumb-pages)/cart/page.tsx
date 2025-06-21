@@ -43,7 +43,7 @@ function CartPage() {
 											item.item,
 											centralPricing,
 											item.item.sizes.filter((jewellerySize) => jewellerySize.displayName === item.size)
-										).finalPrice.toFixed(2),
+										).finalPrice,
 								0
 							)}
 						</p>

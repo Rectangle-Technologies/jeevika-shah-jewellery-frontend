@@ -59,7 +59,7 @@ function CartSheetItemCard({ cartItem }: CartSheetItemCardProps) {
 								cartItem.item,
 								centralPricing,
 								cartItem.item.sizes.filter((size) => size.displayName === cartItem.size)
-							).finalPrice.toFixed(2)}
+							).finalPrice}
 					</div>
 				</div>
 			</CardContent>

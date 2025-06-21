@@ -4,4 +4,6 @@ declare module 'js-product-pricing-calculator' {
 	pricing: any,
 	size: any
   ): { finalPrice: number; [key: string]: any };
+
+  export type CentralPricing = { [key: string]: number };
 }
