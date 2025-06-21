@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import React from "react";
+import Image from "next/image";
 
 export const metadata: Metadata = {
 	title: "Brand Journey | Jeevika Shah Jewellery",
@@ -25,13 +26,14 @@ function BrandJourney() {
 			<p className="text-3xl font-bold">Brand Journey</p>
 			<section>
 				<h1 className="text-2xl font-semibold mb-4">A Note from Our Founder, Jeevika Shah</h1>
-				<p>
+				{/* <p>
 					Welcome to Jeevika Shah Jewellery! I'm delighted to share my passion and creativity with you through this brand. It reflects my lifelong love for jewellery, an ardour that was nurtured by cherished moments with my mother and inspired by the rich heritage of
 					Indian-Italian craftsmanship.
 				</p>
 				<p className="mt-4 italic">I invite you to explore our collections and find something that resonates with your unique story.</p>
 				<p className="mt-2 font-semibold">Lots of love and gratitude,</p>
-				<p className="font-semibold">Jeevika Shah</p>
+				<p className="font-semibold">Jeevika Shah</p> */}
+				<Image src='/assets/note.jpg' width={600} height={513} alt='A note from Jeevika Shah' />
 			</section>
 
 			<section>
