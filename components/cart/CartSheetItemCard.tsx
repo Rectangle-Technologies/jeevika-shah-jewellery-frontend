@@ -35,12 +35,7 @@ function CartSheetItemCard({ cartItem }: CartSheetItemCardProps) {
 					</div>
 
 					<div className={itemDetailStyle}>
-						<p className={columnHeading}>Price</p>
-						{calculatePricing(
-							cartItem.item,
-							centralPricing,
-							cartItem.item.sizes.filter((size) => size.displayName === cartItem.size)
-						).finalPrice.toFixed(2)}
+						<p className={columnHeading}>Price</p>₹ {calculatePricing(cartItem.item, centralPricing, cartItem.item.sizes.filter((size) => size.displayName === cartItem.size)[0]).finalPrice.toLocaleString("en-IN", { maximumFractionDigits: 0 })}
 					</div>
 
 					<div className={itemDetailStyle}>
@@ -53,13 +48,15 @@ function CartSheetItemCard({ cartItem }: CartSheetItemCardProps) {
 					</div>
 
 					<div className={itemDetailStyle}>
-						<p className={columnHeading}>Total</p>
-						{cartItem.quantity *
+						<p className={columnHeading}>Total</p>₹{" "}
+						{(
+							cartItem.quantity *
 							calculatePricing(
 								cartItem.item,
 								centralPricing,
-								cartItem.item.sizes.filter((size) => size.displayName === cartItem.size)
-							).finalPrice}
+								cartItem.item.sizes.filter((size) => size.displayName === cartItem.size)[0]
+							).finalPrice
+						).toLocaleString("en-IN", { maximumFractionDigits: 0 })}
 					</div>
 				</div>
 			</CardContent>

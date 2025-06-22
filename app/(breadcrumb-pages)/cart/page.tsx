@@ -35,17 +35,7 @@ function CartPage() {
 						<p>Subtotal:</p>
 						<p className="">
 							&#8377;{" "}
-							{cartItems.reduce(
-								(total, item) =>
-									total +
-									item.quantity *
-										calculatePricing(
-											item.item,
-											centralPricing,
-											item.item.sizes.filter((jewellerySize) => jewellerySize.displayName === item.size)
-										).finalPrice,
-								0
-							)}
+							{cartItems.reduce((total, item) => total + item.quantity * calculatePricing(item.item, centralPricing, item.item.sizes.filter((jewellerySize) => jewellerySize.displayName === item.size)[0]).finalPrice, 0).toLocaleString("en-IN", { maximumFractionDigits: 0 })}
 						</p>
 					</div>
 					<div className="flex flex-row gap-4 items-center justify-between my-10">
