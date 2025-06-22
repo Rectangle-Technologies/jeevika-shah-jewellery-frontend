@@ -12,13 +12,13 @@ function sortItems(items: any[], sortBy: string) {
 		case "z-a":
 			return [...items].sort((a, b) => b.name.localeCompare(a.name));
 		case "low-to-high":
-			return [...items].sort((a, b) => 
-				Number(calculatePricing(a, centralPricing, a.sizes[0]).finalPrice.toFixed(2)) - 
+			return [...items].sort((a, b) =>
+				Number(calculatePricing(a, centralPricing, a.sizes[0]).finalPrice.toFixed(2)) -
 				Number(calculatePricing(b, centralPricing, b.sizes[0]).finalPrice.toFixed(2))
 			);
 		case "high-to-low":
-			return [...items].sort((a, b) => 
-				Number(calculatePricing(b, centralPricing, b.sizes[0]).finalPrice.toFixed(2)) - 
+			return [...items].sort((a, b) =>
+				Number(calculatePricing(b, centralPricing, b.sizes[0]).finalPrice.toFixed(2)) -
 				Number(calculatePricing(a, centralPricing, a.sizes[0]).finalPrice.toFixed(2))
 			);
 		case "new-to-old":
@@ -42,17 +42,7 @@ export default async function CollectionsPage({ params, searchParams }: { params
 	let modifiedSlug = slug.charAt(0).toUpperCase() + slug.slice(1);
 	let items = await getProducts(1, 20, modifiedSlug, false);
 
-	const originalMaxValue = Math.min(
-		items.reduce(
-			(max, item) =>
-				Math.max(
-					max,
-					Number(calculatePricing(item, centralPricing, item.sizes[0]).finalPrice.toFixed(2))
-				),
-			0
-		),
-		700000
-	);
+	const originalMaxValue = 700000
 
 	// Filter based on price range
 	items = items.filter((item) => {

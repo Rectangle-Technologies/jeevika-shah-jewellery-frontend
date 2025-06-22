@@ -5,6 +5,7 @@ import Link from "next/link";
 import { imgSrcModifier } from "@/utils/functions/image";
 import Image from "next/image";
 import { centralPricing } from "@/constants";
+import { calculatePricing } from "js-product-pricing-calculator";
 
 interface JewelleryCardProps {
 	jewelleryItem: Item;
@@ -28,7 +29,7 @@ function JewelleryCard({ jewelleryItem }: JewelleryCardProps) {
 
 					<div className="p-3">
 						<CardTitle className="text-center font-normal">{jewelleryItem.name}</CardTitle>
-						{<CardDescription className="text-center mt-10">From &#8377; {jewelleryItem.calculatedPrice?.toFixed(2)}</CardDescription>}
+						{<CardDescription className="text-center mt-10">From &#8377; {calculatePricing(jewelleryItem, centralPricing, jewelleryItem.sizes[0]).finalPrice.toLocaleString("en-IN", { maximumFractionDigits: 0 })}</CardDescription>}
 					</div>
 				</CardContent>
 			</Card>

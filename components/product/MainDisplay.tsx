@@ -25,14 +25,6 @@ function MainDisplay({ jewellery }: MainDisplayProps) {
 	const [size, setSize] = React.useState(cartItems.find((item) => item.productId === jewellery._id)?.size || jewellery.sizes[0].displayName);
 	const [type, setType] = React.useState(cartItems.find((item) => item.productId === jewellery._id)?.diamondType || "natural");
 
-	console.log(jewellery.sizes.filter((jewellerySize) => jewellerySize.displayName === size));
-	console.log(
-		calculatePricing(
-			jewellery,
-			centralPricing,
-			jewellery.sizes.filter((jewellerySize) => jewellerySize.displayName === size)
-		)
-	);
 	return (
 		<div className="w-full md:w-[95%] mx-auto flex flex-col md:flex-row md:items-center gap-4 text-md mt-5">
 			<div className="w-full  md:w-1/2">
@@ -40,14 +32,7 @@ function MainDisplay({ jewellery }: MainDisplayProps) {
 			</div>
 			<div className="text-start w-full md:w-1/2 px-3 flex flex-col items-start gap-6 text-gray-600">
 				<p className="text-3xl font-bold text-gray-800">{jewellery.name}</p>
-				<p className="text-xl">
-					&#8377;{" "}
-					{calculatePricing(
-						jewellery,
-						centralPricing,
-						jewellery.sizes.filter((jewellerySize) => jewellerySize.displayName === size)
-					).finalPrice.toFixed(2)}
-				</p>
+				<p className="text-xl">&#8377; {calculatePricing(jewellery, centralPricing, jewellery.sizes.filter((jewellerySize) => jewellerySize.displayName === size)[0]).finalPrice.toLocaleString("en-IN", { maximumFractionDigits: 0 })}</p>
 				<p className="text-md">{jewellery.description}</p>
 				<p className="">Metal: {jewellery.karatOfGold} Karat Gold</p>
 				<p>Weight: Approx {jewellery.weightOfGold} gm (Weight is subject to change depending on the size)</p>
