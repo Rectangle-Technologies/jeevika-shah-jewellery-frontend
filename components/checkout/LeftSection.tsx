@@ -28,7 +28,7 @@ const itemModifier = (item: IndividualCartItem) => {
 			images: item.item.images,
 		},
 		quantity: item.quantity,
-		price: calculatePricing(item.item, centralPricing, item.item.sizes.filter((size) => size.displayName === item.size)).finalPrice.toFixed(2),
+		price: calculatePricing(item.item, centralPricing, item.item.sizes.filter((size) => size.displayName === item.size)).finalPrice,
 		size: item.size,
 		diamondType: item.diamondType,
 		_id: item.item._id,
