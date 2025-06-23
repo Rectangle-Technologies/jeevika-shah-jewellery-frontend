@@ -61,7 +61,10 @@ List of tasks:
 - [x] On the product page, implement zoom on hover for images
 - [x] The currency is filter is dollar. Make it INR and add commas.
 - [ ] In the filter, set the maximum to 7,00,000.
-
+- [ ] Diamond type toggle still present even though lab diamond is deactivated from backend.
+- [ ] Format the price on order status page.
+- [ ] In receiverDetails address, line2 was not stored.
+- [ ] Price is not changing according to diamond type.
 
 
 
