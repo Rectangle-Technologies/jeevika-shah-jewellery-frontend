@@ -12,9 +12,9 @@ function OrderStatusPage() {
 	const [order, setOrder] = React.useState<OrderProduct | null>(null);
 	const searchParams = useSearchParams();
 
-    const orderId = searchParams.get("orderId");
-    const success = searchParams.get("success");
-    const error = searchParams.get("error");
+	const orderId = searchParams.get("orderId");
+	const success = searchParams.get("success");
+	const error = searchParams.get("error");
 
 	React.useEffect(() => {
 		const fetchOrderDetails = async () => {
@@ -109,7 +109,7 @@ function OrderStatusPage() {
 											{order.products.map((item) => (
 												<TableRow key={item._id}>
 													<TableCell>{item.productId.name}</TableCell>
-													<TableCell>&#8377; {item.price}</TableCell>
+													<TableCell>&#8377; {item.price.toLocaleString("en-IN", { minimumFractionDigits: 0 })}</TableCell>
 													<TableCell>{item.quantity}</TableCell>
 													<TableCell>{item.size}</TableCell>
 													<TableCell>{formatDiamondType(item.diamondType)}</TableCell>

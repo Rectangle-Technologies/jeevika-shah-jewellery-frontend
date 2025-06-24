@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import JewelleryDialogCarousel from "../common/JewelleryDialogCarousel";
-import Link from "next/link";
 // import JewewllerySizeTable from "../common/JewewllerySizeTable";
 import { Button } from "../ui/button";
 import { HeartIcon, MinusIcon, PlusIcon } from "lucide-react";
@@ -38,7 +37,7 @@ function MainDisplay({ jewellery }: MainDisplayProps) {
 				<p>Weight: Approx {jewellery.weightOfGold} gm (Weight is subject to change depending on the size)</p>
 				{/* <JewewllerySizeTable jewellerySizes={jewellery.sizes} /> */}
 				<JewellerySizeDropdown jewellerySizes={jewellery.sizes} setSize={setSize} />
-				{Object.keys(jewellery).includes("isNaturalDiamond") && Object.keys(jewellery).includes("isLabDiamond") && <JewelleryOriginTab setType={setType} />}
+				{jewellery.isLabDiamond && jewellery.isNaturalDiamond && <JewelleryOriginTab setType={setType} />}
 				<div className="w-full flex flex-col justify-between gap-6">
 					<div className="flex items-center lg:justify-between gap-2 lg:gap-6">
 						<div className="flex items-center gap-3 lg:gap-6 lg:w-1/3">
@@ -69,8 +68,8 @@ function MainDisplay({ jewellery }: MainDisplayProps) {
 						<Button
 							type="button"
 							className=" cursor-pointer w-[90%]"
-							onClick={() => {
-								addToCart(jewellery._id, jewellery, size, type, count);
+							onClick={async () => {
+								await addToCart(jewellery._id, jewellery, size, type, count);
 								router.push("/checkout");
 							}}
 						>

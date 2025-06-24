@@ -118,7 +118,7 @@ function OrderAccordion({ order, index }: OrderAccordionProps) {
 										<TableCell>{item.productId.name}</TableCell>
 										<TableCell>{item.quantity}</TableCell>
 										<TableCell>{item.size}</TableCell>
-										<TableCell>&#8377; {item.price}</TableCell>
+										<TableCell>&#8377; {item.price.toLocaleString("en-IN", { minimumFractionDigits: 0 })}</TableCell>
 									</TableRow>
 								))}
 								<TableRow>
@@ -126,7 +126,7 @@ function OrderAccordion({ order, index }: OrderAccordionProps) {
 									<TableCell>Total:</TableCell>
 									<TableCell></TableCell>
 									<TableCell></TableCell>
-									<TableCell>&#8377; {order.products.reduce((total, item) => total + item.price * item.quantity, 0)}</TableCell>
+									<TableCell>&#8377; {order.products.reduce((total, item) => total + item.price * item.quantity, 0).toLocaleString("en-IN", { minimumFractionDigits: 0 })}</TableCell>
 								</TableRow>
 							</TableBody>
 						</Table>

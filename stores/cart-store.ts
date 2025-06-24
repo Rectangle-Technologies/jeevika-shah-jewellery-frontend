@@ -73,23 +73,27 @@ export const createCartStore = (
                 async removeItems(item, action) {
                     // make an api call to update the cart as well if user is logged in
                     const token = localStorage.getItem("at");
-                    if (token) {
-                        const res = await axios.post(
-                            `${process.env.NEXT_PUBLIC_API_URL}/cart/remove-product`,
-                            {
-                                productId: item._id,
-                                action: action,
-                            },
-                            {
-                                headers: {
-                                    Authorization: `Bearer ${token}`,
+                    try {
+                        if (token) {
+                            const res = await axios.post(
+                                `${process.env.NEXT_PUBLIC_API_URL}/cart/remove-product`,
+                                {
+                                    productId: item._id,
+                                    action: action,
                                 },
+                                {
+                                    headers: {
+                                        Authorization: `Bearer ${token}`,
+                                    },
+                                }
+                            )
+                            if (res.status !== 200) {
+                                toast.error(res.data.message);
+                                return;
                             }
-                        )
-                        if (res.status !== 200) {
-                            toast.error(res.data.message);
-                            return;
                         }
+                    } catch (error) {
+
                     }
                     if (action === "reduce") {
                         // Find the item in the cart and reduce its quantity by 1
