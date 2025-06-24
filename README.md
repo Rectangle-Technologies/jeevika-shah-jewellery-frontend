@@ -65,7 +65,10 @@ List of tasks:
 - [x] Format the price on order status page.
 - [x] In receiverDetails address, line2 was not stored.
 - [ ] Price is not changing according to diamond type.
-
+- [ ] Central pricing bug.
+- [ ] Backend is not sending duplicate order, there is issue in front end. Check ![alt text](image-7.png)
+- [ ] In the case where there is only 1 diamond type, are you sending it in the order?
+- [ ] On the order status page and on the profile page, address line2 is not visible.
 
 
 Flow for user authentication:
