@@ -5,6 +5,7 @@ import CheckoutItem from "./CheckoutItem";
 import { centralPricing } from "@/constants";
 import { calculatePricing } from "js-product-pricing-calculator";
 import { getProductDetails } from "@/utils/functions/product";
+import { computeDiamondType } from "@/utils/functions/image";
 
 interface LeftSectionProps {
 	orderItems?: {
@@ -34,7 +35,7 @@ const itemModifier = async (item: IndividualCartItem) => {
 			item.item,
 			details?.metalPrices,
 			item.item.sizes.find((size) => size.displayName === item.size),
-			item.diamondType
+			computeDiamondType(item.diamondType)
 		).finalPrice,
 		size: item.size,
 		diamondType: item.diamondType,

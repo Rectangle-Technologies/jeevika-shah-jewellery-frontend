@@ -12,22 +12,11 @@ import JewellerySizeDropdown from "./JewellerySizeDropdown";
 import { useRouter } from "next/navigation";
 import { calculatePricing } from "js-product-pricing-calculator";
 import { MetalPrices } from "@/utils/functions/product";
+import { computeDiamondType } from "@/utils/functions/image";
 
 interface MainDisplayProps {
 	jewellery: Item;
 	metalPrices: MetalPrices | undefined;
-}
-
-function computeDiamondType(isNaturalDiamond: boolean, isCentralisedDiamond: boolean, isLabDiamond: boolean) {
-	if (isNaturalDiamond) {
-		return "natural";
-	} else if (isCentralisedDiamond) {
-		return "centralised";
-	} else if (isLabDiamond) {
-		return "lab";
-	} else {
-		return "natural";
-	}
 }
 
 function MainDisplay({ jewellery, metalPrices }: MainDisplayProps) {
@@ -35,7 +24,7 @@ function MainDisplay({ jewellery, metalPrices }: MainDisplayProps) {
 	const router = useRouter();
 	const [count, setCount] = React.useState(cartItems.find((item) => item.productId === jewellery._id)?.quantity || 1);
 	const [size, setSize] = React.useState(cartItems.find((item) => item.productId === jewellery._id)?.size || jewellery.sizes[0].displayName);
-	const [type, setType] = React.useState(cartItems.find((item) => item.productId === jewellery._id)?.diamondType || computeDiamondType(jewellery.isNaturalDiamond, jewellery.isCentralisedDiamond, jewellery.isLabDiamond));
+	const [type, setType] = React.useState(cartItems.find((item) => item.productId === jewellery._id)?.diamondType || "natural");
 
 	return (
 		<div className="w-full md:w-[95%] mx-auto flex flex-col md:flex-row md:items-center gap-4 text-md mt-5">
@@ -44,7 +33,7 @@ function MainDisplay({ jewellery, metalPrices }: MainDisplayProps) {
 			</div>
 			<div className="text-start w-full md:w-1/2 px-3 flex flex-col items-start gap-6 text-gray-600">
 				<p className="text-3xl font-bold text-gray-800">{jewellery.name}</p>
-				<p className="text-xl">&#8377; {calculatePricing(jewellery, metalPrices, jewellery.sizes.filter((jewellerySize) => jewellerySize.displayName === size)[0], type).finalPrice.toLocaleString("en-IN", { maximumFractionDigits: 0 })}</p>
+				<p className="text-xl">&#8377; {calculatePricing(jewellery, metalPrices, jewellery.sizes.filter((jewellerySize) => jewellerySize.displayName === size)[0], computeDiamondType(type)).finalPrice.toLocaleString("en-IN", { maximumFractionDigits: 0 })}</p>
 				<p className="text-md">{jewellery.description}</p>
 				<p className="">Metal: {jewellery.karatOfGold} Karat Gold</p>
 				<p>Weight: Approx {jewellery.weightOfGold} gm (Weight is subject to change depending on the size)</p>

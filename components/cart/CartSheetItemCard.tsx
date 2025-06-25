@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import Image from "next/image";
 import { CircleXIcon, MinusIcon, PlusIcon } from "lucide-react";
 import { useCounterStore } from "@/providers/cart-store-providers";
-import { imgSrcModifier } from "@/utils/functions/image";
+import { computeDiamondType, imgSrcModifier } from "@/utils/functions/image";
 import { formatDiamondType } from "@/utils/functions/checkout";
 import { centralPricing } from "@/constants";
 import { calculatePricing } from "js-product-pricing-calculator";
@@ -38,7 +38,7 @@ function CartSheetItemCard({ cartItem, metalPrices }: CartSheetItemCardProps) {
 
 					<div className={itemDetailStyle}>
 						<p className={columnHeading}>Price</p>₹{" "}
-						{calculatePricing(cartItem.item, metalPrices ? metalPrices : centralPricing, cartItem.item.sizes.filter((size) => size.displayName === cartItem.size)[0], cartItem.diamondType).finalPrice.toLocaleString("en-IN", { maximumFractionDigits: 0 })}
+						{calculatePricing(cartItem.item, metalPrices ? metalPrices : centralPricing, cartItem.item.sizes.filter((size) => size.displayName === cartItem.size)[0], computeDiamondType(cartItem.diamondType)).finalPrice.toLocaleString("en-IN", { maximumFractionDigits: 0 })}
 					</div>
 
 					<div className={itemDetailStyle}>
@@ -52,7 +52,9 @@ function CartSheetItemCard({ cartItem, metalPrices }: CartSheetItemCardProps) {
 
 					<div className={itemDetailStyle}>
 						<p className={columnHeading}>Total</p>₹{" "}
-						{(cartItem.quantity * calculatePricing(cartItem.item, metalPrices ? metalPrices : centralPricing, cartItem.item.sizes.filter((size) => size.displayName === cartItem.size)[0], cartItem.diamondType).finalPrice).toLocaleString("en-IN", { maximumFractionDigits: 0 })}
+						{(cartItem.quantity * calculatePricing(cartItem.item, metalPrices ? metalPrices : centralPricing, cartItem.item.sizes.filter((size) => size.displayName === cartItem.size)[0], computeDiamondType(cartItem.diamondType)).finalPrice).toLocaleString("en-IN", {
+							maximumFractionDigits: 0,
+						})}
 					</div>
 				</div>
 			</CardContent>

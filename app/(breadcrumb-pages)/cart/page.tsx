@@ -7,6 +7,7 @@ import Link from "next/link";
 import React from "react";
 import { calculatePricing } from "js-product-pricing-calculator";
 import { getProductDetails, MetalPrices } from "@/utils/functions/product";
+import { computeDiamondType } from "@/utils/functions/image";
 
 function CartPage() {
 	const [subTotal, setSubTotal] = React.useState(0);
@@ -20,7 +21,7 @@ function CartPage() {
 				const details = await getProductDetails(item.item._id);
 				const metalPrice = details?.metalPrices;
 				setMetalPrices(metalPrice);
-				const price = calculatePricing(item.item, metalPrice, sizeObj, item.diamondType).finalPrice;
+				const price = calculatePricing(item.item, metalPrice, sizeObj, computeDiamondType(item.diamondType)).finalPrice;
 				return item.quantity * price;
 			});
 

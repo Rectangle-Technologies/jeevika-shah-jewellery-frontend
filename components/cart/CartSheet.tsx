@@ -7,6 +7,7 @@ import CartSheetItemCard from "./CartSheetItemCard";
 import { useCounterStore } from "@/providers/cart-store-providers";
 import { centralPricing } from "@/constants";
 import { calculatePricing } from "js-product-pricing-calculator";
+import { computeDiamondType } from "@/utils/functions/image";
 
 function CartSheet() {
 	const { cartItems } = useCounterStore((state) => state);
@@ -49,7 +50,7 @@ function CartSheet() {
 												item.item,
 												centralPricing,
 												item.item.sizes.filter((jewellerySize) => jewellerySize.displayName === item.size),
-												item.diamondType
+												computeDiamondType(item.diamondType)
 											).finalPrice,
 									0
 								)}
