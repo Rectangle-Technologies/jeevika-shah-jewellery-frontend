@@ -28,13 +28,13 @@ function CartSheet() {
 						</SheetClose>
 					</div>
 				)}
-				{cartItems.length > 0 && (
+				{/* {cartItems.length > 0 && (
 					<div className="px-2">
 						{cartItems.map((item) => (
 							<CartSheetItemCard key={item.item.name} cartItem={item} />
 						))}
 					</div>
-				)}
+				)} */}
 				{cartItems.length > 0 && (
 					<SheetFooter>
 						<div className="flex items-center justify-between text-lg text-gray-500 border-y py-3 my-2">
@@ -48,7 +48,8 @@ function CartSheet() {
 											calculatePricing(
 												item.item,
 												centralPricing,
-												item.item.sizes.filter((jewellerySize) => jewellerySize.displayName === item.size)
+												item.item.sizes.filter((jewellerySize) => jewellerySize.displayName === item.size),
+												item.diamondType
 											).finalPrice,
 									0
 								)}

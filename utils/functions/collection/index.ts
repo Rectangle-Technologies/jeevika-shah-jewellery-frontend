@@ -1,5 +1,7 @@
 'use server'
 
+import { MetalPrices } from "../product";
+
 
 export async function getNavbarOptions() {
   const navbarLinks: { title: string; link?: string; subLinks?: { title: string; link: string }[] }[] = [
@@ -35,7 +37,7 @@ export async function getNavbarOptions() {
   }
 }
 
-export async function getProducts(pageNo: number, pageSize: number, category: string, isLandingPageProduct: boolean): Promise<Item[]> {
+export async function getProducts(pageNo: number, pageSize: number, category: string, isLandingPageProduct: boolean): Promise<{ products: Item[], metalPrices: MetalPrices | undefined }> {
   try {
     let url = "";
     if (category.toLowerCase() === 'all') {
@@ -49,14 +51,14 @@ export async function getProducts(pageNo: number, pageSize: number, category: st
     const res = await fetch(url);
     const data = await res.json();
     if (data.result && data.result.toLocaleLowerCase() === 'success') {
-      return data.body.products;
+      return { products: data.body.products, metalPrices: data.body.prices };
     } else {
       console.log(data);
-      return [];
+      return { products: [], metalPrices: undefined };
     }
   } catch (error) {
     console.log(error);
-    return [];
+    return { products: [], metalPrices: undefined };
   }
 }
 

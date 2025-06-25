@@ -89,7 +89,8 @@ function OrderStatusPage() {
 										<TableRow>
 											<TableCell className="font-medium">Address</TableCell>
 											<TableCell>
-												{order.receiverDetails.address.line1}, {order.receiverDetails.address.city}, {order.receiverDetails.address.state}, {order.receiverDetails.address.country}, {order.receiverDetails.address.zip}
+												{order.receiverDetails.address.line1}, {order.receiverDetails.address.line2 && order.receiverDetails.address.line2 + ", "} {order.receiverDetails.address.city}, {order.receiverDetails.address.state}, {order.receiverDetails.address.country},{" "}
+												{order.receiverDetails.address.zip}
 											</TableCell>
 										</TableRow>
 									</TableBody>

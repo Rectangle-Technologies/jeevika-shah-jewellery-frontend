@@ -1,15 +1,36 @@
 "use client";
 import CartSheetItemCard from "@/components/cart/CartSheetItemCard";
 import { Button } from "@/components/ui/button";
-import { centralPricing } from "@/constants";
 import { useCounterStore } from "@/providers/cart-store-providers";
 import { ShoppingCartIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { calculatePricing } from "js-product-pricing-calculator";
+import { getProductDetails, MetalPrices } from "@/utils/functions/product";
 
 function CartPage() {
+	const [subTotal, setSubTotal] = React.useState(0);
+	const [metalPrices, setMetalPrices] = React.useState<MetalPrices | undefined>(undefined);
 	const { cartItems } = useCounterStore((state) => state);
+
+	React.useEffect(() => {
+		const calculateTotal = async () => {
+			const promises = cartItems.map(async (item) => {
+				const sizeObj = item.item.sizes.find((jewellerySize) => jewellerySize.displayName === item.size);
+				const details = await getProductDetails(item.item._id);
+				const metalPrice = details?.metalPrices;
+				setMetalPrices(metalPrice);
+				const price = calculatePricing(item.item, metalPrice, sizeObj, item.diamondType).finalPrice;
+				return item.quantity * price;
+			});
+
+			const prices = await Promise.all(promises);
+			const total = prices.reduce((sum, price) => sum + price, 0);
+			setSubTotal(total);
+		};
+
+		calculateTotal();
+	}, [cartItems]);
 	return (
 		<div className="w-full py-3 mx-auto space-y-8">
 			<p className="text-3xl font-semibold my-5">Shopping Cart</p>
@@ -25,7 +46,7 @@ function CartPage() {
 			{cartItems.length > 0 && (
 				<div className="px-2 space-y-8">
 					{cartItems.map((item) => (
-						<CartSheetItemCard key={item.item.name} cartItem={item} />
+						<CartSheetItemCard key={item.item.name} metalPrices={metalPrices} cartItem={item} />
 					))}
 				</div>
 			)}
@@ -33,10 +54,7 @@ function CartPage() {
 				<div>
 					<div className="flex justify-between items-end text-lg text-gray-500 border-y py-3 my-2">
 						<p>Subtotal:</p>
-						<p className="">
-							&#8377;{" "}
-							{cartItems.reduce((total, item) => total + item.quantity * calculatePricing(item.item, centralPricing, item.item.sizes.filter((jewellerySize) => jewellerySize.displayName === item.size)[0]).finalPrice, 0).toLocaleString("en-IN", { maximumFractionDigits: 0 })}
-						</p>
+						<p className="">&#8377; {subTotal.toLocaleString("en-IN", { maximumFractionDigits: 0 })}</p>
 					</div>
 					<div className="flex flex-row gap-4 items-center justify-between my-10">
 						<Link href="/collections/all" className="hover:underline cursor-pointer">

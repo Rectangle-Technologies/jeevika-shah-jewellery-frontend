@@ -4,6 +4,7 @@ import React from "react";
 import CheckoutItem from "./CheckoutItem";
 import { centralPricing } from "@/constants";
 import { calculatePricing } from "js-product-pricing-calculator";
+import { getProductDetails } from "@/utils/functions/product";
 
 interface LeftSectionProps {
 	orderItems?: {
@@ -20,7 +21,8 @@ interface LeftSectionProps {
 	}[];
 }
 
-const itemModifier = (item: IndividualCartItem) => {
+const itemModifier = async (item: IndividualCartItem) => {
+	const details = await getProductDetails(item.item._id);
 	const modifiedItem = {
 		productId: {
 			_id: item.item._id,
@@ -28,7 +30,12 @@ const itemModifier = (item: IndividualCartItem) => {
 			images: item.item.images,
 		},
 		quantity: item.quantity,
-		price: calculatePricing(item.item, centralPricing, item.item.sizes.filter((size) => size.displayName === item.size)[0]).finalPrice,
+		price: calculatePricing(
+			item.item,
+			details?.metalPrices,
+			item.item.sizes.find((size) => size.displayName === item.size),
+			item.diamondType
+		).finalPrice,
 		size: item.size,
 		diamondType: item.diamondType,
 		_id: item.item._id,
@@ -38,22 +45,28 @@ const itemModifier = (item: IndividualCartItem) => {
 
 function LeftSection({ orderItems }: LeftSectionProps) {
 	const { cartItems } = useCounterStore((state) => state);
+	const [modifiedItems, setModifiedItems] = React.useState<any[]>([]); // Adjust type as needed
+
+	React.useEffect(() => {
+		const modifyItems = async () => {
+			const results = await Promise.all(cartItems.map((item) => itemModifier(item)));
+			setModifiedItems(results);
+		};
+
+		modifyItems();
+	}, [cartItems]);
 	return (
 		<section className="w-full lg:w-1/2 h-full px-1 pt-4 lg:p-4 ">
 			<p className="text-xl font-semibold my-2">Order Summary</p>
 			<div className="space-y-4">
-				{cartItems.map((item) => (
-					<CheckoutItem key={item.item.name} item={itemModifier(item)} />
+				{modifiedItems.map((item) => (
+					<CheckoutItem key={item.productId._id} item={item} />
 				))}
 			</div>
 			{/* total amount */}
 			<div className="flex items-center justify-between p-4 text-lg font-semibold mb-10">
 				<p className="">Total</p>
-				{orderItems ? (
-					<p>&#8377; {orderItems.reduce((total, item) => total + item.quantity * item.price, 0).toFixed(2)}</p>
-				) : (
-					<p>&#8377; {cartItems.reduce((total, item) => total + item.quantity * calculatePricing(item.item, centralPricing, item.item.sizes.filter((size) => size.displayName === item.size)[0]).finalPrice, 0).toLocaleString("en-IN", { maximumFractionDigits: 0 })}</p>
-				)}
+				{orderItems ? <p>&#8377; {orderItems.reduce((total, item) => total + item.quantity * item.price, 0).toFixed(2)}</p> : <p>&#8377; {modifiedItems.reduce((total, item) => total + item.quantity * item.price, 0).toLocaleString("en-IN", { maximumFractionDigits: 0 })}</p>}
 			</div>
 		</section>
 	);

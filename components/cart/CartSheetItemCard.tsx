@@ -7,12 +7,14 @@ import { imgSrcModifier } from "@/utils/functions/image";
 import { formatDiamondType } from "@/utils/functions/checkout";
 import { centralPricing } from "@/constants";
 import { calculatePricing } from "js-product-pricing-calculator";
+import { MetalPrices } from "@/utils/functions/product";
 
 interface CartSheetItemCardProps {
 	cartItem: IndividualCartItem;
+	metalPrices: MetalPrices | undefined;
 }
 
-function CartSheetItemCard({ cartItem }: CartSheetItemCardProps) {
+function CartSheetItemCard({ cartItem, metalPrices }: CartSheetItemCardProps) {
 	const { addToCart, removeItems } = useCounterStore((state) => state);
 	const columnHeading = "text-black text-xs";
 	const itemDetailStyle = "mx-auto text-center";
@@ -35,7 +37,8 @@ function CartSheetItemCard({ cartItem }: CartSheetItemCardProps) {
 					</div>
 
 					<div className={itemDetailStyle}>
-						<p className={columnHeading}>Price</p>₹ {calculatePricing(cartItem.item, centralPricing, cartItem.item.sizes.filter((size) => size.displayName === cartItem.size)[0]).finalPrice.toLocaleString("en-IN", { maximumFractionDigits: 0 })}
+						<p className={columnHeading}>Price</p>₹{" "}
+						{calculatePricing(cartItem.item, metalPrices ? metalPrices : centralPricing, cartItem.item.sizes.filter((size) => size.displayName === cartItem.size)[0], cartItem.diamondType).finalPrice.toLocaleString("en-IN", { maximumFractionDigits: 0 })}
 					</div>
 
 					<div className={itemDetailStyle}>
@@ -49,14 +52,7 @@ function CartSheetItemCard({ cartItem }: CartSheetItemCardProps) {
 
 					<div className={itemDetailStyle}>
 						<p className={columnHeading}>Total</p>₹{" "}
-						{(
-							cartItem.quantity *
-							calculatePricing(
-								cartItem.item,
-								centralPricing,
-								cartItem.item.sizes.filter((size) => size.displayName === cartItem.size)[0]
-							).finalPrice
-						).toLocaleString("en-IN", { maximumFractionDigits: 0 })}
+						{(cartItem.quantity * calculatePricing(cartItem.item, metalPrices ? metalPrices : centralPricing, cartItem.item.sizes.filter((size) => size.displayName === cartItem.size)[0], cartItem.diamondType).finalPrice).toLocaleString("en-IN", { maximumFractionDigits: 0 })}
 					</div>
 				</div>
 			</CardContent>

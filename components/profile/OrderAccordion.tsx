@@ -95,7 +95,8 @@ function OrderAccordion({ order, index }: OrderAccordionProps) {
 						<p>Name: {order.receiverDetails.name}</p>
 						<p>Phone: {order.receiverDetails.phone}</p>
 						<p>
-							Address: {order.receiverDetails.address.line1}, {order.receiverDetails.address.city}, {order.receiverDetails.address.state}, {order.receiverDetails.address.country}, {order.receiverDetails.address.zip}
+							Address: {order.receiverDetails.address.line1}, {order.receiverDetails.address.line2 && order.receiverDetails.address.line2 + ", "} {order.receiverDetails.address.city}, {order.receiverDetails.address.state}, {order.receiverDetails.address.country},{" "}
+							{order.receiverDetails.address.zip}
 						</p>
 					</div>
 					{/* order details */}

@@ -1,7 +1,7 @@
 'use server';
 
 
-interface MetalPrices {
+export interface MetalPrices {
     _id: string;
     goldPricePerGram: number;
     naturalDiamondPricePerCarat: number;
