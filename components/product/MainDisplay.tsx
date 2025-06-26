@@ -21,12 +21,10 @@ interface MainDisplayProps {
 }
 
 function determineDiamondType(isNaturalDiamond: boolean, isLabDiamond: boolean, isCentralisedDiamond: boolean) {
-	if (isNaturalDiamond) {
-		return "natural";
-	} else if (isLabDiamond) {
+	if (isNaturalDiamond && isLabDiamond) {
 		return "lab-grown";
-	} else if (isCentralisedDiamond) {
-		return "centralised";
+	} else if (isNaturalDiamond) {
+		return "natural";
 	} else {
 		return "lab-grown";
 	}
@@ -50,6 +48,7 @@ function MainDisplay({ jewellery, metalPrices }: MainDisplayProps) {
 				<p className="text-md">{jewellery.description}</p>
 				<p className="">Metal: {jewellery.karatOfGold} Karat Gold</p>
 				<p>Weight: Approx {jewellery.weightOfGold} gm (Weight is subject to change depending on the size)</p>
+				<p>We use only premium quality diamonds which are graded VVS and VS unless stated otherwise.</p>
 				{/* <JewewllerySizeTable jewellerySizes={jewellery.sizes} /> */}
 				{jewellery.isChatWithUs ? (
 					<Button asChild type="button" className="p-6 mt-2 font-normal cursor-pointer">
@@ -110,7 +109,7 @@ function MainDisplay({ jewellery, metalPrices }: MainDisplayProps) {
 								</TooltipProvider>
 							</div>
 						</div>
-						<p>Please Allow Between 2 to 3 Weeks To Finalize And Deliver Your Product.</p>
+						<p>All products are make to order and will take 7-15 days to ship.</p>
 						<p>The price shown is inclusive of all taxes and fees.</p>
 						{/* store information */}
 						<div className="">

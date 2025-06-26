@@ -10,7 +10,7 @@ function JewelleryOriginTab({ setType }: JwelleryOriginTabProps) {
 	return (
 		<div className="w-full">
 			<Label className="mb-2 text-md">Select type:</Label>
-			<Tabs onValueChange={(value) => setType(value)} defaultValue="natural">
+			<Tabs onValueChange={(value) => setType(value)} defaultValue="lab-grown">
 				<TabsList>
 					<TabsTrigger value={"natural"}>Natural Diamond</TabsTrigger>
 					<TabsTrigger value={"lab-grown"}>Lab Grown Diamond</TabsTrigger>
