@@ -1,3 +1,4 @@
+import { formatDiamondType } from "@/utils/functions/checkout";
 import { imgSrcModifier } from "@/utils/functions/image";
 import Image from "next/image";
 import React from "react";
@@ -31,13 +32,14 @@ function CheckoutItem({ item }: CheckoutItemProps) {
 				{/* item details */}
 				<div className="">
 					<p className="text-lg font-semibold">{item.productId.name}</p>
+					<p>{formatDiamondType(item.diamondType)}</p>
 					<p>{item.size}</p>
 					{/* price */}
-					<p className="md:hidden items-center">&#8377; {item.price.toFixed(2)}</p>
+					<p className="md:hidden items-center">&#8377; {item.price}</p>
 				</div>
 			</div>
 			{/* price */}
-			<p className="hidden md:flex items-center">&#8377; {(item.price * item.quantity).toFixed(2)}</p>
+			<p className="hidden md:flex items-center">&#8377; {(item.price * item.quantity).toLocaleString("en-IN", { maximumFractionDigits: 0 })}</p>
 		</div>
 	);
 }

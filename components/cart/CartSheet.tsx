@@ -5,6 +5,9 @@ import { ShoppingBagIcon, ShoppingCartIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import CartSheetItemCard from "./CartSheetItemCard";
 import { useCounterStore } from "@/providers/cart-store-providers";
+import { centralPricing } from "@/constants";
+import { calculatePricing } from "js-product-pricing-calculator";
+import { computeDiamondType } from "@/utils/functions/image";
 
 function CartSheet() {
 	const { cartItems } = useCounterStore((state) => state);
@@ -26,18 +29,32 @@ function CartSheet() {
 						</SheetClose>
 					</div>
 				)}
-				{cartItems.length > 0 && (
+				{/* {cartItems.length > 0 && (
 					<div className="px-2">
 						{cartItems.map((item) => (
 							<CartSheetItemCard key={item.item.name} cartItem={item} />
 						))}
 					</div>
-				)}
+				)} */}
 				{cartItems.length > 0 && (
 					<SheetFooter>
 						<div className="flex items-center justify-between text-lg text-gray-500 border-y py-3 my-2">
 							<p>Subtotal:</p>
-							<p className="">$ {cartItems.reduce((total, item) => total + item.quantity * (item.item.costOfDiamond + item.item.costOfLabour + item.item.miscellaneousCost), 0)}</p>
+							<p className="">
+								${" "}
+								{cartItems.reduce(
+									(total, item) =>
+										total +
+										item.quantity *
+											calculatePricing(
+												item.item,
+												centralPricing,
+												item.item.sizes.filter((jewellerySize) => jewellerySize.displayName === item.size),
+												computeDiamondType(item.diamondType)
+											).finalPrice,
+									0
+								)}
+							</p>
 						</div>
 						<Button>Checkout</Button>
 					</SheetFooter>

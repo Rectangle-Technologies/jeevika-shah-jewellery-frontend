@@ -3,13 +3,18 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import Image from "next/image";
 import { CircleXIcon, MinusIcon, PlusIcon } from "lucide-react";
 import { useCounterStore } from "@/providers/cart-store-providers";
-import { imgSrcModifier } from "@/utils/functions/image";
+import { computeDiamondType, imgSrcModifier } from "@/utils/functions/image";
+import { formatDiamondType } from "@/utils/functions/checkout";
+import { centralPricing } from "@/constants";
+import { calculatePricing } from "js-product-pricing-calculator";
+import { MetalPrices } from "@/utils/functions/product";
 
 interface CartSheetItemCardProps {
 	cartItem: IndividualCartItem;
+	metalPrices: MetalPrices | undefined;
 }
 
-function CartSheetItemCard({ cartItem }: CartSheetItemCardProps) {
+function CartSheetItemCard({ cartItem, metalPrices }: CartSheetItemCardProps) {
 	const { addToCart, removeItems } = useCounterStore((state) => state);
 	const columnHeading = "text-black text-xs";
 	const itemDetailStyle = "mx-auto text-center";
@@ -19,7 +24,7 @@ function CartSheetItemCard({ cartItem }: CartSheetItemCardProps) {
 
 			<CardHeader>
 				<CardTitle>{cartItem.item.name}</CardTitle>
-				<CardDescription>{cartItem.diamondType.charAt(0).toUpperCase() + cartItem.diamondType.slice(1)}</CardDescription>
+				<CardDescription>{formatDiamondType(cartItem.diamondType)} diamond</CardDescription>
 			</CardHeader>
 			<CardContent className="flex flex-col md:flex-row items-center gap-5 relative">
 				<div className="relative h-[200px] w-full md:w-1/3">
@@ -32,8 +37,8 @@ function CartSheetItemCard({ cartItem }: CartSheetItemCardProps) {
 					</div>
 
 					<div className={itemDetailStyle}>
-						<p className={columnHeading}>Price</p>
-						{cartItem.item.costOfDiamond + cartItem.item.costOfLabour + cartItem.item.miscellaneousCost}
+						<p className={columnHeading}>Price</p>₹{" "}
+						{calculatePricing(cartItem.item, metalPrices ? metalPrices : centralPricing, cartItem.item.sizes.filter((size) => size.displayName === cartItem.size)[0], computeDiamondType(cartItem.diamondType)).finalPrice.toLocaleString("en-IN", { maximumFractionDigits: 0 })}
 					</div>
 
 					<div className={itemDetailStyle}>
@@ -46,8 +51,10 @@ function CartSheetItemCard({ cartItem }: CartSheetItemCardProps) {
 					</div>
 
 					<div className={itemDetailStyle}>
-						<p className={columnHeading}>Total</p>
-						{cartItem.quantity * (cartItem.item.costOfDiamond + cartItem.item.costOfLabour + cartItem.item.miscellaneousCost)}
+						<p className={columnHeading}>Total</p>₹{" "}
+						{(cartItem.quantity * calculatePricing(cartItem.item, metalPrices ? metalPrices : centralPricing, cartItem.item.sizes.filter((size) => size.displayName === cartItem.size)[0], computeDiamondType(cartItem.diamondType)).finalPrice).toLocaleString("en-IN", {
+							maximumFractionDigits: 0,
+						})}
 					</div>
 				</div>
 			</CardContent>

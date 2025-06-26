@@ -60,7 +60,7 @@ export default async function Home() {
 	return (
 		<div>
 			<Banner bgImageSrc={data[data.findIndex((item: any) => item.key === "mainBanner")].value as string} />
-			<JewelleryGrid jewelleryItems={jewelleryItems} />
+			<JewelleryGrid jewelleryItems={jewelleryItems.products} metalPrices={jewelleryItems.metalPrices} />
 			<JewelleryCategory />
 			{/* <p className="text-center md:text-3xl text-gray-700 mt-6">Timeless Pieces You'll Reach for Everyday</p> */}
 			{/* <JewelleryGrid /> */}
@@ -68,7 +68,7 @@ export default async function Home() {
 			<PersonalisedPieces bgImageSrc={data[data.findIndex((item: any) => item.key === "personalizedPiecesBackground")].value as string} />
 			<WhyWeAreHere bgImageSrc={data[data.findIndex((item: any) => item.key === "whyHereBackgroundImage")].value as string} />
 			<ContactUsForm />
-			<ToastContainer/>
+			<ToastContainer />
 		</div>
 	);
 }

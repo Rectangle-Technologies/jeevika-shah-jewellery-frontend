@@ -1,5 +1,5 @@
 import React from "react";
-import { Sheet, SheetClose, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { AlignLeftIcon, FacebookIcon, InstagramIcon } from "lucide-react";
 import Link from "next/link";
@@ -21,17 +21,18 @@ function NavbarSheet({ navbarLinks }: NavbarSheetProps) {
 			<SheetContent>
 				<SheetHeader className="bg-gray-200">
 					<SheetTitle>Menu</SheetTitle>
+					<SheetDescription></SheetDescription>
 				</SheetHeader>
 				<div className="p-3 text-xl">
-					{navbarLinks.map((link) => {
+					{navbarLinks.map((link, index) => {
 						if (link.subLinks) {
 							return (
-								<Accordion type="single" collapsible>
+								<Accordion key={link.title + index.toString()} type="single" collapsible>
 									<AccordionItem value="item-1">
 										<AccordionTrigger className="text-xl">{link.title}</AccordionTrigger>
 										<AccordionContent className="px-3 flex flex-col">
 											{link.subLinks.map((subLink) => (
-												<SheetClose asChild key={subLink.title} className="text-sm my-1 font-normal">
+												<SheetClose asChild key={subLink.title + index.toString()} className="text-sm my-1 font-normal">
 													<Link href={subLink.link}>{subLink.title}</Link>
 												</SheetClose>
 											))}
@@ -47,12 +48,11 @@ function NavbarSheet({ navbarLinks }: NavbarSheetProps) {
 							);
 						}
 					})}
+					<SheetClose asChild className=" flex text-xl font-normal px-0 mx-0 cursor-pointer mt-3">
+						<Link href={"/profile"}>Profile</Link>
+					</SheetClose>
 					{isAuthenticated && (
 						<div className="mt-3">
-							<Link href={"/profile"} className=" flex text-xl font-normal px-0 mx-0 cursor-pointer">
-								Profile
-							</Link>
-
 							<Button variant="link" className=" flex text-xl font-normal px-0 mx-0 cursor-pointer" onClick={logout}>
 								Logout
 								{/* <LogOutIcon className="px-0 mx-0" /> */}
@@ -60,12 +60,16 @@ function NavbarSheet({ navbarLinks }: NavbarSheetProps) {
 						</div>
 					)}
 					<div className="flex pb-8 gap-2 my-5 w-full">
-						<Link href={process.env.NEXT_PUBLIC_FACEBOOK_LINK!} className="hover:underline py-1">
-							<FacebookIcon />
-						</Link>
-						<Link href={process.env.NEXT_PUBLIC_INSTAGRAM_LINK!} className="hover:underline py-1">
-							<InstagramIcon />
-						</Link>
+						<SheetClose asChild className="hover:underline py-1">
+							<Link href={process.env.NEXT_PUBLIC_FACEBOOK_LINK!}>
+								<FacebookIcon />
+							</Link>
+						</SheetClose>
+						<SheetClose asChild className="hover:underline py-1">
+							<Link href={process.env.NEXT_PUBLIC_INSTAGRAM_LINK!}>
+								<InstagramIcon />
+							</Link>
+						</SheetClose>
 					</div>
 				</div>
 				<SheetFooter></SheetFooter>

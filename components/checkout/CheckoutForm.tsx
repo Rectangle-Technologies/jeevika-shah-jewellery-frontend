@@ -61,8 +61,8 @@ function CheckoutForm({ userDetails, isOrderPaymentPending, orderId }: CheckoutF
 	async function onSubmit(values: z.infer<typeof formSchema>) {
 		// 1. Create order
 		const receiverDetails: ReceiverDetails = orderForSomeoneElse
-			? { name: values.recipient_name!, phone: values.recipient_phone!, address: { line1: values.line1!, city: values.city!, state: values.state!, country: values.country!, zip: values.zip! } }
-			: { name: userDetails.name, phone: userDetails.phone!, address: { line1: values.line1!, city: values.city!, state: values.state!, country: values.country!, zip: values.zip! } };
+			? { name: values.recipient_name!, phone: values.recipient_phone!, address: { line1: values.line1!, line2: values.line2!, city: values.city!, state: values.state!, country: values.country!, zip: values.zip! } }
+			: { name: userDetails.name, phone: userDetails.phone!, address: { line1: values.line1!, line2: values.line2!, city: values.city!, state: values.state!, country: values.country!, zip: values.zip! } };
 
 		let orderRes: { isOrderCreated: boolean; orderId?: string } = { isOrderCreated: false, orderId: "" };
 		if (isOrderPaymentPending) {
@@ -87,7 +87,7 @@ function CheckoutForm({ userDetails, isOrderPaymentPending, orderId }: CheckoutF
 			key: razorpayRes.razorpayKey,
 			amount: razorpayRes.amount, // You should calculate the total amount here
 			currency: razorpayRes.currency,
-			name: "Jeevika Shah Jewellery",
+			name: "Jeevika Shah",
 			description: "Order Payment",
 			image: `${process.env.NEXT_PUBLIC_BASE_URL}/assets/logo-seconday.png`,
 			order_id: razorpayRes.razorpayOrderId,
@@ -119,7 +119,7 @@ function CheckoutForm({ userDetails, isOrderPaymentPending, orderId }: CheckoutF
 				contact: values.phone,
 			},
 			notes: {
-				address: `${userDetails.address?.line1}, ${userDetails.address?.city}, ${userDetails.address?.state}, ${userDetails.address?.country}, ${userDetails.address?.zip}`,
+				address: `${userDetails.address?.line1}, ${userDetails.address?.line2}, ${userDetails.address?.city}, ${userDetails.address?.state}, ${userDetails.address?.country}, ${userDetails.address?.zip}`,
 			},
 			theme: {
 				color: "#F5CBA7",
@@ -145,7 +145,6 @@ function CheckoutForm({ userDetails, isOrderPaymentPending, orderId }: CheckoutF
 			<form
 				onSubmit={(e) => {
 					e.preventDefault();
-					console.log(form.formState.errors);
 					form.handleSubmit(onSubmit)();
 				}}
 				className="space-y-8"

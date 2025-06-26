@@ -31,6 +31,7 @@ function ProfilePage() {
 	return (
 		<div className=" flex flex-col items-center gap-5">
 			<ProfileHeader />
+			<ProfileDetails userDetails={userDetails} />
 			{ordersLoading ? (
 				// 4. Show skeletons while loading
 				<div className="w-full flex flex-col gap-2">
@@ -58,17 +59,6 @@ function ProfilePage() {
 					))}
 				</div>
 			)}
-			{previousOrders.length > 0 && (
-				<div className=" w-full flex flex-col gap-2">
-					{previousOrders.map((order, index) => (
-						<div className="" key={order._id}>
-							<OrderAccordion order={order} index={previousOrders.length - index} />
-							<Separator />
-						</div>
-					))}
-				</div>
-			)}
-			<ProfileDetails userDetails={userDetails} />
 		</div>
 	);
 }

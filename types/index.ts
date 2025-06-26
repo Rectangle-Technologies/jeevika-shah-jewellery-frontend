@@ -7,18 +7,23 @@ interface Item {
     images: string[],
     sizes: {
         displayName: string,
-        weightOfMetal: number
+        weightOfMetal: number,
+        _id?: string
     }[],
     karatOfGold: number,
     weightOfGold: number,
-    karatOfDiamond: number,
-    costOfDiamond: number,
+    costOfNaturalDiamond: number,
+    costOfLabDiamond: number,
     costOfLabour: number,
     miscellaneousCost: number,
     isCentralisedDiamond: boolean,
     isNaturalDiamond: boolean,
     isLabDiamond: boolean,
-    isActive: boolean
+    isActive: boolean,
+    isLandingPageProduct: boolean,
+    calculatedPrice?: number
+    isDeleted: boolean,
+    isChatWithUs: boolean,
 }
 
 interface IndividualCartItem {

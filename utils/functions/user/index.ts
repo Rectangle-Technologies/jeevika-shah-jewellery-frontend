@@ -18,7 +18,6 @@ export async function getUserDetails(): Promise<User | null> {
             return null
         }
     } catch (error) {
-        console.log(error);
         return null;
     }
 }
@@ -35,7 +34,6 @@ export async function getPreviousOrders(pageNo: number, pageSize: number): Promi
         }
         return res.data.body.orders;
     } catch (error) {
-        console.log(error);
         return [];
     }
 }
@@ -52,7 +50,6 @@ export async function verifyToken(token: string) {
         }
         return true;
     } catch (error) {
-        console.log(error);
         return false;
     }
 }
@@ -80,7 +77,6 @@ export async function updateProfile(profileDetails: User): Promise<boolean> {
             return false
         }
     } catch (error) {
-        console.log(error);
         return false;
     }
 }

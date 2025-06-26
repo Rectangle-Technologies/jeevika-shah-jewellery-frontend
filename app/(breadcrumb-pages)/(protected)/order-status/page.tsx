@@ -6,14 +6,15 @@ import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@
 import { decodeMsg } from "@/utils/functions/order/encode";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useSearchParams } from "next/navigation";
+import { formatDiamondType } from "@/utils/functions/checkout";
 
 function OrderStatusPage() {
 	const [order, setOrder] = React.useState<OrderProduct | null>(null);
 	const searchParams = useSearchParams();
 
-    const orderId = searchParams.get("orderId");
-    const success = searchParams.get("success");
-    const error = searchParams.get("error");
+	const orderId = searchParams.get("orderId");
+	const success = searchParams.get("success");
+	const error = searchParams.get("error");
 
 	React.useEffect(() => {
 		const fetchOrderDetails = async () => {
@@ -52,7 +53,7 @@ function OrderStatusPage() {
 				</div>
 			)}
 			{success && (
-				<Card className="lg:w-[500px] mx-auto">
+				<Card className="lg:w-[800px] mx-auto">
 					<CardHeader>
 						<CardTitle>Order Details</CardTitle>
 					</CardHeader>
@@ -88,7 +89,8 @@ function OrderStatusPage() {
 										<TableRow>
 											<TableCell className="font-medium">Address</TableCell>
 											<TableCell>
-												{order.receiverDetails.address.line1}, {order.receiverDetails.address.city}, {order.receiverDetails.address.state}, {order.receiverDetails.address.country}, {order.receiverDetails.address.zip}
+												{order.receiverDetails.address.line1}, {order.receiverDetails.address.line2 && order.receiverDetails.address.line2 + ", "} {order.receiverDetails.address.city}, {order.receiverDetails.address.state}, {order.receiverDetails.address.country},{" "}
+												{order.receiverDetails.address.zip}
 											</TableCell>
 										</TableRow>
 									</TableBody>
@@ -101,15 +103,17 @@ function OrderStatusPage() {
 												<TableHead>Price (&#8377;)</TableHead>
 												<TableHead>Quantity</TableHead>
 												<TableHead>Size</TableHead>
+												<TableHead>Diamond Type</TableHead>
 											</TableRow>
 										</TableHeader>
 										<TableBody>
 											{order.products.map((item) => (
 												<TableRow key={item._id}>
 													<TableCell>{item.productId.name}</TableCell>
-													<TableCell>&#8377; {item.price}</TableCell>
+													<TableCell>&#8377; {item.price.toLocaleString("en-IN", { minimumFractionDigits: 0 })}</TableCell>
 													<TableCell>{item.quantity}</TableCell>
 													<TableCell>{item.size}</TableCell>
+													<TableCell>{formatDiamondType(item.diamondType)}</TableCell>
 												</TableRow>
 											))}
 										</TableBody>
