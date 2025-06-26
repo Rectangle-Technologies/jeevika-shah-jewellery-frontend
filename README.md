@@ -69,9 +69,9 @@ List of tasks:
 - [x] Backend is not sending duplicate order, there is issue in front end. Check ![alt text](image-7.png)
 - [x] In the case where there is only 1 diamond type, are you sending it in the order? --> Yes
 - [x] On the order status page and on the profile page, address line2 is not visible.
-- [ ] If the product is both natural and lab-grown, then default should be lab-grown. Otherwise default should be the one supported.
-- [ ] Use latest version for price calculator. (1.0.12)
-- [ ] Chat With Us in product.
+- [x] If the product is both natural and lab-grown, then default should be lab-grown. Otherwise default should be the one supported.
+- [x] Use latest version for price calculator. (1.0.12)
+- [x] Chat With Us in product.
 - [ ] Image hover issue in production URL.
 - [ ] Update filter to 7,00,000+
 

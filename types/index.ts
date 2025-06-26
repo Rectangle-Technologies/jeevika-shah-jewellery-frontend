@@ -23,6 +23,7 @@ interface Item {
     isLandingPageProduct: boolean,
     calculatedPrice?: number
     isDeleted: boolean,
+    isChatWithUs: boolean,
 }
 
 interface IndividualCartItem {

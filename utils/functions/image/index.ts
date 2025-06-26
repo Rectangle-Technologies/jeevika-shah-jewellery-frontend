@@ -16,6 +16,6 @@ export function computeDiamondType(type: string) {
     } else if (type.toLowerCase() === 'lab-grown') {
         return false;
     } else {
-        return true;
+        return false;
     }
 }
