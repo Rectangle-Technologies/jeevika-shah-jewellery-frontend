@@ -34,6 +34,15 @@ function ReturnAndExchangePage() {
 					We follow a strong <strong>No returns and exchange policy</strong> as all products listed are made to order.
 				</p>
 			</section>
+			<p className="text-3xl font-bold">Buy Back Policy</p>
+			<section className="space-y-4 leading-[2]">
+				<p>
+					We have a <strong>100% gold buy back policy</strong>.
+				</p>
+				<p>To avail this policy, you must present the original purchase receipt and the JS authentication card provided at the time of purchase. Gold prices will be determined according to the current market rates.</p>
+				<p>All jewellery will be inspected by our manufacturing team. In case of no tampering, the amount will be refunded to you within 15-20 days.</p>
+				<p>Please note that we do not buy back diamonds.</p>
+			</section>
 		</div>
 	);
 }

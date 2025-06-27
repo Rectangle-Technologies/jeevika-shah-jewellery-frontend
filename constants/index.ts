@@ -36,8 +36,8 @@ export const footerOptions: { title: string; link: string }[] = [
         link: "/policies/privacy-policy",
     },
     {
-        title: "Buy Back Policy",
-        link: "/policies/buy-back-policy",
+        title: "Terms & Conditions",
+        link: "/policies/terms-and-conditions",
     },
     {
         title: "Shipping Policy",
