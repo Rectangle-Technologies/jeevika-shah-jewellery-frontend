@@ -13,7 +13,7 @@ interface JewelleryDialogProps {
 function JewelleryDialogCarousel({ imageList }: JewelleryDialogProps) {
 	return (
 		<Carousel
-			className="w-full"
+			className="w-full md:w-[90%]"
 			showThumbs={true}
 			renderThumbs={() =>
 				imageList.map((src, index) => (
@@ -24,7 +24,7 @@ function JewelleryDialogCarousel({ imageList }: JewelleryDialogProps) {
 			}
 		>
 			{imageList.map((src, index) => (
-				<div key={src + index.toString()} className="relative p-1 h-[400px] w-auto">
+				<div key={src + index.toString()} className="relative w-[100%]">
 					<InnerImageZoom src={imgSrcModifier(src)} zoomSrc={imgSrcModifier(src)} zoomType="hover"  />
 					{/* <Image src={imgSrcModifier(src)} fill alt="Jewellery" className="mx-auto" /> */}
 				</div>

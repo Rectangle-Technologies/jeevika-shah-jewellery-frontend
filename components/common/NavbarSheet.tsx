@@ -18,7 +18,7 @@ function NavbarSheet({ navbarLinks }: NavbarSheetProps) {
 					<AlignLeftIcon />
 				</Button>
 			</SheetTrigger>
-			<SheetContent>
+			<SheetContent side="left">
 				<SheetHeader className="bg-gray-200">
 					<SheetTitle>Menu</SheetTitle>
 					<SheetDescription></SheetDescription>

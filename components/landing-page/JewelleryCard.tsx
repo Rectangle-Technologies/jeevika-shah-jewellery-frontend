@@ -18,9 +18,9 @@ function JewelleryCard({ jewelleryItem, metalPrices }: JewelleryCardProps) {
 	const hoverImage = imgSrcModifier(jewelleryItem.images[1]);
 
 	return (
-		<Link href={`/product/${jewelleryItem._id}`}>
-			<Card className="w-full md:w-11/12 mx-auto my-3 py-0 rounded-none">
-				<CardContent onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className="px-0">
+		<Card className="w-full md:w-11/12 mx-auto my-3 py-0 rounded-none">
+			<CardContent onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className="px-0">
+				<Link href={`/product/${jewelleryItem._id}`} className="flex flex-col justify-between h-full">
 					<div className="relative flex flex-col items-center justify-end p-3 h-[150px] w-[150px] mx-auto overflow-hidden">
 						{/* Primary image */}
 						<Image src={primaryImage} alt={jewelleryItem.name} priority sizes="150px" fill className={`object-cover transition-opacity duration-500 ${hovered ? "opacity-0" : "opacity-100"}`} />
@@ -31,15 +31,11 @@ function JewelleryCard({ jewelleryItem, metalPrices }: JewelleryCardProps) {
 
 					<div className="p-3">
 						<CardTitle className="text-center font-normal">{jewelleryItem.name}</CardTitle>
-						{jewelleryItem.calculatedPrice !== undefined && (
-							<CardDescription className="text-center mt-10">
-								From &#8377; {jewelleryItem.calculatedPrice.toLocaleString("en-IN", { maximumFractionDigits: 0 })}
-							</CardDescription>
-						)}
+						{jewelleryItem.calculatedPrice !== undefined && <CardDescription className="text-center mt-10">From &#8377; {jewelleryItem.calculatedPrice.toLocaleString("en-IN", { maximumFractionDigits: 0 })}</CardDescription>}
 					</div>
-				</CardContent>
-			</Card>
-		</Link>
+				</Link>
+			</CardContent>
+		</Card>
 	);
 }
 

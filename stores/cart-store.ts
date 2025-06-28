@@ -34,27 +34,31 @@ export const createCartStore = (
                         (i) => i.productId === itemId
                     );
 
-                    // make an api call to update the cart as well if user is logged in
-                    const token = localStorage.getItem("at");
-                    if (token) {
-                        const res = await axios.post(
-                            `${process.env.NEXT_PUBLIC_API_URL}/cart/add-product`,
-                            {
-                                productId: itemId,
-                                quantity: count,
-                                size,
-                                diamondType: type,
-                            },
-                            {
-                                headers: {
-                                    Authorization: `Bearer ${token}`,
+                    try {
+                        // make an api call to update the cart as well if user is logged in
+                        const token = localStorage.getItem("at");
+                        if (token) {
+                            const res = await axios.post(
+                                `${process.env.NEXT_PUBLIC_API_URL}/cart/add-product`,
+                                {
+                                    productId: itemId,
+                                    quantity: count,
+                                    size,
+                                    diamondType: type,
                                 },
+                                {
+                                    headers: {
+                                        Authorization: `Bearer ${token}`,
+                                    },
+                                }
+                            )
+                            if (res.status !== 200) {
+                                toast.error(res.data.message);
+                                return;
                             }
-                        )
-                        if (res.status !== 200) {
-                            toast.error(res.data.message);
-                            return;
                         }
+                    } catch (error) {
+
                     }
                     if (existingItem) {
                         set((state) => ({
