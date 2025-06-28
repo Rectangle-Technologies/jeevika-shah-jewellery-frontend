@@ -72,8 +72,11 @@ List of tasks:
 - [x] If the product is both natural and lab-grown, then default should be lab-grown. Otherwise default should be the one supported.
 - [x] Use latest version for price calculator. (1.0.12)
 - [x] Chat With Us in product.
-- [ ] Image hover issue in production URL.
-- [ ] Update filter to 7,00,000+
+- [ ] Image loading issue in production URL.
+- [ ] Update filter to 7,00,000+.
+- [ ] Shift mobile menu to left.
+- [ ] Add loaders whereever there is a delay/API call.
+- [ ] Increase height of jewellery card.
 
 
 Flow for user authentication:
