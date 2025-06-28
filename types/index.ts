@@ -24,6 +24,7 @@ interface Item {
     calculatedPrice?: number
     isDeleted: boolean,
     isChatWithUs: boolean,
+    skuId: string
 }
 
 interface IndividualCartItem {

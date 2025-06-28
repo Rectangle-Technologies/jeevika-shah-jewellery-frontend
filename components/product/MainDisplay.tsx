@@ -44,6 +44,7 @@ function MainDisplay({ jewellery, metalPrices }: MainDisplayProps) {
 			</div>
 			<div className="text-start w-full md:w-1/2 px-3 flex flex-col items-start gap-6 text-gray-600">
 				<p className="text-3xl font-bold text-gray-800">{jewellery.name}</p>
+				{jewellery.skuId && <p className="text-md">SKU ID: {jewellery.skuId}</p>}
 				<p className="text-xl">&#8377; {calculatePricing(jewellery, metalPrices, jewellery.sizes.filter((jewellerySize) => jewellerySize.displayName === size)[0], computeDiamondType(type)).finalPrice.toLocaleString("en-IN", { maximumFractionDigits: 0 })}</p>
 				<p className="text-md">{jewellery.description}</p>
 				<p className="">Metal: {jewellery.karatOfGold} Karat Gold</p>
@@ -58,7 +59,8 @@ function MainDisplay({ jewellery, metalPrices }: MainDisplayProps) {
 					</Button>
 				) : (
 					<div className="flex flex-col gap-6">
-						<JewellerySizeDropdown jewellerySizes={jewellery.sizes} setSize={setSize} />
+						{jewellery.sizes.length > 1 && <JewellerySizeDropdown jewellerySizes={jewellery.sizes} setSize={setSize} />}
+						{jewellery.sizes.length === 1 && <div className="flex items-center gap-2">Size: {jewellery.sizes[0].displayName}</div>}
 						{jewellery.isLabDiamond && jewellery.isNaturalDiamond && <JewelleryOriginTab setType={setType} />}
 						<div className="w-full flex flex-col justify-between gap-6">
 							<div className="flex items-center lg:justify-between gap-2 lg:gap-6">

@@ -74,10 +74,10 @@ List of tasks:
 - [x] Chat With Us in product.
 - [ ] Image loading issue in production URL.
 - [ ] Update filter to 7,00,000+.
-- [ ] Shift mobile menu to left.
-- [ ] Add loaders whereever there is a delay/API call.
-- [ ] Increase height of jewellery card.
-- [ ] On the product page, add a check that sizes array should be greater than 1, only then give the select size option.
+- [x] Shift mobile menu to left.
+- [x] Add loaders whereever there is a delay/API call.
+- [x] Increase height of jewellery card.
+- [x] On the product page, add a check that sizes array should be greater than 1, only then give the select size option.
 - [ ] Add SKU ID on product page.
 
 

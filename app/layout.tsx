@@ -61,7 +61,7 @@ export default async function RootLayout({
 				<CartStoreProvider>
 					<AuthInitializer />
 					<Navbar navbarLinks={navbarLinks} />
-					{children}
+					<section className="min-h-screen">{children}</section>
 					<Footer />
 					<WhatsAppFloatingButton />
 					<ScrollToTop />
