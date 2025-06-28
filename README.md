@@ -78,7 +78,7 @@ List of tasks:
 - [x] Add loaders whereever there is a delay/API call.
 - [x] Increase height of jewellery card.
 - [x] On the product page, add a check that sizes array should be greater than 1, only then give the select size option.
-- [ ] Add SKU ID on product page.
+- [x] Add SKU ID on product page.
 
 
 Flow for user authentication:
