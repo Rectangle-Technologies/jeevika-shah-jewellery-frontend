@@ -1,12 +1,10 @@
 "use client";
-import React from "react";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import Link from "next/link";
+import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
 import { imgSrcModifier } from "@/utils/functions/image";
-import Image from "next/image";
-import { centralPricing } from "@/constants";
-import { calculatePricing } from "js-product-pricing-calculator";
 import { MetalPrices } from "@/utils/functions/product";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
 interface JewelleryCardProps {
 	jewelleryItem: Item;
