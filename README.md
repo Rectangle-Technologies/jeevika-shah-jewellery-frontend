@@ -80,6 +80,8 @@ List of tasks:
 - [x] On the product page, add a check that sizes array should be greater than 1, only then give the select size option.
 - [x] Add SKU ID on product page.
 - [ ] Reduce font weight of the content of "Why We're Here" section
+- [ ] Add carousel in the Personalized Pieces section
+- [ ] Fix the loader issue on mobile.
 
 
 Flow for user authentication:
