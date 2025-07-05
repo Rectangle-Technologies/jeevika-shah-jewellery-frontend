@@ -82,6 +82,7 @@ List of tasks:
 - [ ] Reduce font weight of the content of "Why We're Here" section
 - [ ] Add carousel in the Personalized Pieces section
 - [ ] Fix the loader issue on mobile.
+- [ ] On the sign up page, add (Optional) after email.
 
 
 Flow for user authentication:
