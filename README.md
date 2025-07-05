@@ -83,6 +83,7 @@ List of tasks:
 - [ ] Add carousel in the Personalized Pieces section
 - [ ] Fix the loader issue on mobile.
 - [ ] On the sign up page, add (Optional) after email.
+- [ ] In mobile view, increase the size of the logo.
 
 
 Flow for user authentication:
