@@ -137,7 +137,7 @@ function SignUpForm() {
 						<Step1 form={formStep1} />
 
 						<Button type="submit" className="w-full" disabled={loading}>
-							{loading ? "Please wait..." : "Send OTP"}
+							{loading ? "Please wait..." : "Submit"}
 						</Button>
 					</form>
 				</Form>

@@ -4,19 +4,19 @@ import Image from "next/image";
 import { FadeInWhenVisible } from "@/components/common/FadeInWhenVisible";
 
 export const metadata: Metadata = {
-	title: "Brand Journey | Jeevika Shah Jewellery",
+	title: "About Us | Jeevika Shah Jewellery",
 	description: "Discover the inspiring story behind Jeevika Shah Jewellery. Learn about our founder's passion, the brand's heritage, and our commitment to quality and craftsmanship.",
-	keywords: ["Brand Journey", "Jeevika Shah", "Jewellery", "Founder Story", "Indian Jewellery", "Italian Craftsmanship", "Luxury Jewellery", "Sustainable Luxury"],
+	keywords: ["About Us", "Jeevika Shah", "Jewellery", "Founder Story", "Indian Jewellery", "Italian Craftsmanship", "Luxury Jewellery", "Sustainable Luxury"],
 	openGraph: {
-		title: "Brand Journey | Jeevika Shah Jewellery",
+		title: "About Us | Jeevika Shah Jewellery",
 		description: "Discover the inspiring story behind Jeevika Shah Jewellery. Learn about our founder's passion, the brand's heritage, and our commitment to quality and craftsmanship.",
-		url: `${process.env.DOMAIN}/brand-journey`,
+		url: `${process.env.DOMAIN}/about-us`,
 		siteName: "Jeevika Shah Jewellery",
 		type: "website",
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Brand Journey | Jeevika Shah Jewellery",
+		title: "About Us | Jeevika Shah Jewellery",
 		description: "Discover the inspiring story behind Jeevika Shah Jewellery. Learn about our founder's passion, the brand's heritage, and our commitment to quality and craftsmanship.",
 	},
 };
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 function BrandJourney() {
 	return (
 		<div className="max-w-4xl mx-auto px-4 py-12 text-gray-800 space-y-10">
-			<p className="text-3xl font-bold">Brand Journey</p>
+			<p className="text-3xl font-bold">About Us</p>
 			<FadeInWhenVisible>
 				<section>
 					<h1 className="text-2xl font-semibold mb-4">A Note from Our Founder, Jeevika Shah</h1>
