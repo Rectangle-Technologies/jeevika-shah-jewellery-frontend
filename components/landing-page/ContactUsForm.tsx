@@ -84,7 +84,7 @@ function ContactUsForm() {
 						name="email"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>YOUR EMAIL:</FormLabel>
+								<FormLabel>YOUR EMAIL: <span className="text-gray-400">(OPTIONAL)</span></FormLabel>
 								<FormControl>
 									<Input placeholder="john.doe@email.com" {...field} disabled={loading} />
 								</FormControl>

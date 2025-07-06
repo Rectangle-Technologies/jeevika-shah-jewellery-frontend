@@ -67,6 +67,7 @@ export default async function Home() {
 			<ChatWithUs bgImageSrc={data[data.findIndex((item: any) => item.key === "chatWithUsBackground")].value as string} />
 			<PersonalisedPieces carouselImages={data.filter((item: any) => item.key.includes("personalizedPiecesBackground")).map((item: any) => item.value)} />
 			<WhyWeAreHere bgImageSrc={data[data.findIndex((item: any) => item.key === "whyHereBackgroundImage")].value as string} />
+			<ChatWithUs bgImageSrc={data[data.findIndex((item: any) => item.key === "chatWithUsBackground")].value as string} />
 			<ContactUsForm />
 			<ToastContainer />
 		</div>

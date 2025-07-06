@@ -6,8 +6,8 @@ import { MetalPrices } from "../product";
 export async function getNavbarOptions() {
   const navbarLinks: { title: string; link?: string; subLinks?: { title: string; link: string }[] }[] = [
     {
-      title: "Brand Journey",
-      link: "/brand-journey",
+      title: "About Us",
+      link: "/about-us",
     }
   ]
   try {

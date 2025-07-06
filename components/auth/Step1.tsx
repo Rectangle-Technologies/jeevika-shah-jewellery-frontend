@@ -72,7 +72,7 @@ function Step1({ form }: { form: UseFormReturn<z.infer<typeof step1Schema>> }) {
 				name="email"
 				render={({ field }) => (
 					<FormItem>
-						<FormLabel>Email</FormLabel>
+						<FormLabel>Email <span className="text-gray-400">(Optional)</span></FormLabel>
 						<FormControl>
 							<Input placeholder="Enter your email" {...field} />
 						</FormControl>
@@ -88,6 +88,19 @@ function Step1({ form }: { form: UseFormReturn<z.infer<typeof step1Schema>> }) {
 						<FormLabel>Phone</FormLabel>
 						<FormControl>
 							<Input placeholder="Enter your phone number" {...field} />
+						</FormControl>
+						<FormMessage />
+					</FormItem>
+				)}
+			/>
+			<FormField
+				control={form.control}
+				name="dob"
+				render={({ field }) => (
+					<FormItem>
+						<FormLabel>Date of Birth</FormLabel>
+						<FormControl>
+							<Input type="date" placeholder="Enter date of birth" {...field} value={field.value || ""} />
 						</FormControl>
 						<FormMessage />
 					</FormItem>
@@ -168,19 +181,6 @@ function Step1({ form }: { form: UseFormReturn<z.infer<typeof step1Schema>> }) {
 						<FormLabel>PIN Code</FormLabel>
 						<FormControl>
 							<Input placeholder="Enter PIN code" {...field} />
-						</FormControl>
-						<FormMessage />
-					</FormItem>
-				)}
-			/>
-			<FormField
-				control={form.control}
-				name="dob"
-				render={({ field }) => (
-					<FormItem>
-						<FormLabel>Date of Birth</FormLabel>
-						<FormControl>
-							<Input type="date" placeholder="Enter date of birth" {...field} value={field.value || ""} />
 						</FormControl>
 						<FormMessage />
 					</FormItem>
