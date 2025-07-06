@@ -64,9 +64,8 @@ export default async function Home() {
 			<JewelleryCategory />
 			{/* <p className="text-center md:text-3xl text-gray-700 mt-6">Timeless Pieces You'll Reach for Everyday</p> */}
 			{/* <JewelleryGrid /> */}
-			<ChatWithUs bgImageSrc={data[data.findIndex((item: any) => item.key === "chatWithUsBackground")].value as string} />
-			<PersonalisedPieces carouselImages={data.filter((item: any) => item.key.includes("personalizedPiecesBackground")).map((item: any) => item.value)} />
 			<WhyWeAreHere bgImageSrc={data[data.findIndex((item: any) => item.key === "whyHereBackgroundImage")].value as string} />
+			<PersonalisedPieces carouselImages={data.filter((item: any) => item.key.includes("personalizedPiecesBackground")).map((item: any) => item.value)} />
 			<ChatWithUs bgImageSrc={data[data.findIndex((item: any) => item.key === "chatWithUsBackground")].value as string} />
 			<ContactUsForm />
 			<ToastContainer />
