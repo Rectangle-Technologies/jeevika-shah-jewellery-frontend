@@ -34,7 +34,7 @@ function Navbar({ navbarLinks }: NavbarProps) {
 	}, []);
 
 	return (
-		<nav onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className={` ${scrolled || hovered || path !== "/" ? "bg-white text-black shadow-md" : "bg-transparent text-white"} z-50 fixed w-full  top-0 transition-colors duration-300`}>
+		<nav onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className={` ${scrolled || hovered || path !== "/" ? "bg-white text-black shadow-md" : "bg-transparent text-white"} z-20 fixed w-full  top-0 transition-colors duration-300`}>
 			{path !== "/login" && path !== "/sign-up" ? (
 				<div className="flex items-center justify-between py-2 px-4 md:w-[90%] mx-auto">
 					<div className="flex md:hidden">
