@@ -94,6 +94,7 @@ List of tasks:
 - [x] Replace Why We're Here and Chat With Us
 - [ ] Change the font
 - [ ] Increase box size and fill with photo
+- [ ] On the landing page, where the 4 categories are there, fix the aspect ratio of the image. Width and height should change according to screen size, but aspect ratio should be fix. See in the reference website
 
 
 
