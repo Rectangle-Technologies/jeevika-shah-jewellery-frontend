@@ -52,7 +52,7 @@ export default async function CollectionsPage({ params, searchParams }: { params
 	const sortedJewellery = sortItems(items, details.metalPrices, sortOption);
 
 	return (
-		<section className="pt-24 md:pt-40 flex flex-col items-center px-3">
+		<section className="pt-28 md:pt-40 flex flex-col items-center px-3">
 			<div className="flex justify-between items-center gap-2 w-full md:w-[95%] mx-auto mb-2 md:mb-5">
 				<FilterSheet maxPrice={originalMaxValue} />
 				<SortDropdown />

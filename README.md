@@ -81,20 +81,20 @@ List of tasks:
 - [x] Add SKU ID on product page.
 - [x] Reduce font weight of the content of "Why We're Here" section
 - [x] Add carousel in the Personalized Pieces section
-- [ ] Fix the loader issue on mobile.
+- [x] Fix the loader issue on mobile.
 - [x] On the sign up page, add (Optional) after email.
 - [x] On the form on home page, make mail (Optional).
-- [ ] In mobile view, increase the size of the logo.
-- [ ] Cart should be cleared when order is placed, not when payment is successful.
-- [ ] There is a delay when payment is completed and website directs to order-status. Add the loader
+- [x] In mobile view, increase the size of the logo.
+- [x] Cart should be cleared when order is placed, not when payment is successful.
+- [x] There is a delay when payment is completed and website directs to order-status. Add the loader
 - [x] Change Brand Journey to About Us
 - [x] On singup form, keep dob after phone
 - [x] Change Send OTP to Submit
 - [ ] Align empty cart icon to center
 - [x] Replace Why We're Here and Chat With Us
-- [ ] Change the font
-- [ ] Increase box size and fill with photo
-- [ ] On the landing page, where the 4 categories are there, fix the aspect ratio of the image. Width and height should change according to screen size, but aspect ratio should be fix. See in the reference website
+- [x] Change the font
+- [x] Increase box size and fill with photo
+- [x] On the landing page, where the 4 categories are there, fix the aspect ratio of the image. Width and height should change according to screen size, but aspect ratio should be fix. See in the reference website
 
 
 

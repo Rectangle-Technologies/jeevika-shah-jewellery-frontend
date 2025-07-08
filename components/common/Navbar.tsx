@@ -34,7 +34,7 @@ function Navbar({ navbarLinks }: NavbarProps) {
 	}, []);
 
 	return (
-		<nav onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className={` ${scrolled || hovered || path !== "/" ? "bg-white text-black shadow-md" : "bg-transparent text-white"} z-20 fixed w-full  top-0 transition-colors duration-300`}>
+		<nav onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className={` ${scrolled || hovered || path !== "/" ? "bg-white text-black shadow-md" : "bg-transparent text-white"} z-50 fixed w-full  top-0 transition-colors duration-300`}>
 			{path !== "/login" && path !== "/sign-up" ? (
 				<div className="flex items-center justify-between py-2 px-4 md:w-[90%] mx-auto">
 					<div className="flex md:hidden">
@@ -43,8 +43,8 @@ function Navbar({ navbarLinks }: NavbarProps) {
 					<div className="hidden md:flex items-center gap-4 md:w-1/4">
 						<NavigationMenuDemo navbarLinks={navbarLinks} />
 					</div>
-					<Link href="/" className="relative w-[60px] h-[60px] md:w-[100px] md:h-[100px]">
-						<Image src={`/assets/logo-secondary.png`} alt="Jeevika Shah Jewellery logo" fill className="object-contain" />
+					<Link href="/" className="relative  h-[80px] w-[120px] md:h-[100px]">
+						<Image src={`${scrolled || hovered || path !== "/" ? "/assets/logo-secondary.png" : "/assets/logo-primary.png"}`} alt="Jeevika Shah Jewellery logo" fill className="object-contain" />
 					</Link>
 					<div className="flex items-center justify-end gap-2 md:gap-3 md:w-1/4">
 						<Link href={"/profile"} className="hidden md:flex">
@@ -60,8 +60,8 @@ function Navbar({ navbarLinks }: NavbarProps) {
 					</div>
 				</div>
 			) : (
-				<div className="flex items-center justify-between px-4 md:w-[90%] mx-auto">
-					<Link href="/" className="relative w-[60px] h-[60px] md:w-[100px] md:h-[100px] mx-auto">
+				<div className="flex items-center justify-between px-4 md:w-[90%] mx-auto  py-2">
+					<Link href="/" className="relative  h-[80px] w-[120px] md:h-[100px] mx-auto">
 						<Image src="/assets/logo-secondary.png" alt="Jeevika Shah Jewellery logo" fill className="object-contain" />
 					</Link>
 				</div>
