@@ -90,7 +90,7 @@ List of tasks:
 - [x] Change Brand Journey to About Us
 - [x] On singup form, keep dob after phone
 - [x] Change Send OTP to Submit
-- [ ] Align empty cart icon to center
+- [x] Align empty cart icon to center
 - [x] Replace Why We're Here and Chat With Us
 - [x] Change the font
 - [x] Increase box size and fill with photo
