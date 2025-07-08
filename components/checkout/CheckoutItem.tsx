@@ -32,7 +32,7 @@ function CheckoutItem({ item }: CheckoutItemProps) {
 				{/* item details */}
 				<div className="">
 					<p className="text-lg font-semibold">{item.productId.name}</p>
-					<p>{formatDiamondType(item.diamondType)}</p>
+					<p>{formatDiamondType(item.diamondType)} Diamond</p>
 					<p>{item.size}</p>
 					{/* price */}
 					<p className="md:hidden items-center">&#8377; {item.price}</p>
