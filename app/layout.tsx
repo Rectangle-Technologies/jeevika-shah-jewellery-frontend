@@ -9,11 +9,30 @@ import Script from "next/script";
 import { CartStoreProvider } from "@/providers/cart-store-providers";
 import { getNavbarOptions } from "@/utils/functions/collection";
 import AuthInitializer from "@/components/auth/AuthInitializer";
+import { Suspense } from "react";
+import Loading from "./loading";
+import localFont from "next/font/local";
 
-const poppins = Poppins({
-	subsets: ["latin"],
-	weight: ["300", "400", "500", "600", "700"],
-	variable: "--font-poppins",
+// const poppins = Poppins({
+// 	subsets: ["latin"],
+// 	weight: ["300", "400", "500", "600", "700"],
+// 	variable: "--font-poppins",
+// });
+
+const santral = localFont({
+	src: [
+		{
+			path: "./font/Santral/santral-light.otf",
+			weight: "400",
+			style: "normal",
+		},
+		{
+			path: "./font/Santral/santral-light-italic.otf",
+			weight: "400",
+			style: "italic",
+		},
+	],
+	variable: "--font-santral",
 });
 
 export const metadata: Metadata = {
@@ -57,15 +76,17 @@ export default async function RootLayout({
 					}}
 				/>
 			</head>
-			<body className={`${poppins.variable} antialiased`}>
-				<CartStoreProvider>
-					<AuthInitializer />
-					<Navbar navbarLinks={navbarLinks} />
-					<section className="min-h-screen">{children}</section>
-					<Footer />
-					<WhatsAppFloatingButton />
-					<ScrollToTop />
-				</CartStoreProvider>
+			<body className={`${santral.variable} antialiased`}>
+				<Suspense fallback={<Loading />}>
+					<CartStoreProvider>
+						<AuthInitializer />
+						<Navbar navbarLinks={navbarLinks} />
+						<section className="min-h-screen">{children}</section>
+						<Footer />
+						<WhatsAppFloatingButton />
+						<ScrollToTop />
+					</CartStoreProvider>
+				</Suspense>
 			</body>
 		</html>
 	);
