@@ -84,7 +84,7 @@ function CheckoutForm({ userDetails, isOrderPaymentPending, orderId }: CheckoutF
 		// 3. Create Razorpay order
 		const razorpayRes = await createRazorpayOrder(orderRes.orderId || "");
 		if (!razorpayRes.isOrderCreated || !razorpayRes.razorpayOrderId) {
-			router.push(`/order-status?error=${encodeMsg("There was an error completing the payment. Don't worry your order has been successfully placed, you can complete your payment here.")}&orderId=${orderRes.orderId}`);
+			router.push(`/order-status?warning=${encodeMsg("There was an error completing the payment. Don't worry your order has been successfully placed, you can complete your payment here.")}&orderId=${orderRes.orderId}`);
 			return;
 		}
 
@@ -102,7 +102,7 @@ function CheckoutForm({ userDetails, isOrderPaymentPending, orderId }: CheckoutF
 				// 6. Verify payment signature
 				const verifyRes = await verifyPaymentSignature(razorpayRes.razorpayOrderId!, response.razorpay_payment_id, response.razorpay_signature);
 				if (!verifyRes.isPaymentVerified) {
-					router.push(`/order-status?error=${encodeMsg("There was an error completing the payment. Don't worry your order has been successfully placed, you can complete your payment here.")}&orderId=${orderRes.orderId}`);
+					router.push(`/order-status?warning=${encodeMsg("There was an error completing the payment. Don't worry your order has been successfully placed, you can complete your payment here.")}&orderId=${orderRes.orderId}`);
 					return;
 				}
 
@@ -136,6 +136,11 @@ function CheckoutForm({ userDetails, isOrderPaymentPending, orderId }: CheckoutF
 			script.onload = () => {
 				// @ts-ignore
 				const rzp = new window.Razorpay(options);
+				rzp.on("payment.failed", function (response: any) {
+					rzp.close();
+					// move to order-status page with appropriate error message with windows object
+					window.location.href = `/order-status?warning=${encodeMsg("There was an error completing the payment. Don't worry your order has been successfully placed, you can complete your payment here.")}&orderId=${orderRes.orderId}`;
+				});
 				rzp.open();
 			};
 			document.body.appendChild(script);

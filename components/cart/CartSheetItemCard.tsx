@@ -27,7 +27,7 @@ function CartSheetItemCard({ cartItem, metalPrices }: CartSheetItemCardProps) {
 				<CardDescription>{formatDiamondType(cartItem.diamondType)} diamond</CardDescription>
 			</CardHeader>
 			<CardContent className="flex flex-col md:flex-row items-center gap-5 relative">
-				<div className="relative h-[200px] w-full md:w-1/3">
+				<div className="relative h-[200px] w-full md:w-1/3 xl:w-[200px]">
 					<Image src={imgSrcModifier(cartItem.item.images[0])} fill alt={cartItem.item.name} className="object-cover" />
 				</div>
 				<div className="w-full md:w-2/3 grid grid-cols-2 md:grid-cols-4 gap-3 text-gray-400">

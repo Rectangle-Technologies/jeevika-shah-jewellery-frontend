@@ -5,8 +5,6 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import InnerImageZoom from "react-inner-image-zoom";
-import "inner-image-zoom/lib/styles.min.css";
 
 interface PersonalisedPiecesProps {
 	carouselImages: string[];
@@ -18,28 +16,19 @@ function PersonalisedPieces({ carouselImages }: PersonalisedPiecesProps) {
 			<p className="text-center text-2xl font-semibold text-gray-700 mt-6">Personalized Pieces</p>
 			<p className="text-center w-full md:w-[70%] text-gray-700 mt-2">Elevate your style with Personalized Bracelets, Earrings, Rings & Necklaces, adorned with your name.</p>
 
-			<Carousel
-				className="w-full md:w-[70%] lg:w-[55%] lg:hidden"
-				showThumbs={true}
-				renderThumbs={() =>
-					carouselImages.map((src, index) => (
-						<div key={"thumb-" + src + index.toString()} className="relative w-16 h-16">
-							<Image src={src} alt="Jewellery thumbnail" fill sizes="64px" className="object-cover rounded mx-auto" />
-						</div>
-					))
-				}
-			>
+			<Carousel className="w-full md:w-[70%] lg:w-[55%] lg:hidden" showThumbs={false} autoPlay={true} infiniteLoop={true}>
 				{carouselImages.map((src, index) => (
 					<div key={src + index.toString()} className="relative h-[400px]">
-						<InnerImageZoom src={src} zoomSrc={src} zoomType="hover" />
-						{/* <Image src={imgSrcModifier(src)} fill alt="Jewellery" className="mx-auto" /> */}
+						{/* <InnerImageZoom src={src} zoomSrc={src} zoomType="hover" /> */}
+						<Image src={src} fill alt="Jewellery" className="mx-auto" />
 					</div>
 				))}
 			</Carousel>
-			<div className="w-full hidden lg:flex">
+			<div className="w-full hidden mx-auto lg:flex lg:justify-evenly my-5">
 				{carouselImages.map((src, index) => (
-					<div key={src + index.toString()} className=" h-[300px] w-[100%]">
-						<InnerImageZoom src={src} zoomSrc={src} zoomType="hover" className="h-[300px]" />
+					<div key={src + index.toString()} className="relative h-[300px] w-[300px]">
+						{/* <InnerImageZoom src={src} zoomSrc={src} zoomType="hover" className="h-[300px]" /> */}
+						<Image src={src} fill alt="Personalised Jewellery" className="mx-auto object-fill" />
 					</div>
 				))}
 			</div>

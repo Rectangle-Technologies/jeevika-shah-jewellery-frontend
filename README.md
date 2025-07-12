@@ -95,9 +95,9 @@ List of tasks:
 - [x] Change the font
 - [x] Increase box size and fill with photo
 - [x] On the landing page, where the 4 categories are there, fix the aspect ratio of the image. Width and height should change according to screen size, but aspect ratio should be fix. See in the reference website
-- [ ] Remove zoom functionality from the personalized pieces section
-- [ ] In the mobile view, in the personalized pieces carousel, remove the bottom navigation and make it auto-scroll. Keep the arrows
-- [ ] On the cart page, the product image is stretched. ![alt text](image-8.png)
+- [x] Remove zoom functionality from the personalized pieces section
+- [x] In the mobile view, in the personalized pieces carousel, remove the bottom navigation and make it auto-scroll. Keep the arrows
+- [x] On the cart page, the product image is stretched. ![alt text](image-8.png)
 
 
 
