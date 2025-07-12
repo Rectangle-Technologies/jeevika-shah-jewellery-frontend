@@ -30,13 +30,13 @@ function PrivacyPolicyPage() {
 				</p>
 			</section>
 			<section className="space-y-4">
-				<p className="text-bold">1. Company Overview</p>
+				<p className="font-bold">1. Company Overview</p>
 				<p>
 					Jeevika Shah is a fine jewellery brand offering timeless designs crafted with ethically sourced natural diamonds and certified lab-grown diamonds. We are committed to quality, transparency, and customer trust.
 				</p>
 			</section>
 			<section className="space-y-4">
-				<p className="text-bold">2. Product Authenticity and Certification</p>
+				<p className="font-bold">2. Product Authenticity and Certification</p>
 				<p>
 					<ul className="list-disc pl-6">
 						<li>All diamonds—natural or lab-grown—are accompanied by appropriate certification (e.g., GIA, IGI, SGL, or equivalent).</li>
@@ -46,7 +46,7 @@ function PrivacyPolicyPage() {
 				</p>
 			</section>
 			<section className="space-y-4">
-				<p className="text-bold">3. Custom Orders & Made-to-Order Jewellery</p>
+				<p className="font-bold">3. Custom Orders & Made-to-Order Jewellery</p>
 				<p>
 					<ul className="list-disc pl-6">
 						<li>Customisation timelines vary depending on the design and setting, typically ranging from 2–6 weeks.</li>
@@ -55,7 +55,7 @@ function PrivacyPolicyPage() {
 				</p>
 			</section>
 			<section className="space-y-4">
-				<p className="text-bold">4. Pricing and Payment</p>
+				<p className="font-bold">4. Pricing and Payment</p>
 				<p>
 					<ul className="list-disc pl-6">
 						<li>Prices are listed in INR and are inclusive of all applicable taxes unless stated otherwise.</li>
@@ -66,7 +66,7 @@ function PrivacyPolicyPage() {
 				</p>
 			</section>
 			<section className="space-y-4">
-				<p className="text-bold">5. Return, Exchange & Repair Policy</p>
+				<p className="font-bold">5. Return, Exchange & Repair Policy</p>
 				<p>
 					<ul className="list-disc pl-6">
 						<li>Returns: As products are made to order, we do not accept any returns once the purchase is made.</li>
@@ -77,7 +77,7 @@ function PrivacyPolicyPage() {
 				</p>
 			</section>
 			<section className="space-y-4">
-				<p className="text-bold">6. Lifetime Buyback & Upgrade Policy</p>
+				<p className="font-bold">6. Lifetime Buyback & Upgrade Policy</p>
 				<p>
 					<ul className="list-disc pl-6">
 						<li>Natural or Lab grown Diamonds are not included in buyback, only Gold will be considered  with its current price at the time of buyback.</li>
@@ -86,7 +86,7 @@ function PrivacyPolicyPage() {
 				</p>
 			</section>
 			<section className="space-y-4">
-				<p className="text-bold">7. Product Care & Warranty</p>
+				<p className="font-bold">7. Product Care & Warranty</p>
 				<p>
 					<ul className="list-disc pl-6">
 						<li>We offer a one-year manufacturing warranty on all jewellery. This does not cover normal wear and tear or damage caused by misuse.</li>
@@ -95,7 +95,7 @@ function PrivacyPolicyPage() {
 				</p>
 			</section>
 			<section className="space-y-4">
-				<p className="text-bold">8. Intellectual Property</p>
+				<p className="font-bold">8. Intellectual Property</p>
 				<p>
 					<ul className="list-disc pl-6">
 						<li>All content, designs, product photography, and trademarks are the property of Jeevika Shah and cannot be copied, reproduced, or used without written permission.</li>
@@ -103,7 +103,7 @@ function PrivacyPolicyPage() {
 				</p>
 			</section>
 			<section className="space-y-4">
-				<p className="text-bold">9. Limitation of Liability</p>
+				<p className="font-bold">9. Limitation of Liability</p>
 				<p>
 					<ul className="list-disc pl-6">
 						<li>Jeevika Shah shall not be liable for any indirect or consequential loss or damage arising from the use or purchase of our jewellery.</li>
@@ -111,7 +111,7 @@ function PrivacyPolicyPage() {
 				</p>
 			</section>
 			<section className="space-y-4">
-				<p className="text-bold">10. Contact Us</p>
+				<p className="font-bold">10. Contact Us</p>
 				<p>
 					For questions regarding these Terms or your purchase, please contact us at:
 				</p>
@@ -119,7 +119,7 @@ function PrivacyPolicyPage() {
 					Jeevika Shah Jewellery
                     </p>
                 <p>
-                    <b>Email:</b> Info.tiadesign@gmail.com
+                    <b>Email:</b> info.tiadesign@gmail.com
                     </p>
                 <p>
                     <b>Phone:</b> +91 9879438794

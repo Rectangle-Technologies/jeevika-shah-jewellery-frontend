@@ -25,7 +25,7 @@ function PrivacyPolicyPage() {
 		<div className="max-w-4xl mx-auto px-4 py-12 text-gray-800 space-y-10">
 			<p className="text-3xl font-bold">Privacy Policy</p>
 			<section className="space-y-4">
-				<p className="text-bold">1. Overview & Commitment to Privacy</p>
+				<p className="font-bold">1. Overview & Commitment to Privacy</p>
 				<p>
 					We, <b>Jeevika Shah</b> ("we", "us", or "our"), operate our business through our website (www.jeevikashah.com). At <b>Jeevika Shah</b>, we respect your privacy and are committed to taking reasonable precautions to protect your information and comply with our obligations related to privacy.
 				</p>
@@ -40,7 +40,7 @@ function PrivacyPolicyPage() {
 				</p>
 			</section>
 			<section className="space-y-4">
-				<p className="text-bold">2. What Information We Collect</p>
+				<p className="font-bold">2. What Information We Collect</p>
 				<p>
 					We collect the details provided by you on registration (if any), together with information we learn about you from your use of our services and your visits to the Platform.
 				</p>
@@ -83,7 +83,7 @@ function PrivacyPolicyPage() {
 				</p>
 			</section>
 			<section className="space-y-4">
-				<p className="text-bold">3. How We Use Your Information</p>
+				<p className="font-bold">3. How We Use Your Information</p>
 				<p>
 					We use personal information to provide the products and services on the Platform and for general business purposes. Collection of email enables us to improve your shopping experience. Further, we use your personal information and your contact information to send you registration confirmation, special offers, recommendations (based on your previous orders, browsing history, and interests), changes in service policies or terms of use, event-based communications such as order information, renewal notices, invites, reminders, etc.; to troubleshoot problems, to measure interest in our products and services, and to inform you about online offers and customize your experience.
 				</p>
@@ -92,7 +92,7 @@ function PrivacyPolicyPage() {
 				</p>
 			</section>
 			<section className="space-y-4">
-				<p className="text-bold">4. Cookies & Tracking Technologies</p>
+				<p className="font-bold">4. Cookies & Tracking Technologies</p>
 				<p>
 					We may use cookies and other technologies to provide, protect, and improve our products and services, such as by personalizing content, offering and measuring advertisements, understanding user behavior, and providing a safer experience.
 				</p>
@@ -101,7 +101,7 @@ function PrivacyPolicyPage() {
 				</p>
 			</section>
 			<section className="space-y-4">
-				<p className="text-bold">5. Disclosure of Personal Information</p>
+				<p className="font-bold">5. Disclosure of Personal Information</p>
 				<p>
 					We may share your personal information (on a need-to-know basis) with third parties that provide services on our behalf and/or generally in connection with our Platform offerings, such as website hosting, email services, marketing, fulfilling customer orders, transaction processing, data analytics, providing customer service, and conducting customer research and satisfaction surveys. These service providers are obligated to protect your data under law.
 				</p>
@@ -116,13 +116,13 @@ function PrivacyPolicyPage() {
 				</p>
 			</section>
 			<section className="space-y-4">
-				<p className="text-bold">6. Your Consent</p>
+				<p className="font-bold">6. Your Consent</p>
 				<p>
 					By using our Platform and/or by providing your information, you consent to the collection, sharing, storage and use of the information you disclose on the Platform in accordance with the Privacy Policy, including but not limited to your consent for sharing your information as described herein.
 				</p>
 			</section>
 			<section className="space-y-4">
-				<p className="text-bold">7. Your Rights</p>
+				<p className="font-bold">7. Your Rights</p>
 				<p>
 					You have the right to access or correct the personal information that we collect. You are also entitled to restrict or object, at any time, to the further processing of your personal information. You may write to us at <b>info.tiadesign@gmail.com</b> regarding the personal information collected by us.
 				</p>
@@ -134,19 +134,19 @@ function PrivacyPolicyPage() {
 				</p>
 			</section>
 			<section className="space-y-4">
-				<p className="text-bold">8. Protecting Your Information</p>
+				<p className="font-bold">8. Protecting Your Information</p>
 				<p>
 					Our Platform has in place security measures and standards (as required under applicable law) to protect against loss, misuse, and alteration of the information under our control. Whenever you access your registered account or process a transaction, we offer the use of a secure server. However, despite our best efforts, no security system is completely impenetrable.
 				</p>
 			</section>
 			<section className="space-y-4">
-				<p className="text-bold">9. Profile Deactivation</p>
+				<p className="font-bold">9. Profile Deactivation</p>
 				<p>
 					Our Platform enables you to temporarily freeze your profile. This action will result in no access to your account and associated benefits like past orders, wishlists, and other personalized services.
 				</p>
 			</section>
 			<section className="space-y-4">
-				<p className="text-bold">10. Changes to the Privacy Policy:</p>
+				<p className="font-bold">10. Changes to the Privacy Policy:</p>
 				<p>
 					We may update this Privacy Policy at any time to reflect changes in our practices and service offerings. If we modify this Privacy Policy, we will update the date on which the new Privacy Policy will be effective. We will notify you of any material changes in the way we treat your information by placing a prominent notice on our website/Application.
 				</p>
