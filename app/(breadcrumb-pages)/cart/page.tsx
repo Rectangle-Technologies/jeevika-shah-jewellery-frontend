@@ -36,7 +36,7 @@ function CartPage() {
 		<div className="w-full py-3 mx-auto space-y-8">
 			<p className="text-3xl font-semibold my-5">Shopping Cart</p>
 			{cartItems.length === 0 && (
-				<div className="h-full flex flex-col items-center justify-center gap-8">
+				<div className="h-[50vh] flex flex-col items-center justify-center gap-4 mt-8">
 					<ShoppingCartIcon height={70} width={70} />
 					<p className="">Your cart is empty</p>
 					<Button asChild className="mt-4">

@@ -1,7 +1,7 @@
 import React from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "../ui/form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
@@ -11,6 +11,7 @@ import { useCounterStore } from "@/providers/cart-store-providers";
 import { createOrder, createRazorpayOrder, updateOrderStatus, updatePaymentDetails, verifyPaymentSignature } from "@/utils/functions/checkout";
 import { useRouter } from "next/navigation";
 import { encodeMsg } from "@/utils/functions/order/encode";
+import ProcessingPayment from "./ProcessingPayment";
 
 const formSchema = z.object({
 	email: z.string().email().optional(),
@@ -56,6 +57,7 @@ function CheckoutForm({ userDetails, isOrderPaymentPending, orderId }: CheckoutF
 	});
 	const { cartItems, removeItemsLocally } = useCounterStore((state) => state);
 	const [orderForSomeoneElse, setOrderForSomeoneElse] = React.useState(false);
+	const [processingPayment, setProcessingPayment] = React.useState(false);
 	const router = useRouter();
 
 	async function onSubmit(values: z.infer<typeof formSchema>) {
@@ -73,12 +75,16 @@ function CheckoutForm({ userDetails, isOrderPaymentPending, orderId }: CheckoutF
 				router.push(`/order-status?error=${encodeMsg("Order could not be created, please try again later.")}`);
 				return;
 			}
+			// remove products
+			for (let i = 0; i < cartItems.length; i++) {
+				removeItemsLocally(cartItems[i].item);
+			}
 		}
 
 		// 3. Create Razorpay order
 		const razorpayRes = await createRazorpayOrder(orderRes.orderId || "");
 		if (!razorpayRes.isOrderCreated || !razorpayRes.razorpayOrderId) {
-			router.push(`/order-status?error=${encodeMsg("There was an error completing the payment. Don't worry your order has been successfully placed, you can complete your payment here.")}&orderId=${orderRes.orderId}`);
+			router.push(`/order-status?warning=${encodeMsg("There was an error completing the payment. Don't worry your order has been successfully placed, you can complete your payment here.")}&orderId=${orderRes.orderId}`);
 			return;
 		}
 
@@ -92,10 +98,11 @@ function CheckoutForm({ userDetails, isOrderPaymentPending, orderId }: CheckoutF
 			image: `${process.env.NEXT_PUBLIC_BASE_URL}/assets/logo-seconday.png`,
 			order_id: razorpayRes.razorpayOrderId,
 			handler: async function (response: any) {
+				setProcessingPayment(true);
 				// 6. Verify payment signature
 				const verifyRes = await verifyPaymentSignature(razorpayRes.razorpayOrderId!, response.razorpay_payment_id, response.razorpay_signature);
 				if (!verifyRes.isPaymentVerified) {
-					router.push(`/order-status?error=${encodeMsg("There was an error completing the payment. Don't worry your order has been successfully placed, you can complete your payment here.")}&orderId=${orderRes.orderId}`);
+					router.push(`/order-status?warning=${encodeMsg("There was an error completing the payment. Don't worry your order has been successfully placed, you can complete your payment here.")}&orderId=${orderRes.orderId}`);
 					return;
 				}
 
@@ -104,12 +111,7 @@ function CheckoutForm({ userDetails, isOrderPaymentPending, orderId }: CheckoutF
 
 				// 9. Send confirmation
 				await updateOrderStatus(orderRes.orderId!, "confirmed");
-
-				// remove products
-				for (let i = 0; i < cartItems.length; i++) {
-					removeItemsLocally(cartItems[i].item);
-				}
-
+				setProcessingPayment(false);
 				// 10. Redirect to confirmation with success
 				router.push(`/order-status?success=${encodeMsg("Your order has been placed successfully.")}&orderId=${orderRes.orderId}`);
 			},
@@ -134,6 +136,11 @@ function CheckoutForm({ userDetails, isOrderPaymentPending, orderId }: CheckoutF
 			script.onload = () => {
 				// @ts-ignore
 				const rzp = new window.Razorpay(options);
+				rzp.on("payment.failed", function (response: any) {
+					rzp.close();
+					// move to order-status page with appropriate error message with windows object
+					window.location.href = `/order-status?warning=${encodeMsg("There was an error completing the payment. Don't worry your order has been successfully placed, you can complete your payment here.")}&orderId=${orderRes.orderId}`;
+				});
 				rzp.open();
 			};
 			document.body.appendChild(script);
@@ -142,6 +149,7 @@ function CheckoutForm({ userDetails, isOrderPaymentPending, orderId }: CheckoutF
 
 	return (
 		<Form {...form}>
+			{processingPayment && <ProcessingPayment />}
 			<form
 				onSubmit={(e) => {
 					e.preventDefault();

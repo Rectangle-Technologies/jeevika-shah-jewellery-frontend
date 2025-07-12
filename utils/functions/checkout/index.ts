@@ -50,6 +50,7 @@ export async function verifyPaymentSignature(razorpayOrderId: string, razorpayPa
         if (response.status === 200) {
             return { isPaymentVerified: true };
         }
+        console.log(response.data);
         return { isPaymentVerified: false };
     } catch (error) {
         console.log(error);

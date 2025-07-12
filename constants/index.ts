@@ -19,13 +19,13 @@ export const navbarLinks = [
             { title: "Shop All", link: "/collections" },
         ]
     },
-    { title: "Brand Journey", link: "/brand-journey" },
+    { title: "About Us", link: "/about-us" },
 ]
 
 export const footerOptions: { title: string; link: string }[] = [
     {
-        title: "Brand Journey",
-        link: "/brand-journey",
+        title: "About Us",
+        link: "/about-us",
     },
     {
         title: "Exchange & Refund Policy",
