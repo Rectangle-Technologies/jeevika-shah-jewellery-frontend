@@ -71,7 +71,7 @@ function ContactUsForm() {
 						name="name"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>YOUR NAME:</FormLabel>
+								<FormLabel>NAME:</FormLabel>
 								<FormControl>
 									<Input placeholder="John Doe" {...field} disabled={loading} />
 								</FormControl>
@@ -84,7 +84,7 @@ function ContactUsForm() {
 						name="email"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>YOUR EMAIL: <span className="text-gray-400">(OPTIONAL)</span></FormLabel>
+								<FormLabel>EMAIL: <span className="text-gray-400">(OPTIONAL)</span></FormLabel>
 								<FormControl>
 									<Input placeholder="john.doe@email.com" {...field} disabled={loading} />
 								</FormControl>
@@ -97,7 +97,7 @@ function ContactUsForm() {
 						name="phone_number"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>YOUR PHONE NUMBER:</FormLabel>
+								<FormLabel>PHONE NUMBER:</FormLabel>
 								<FormControl>
 									<Input placeholder="9876543210" {...field} disabled={loading} />
 								</FormControl>
@@ -110,7 +110,7 @@ function ContactUsForm() {
 						name="message"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>YOUR MESSAGE:</FormLabel>
+								<FormLabel>MESSAGE:</FormLabel>
 								<FormControl>
 									<Textarea className="h-[200px]" placeholder="Write your message here" {...field} disabled={loading} />
 								</FormControl>
