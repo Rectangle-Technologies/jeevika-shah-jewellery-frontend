@@ -43,9 +43,9 @@ function JewelleryCard({ jewelleryItem, metalPrices }: JewelleryCardProps) {
 					)}
 
 					<div className="p-3">
-						<CardTitle className="text-center font-normal">{jewelleryItem.name}</CardTitle>
+						<CardTitle className="text-center font-normal lg:text-sm text-xs">{jewelleryItem.name}</CardTitle>
 						{jewelleryItem.calculatedPrice !== undefined && (
-							<CardDescription className="text-center mt-10">
+							<CardDescription className="text-center mt-5 lg:text-sm text-xs">
 								From ₹
 								{jewelleryItem.calculatedPrice.toLocaleString("en-IN", {
 									maximumFractionDigits: 0,
