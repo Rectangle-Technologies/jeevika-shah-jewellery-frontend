@@ -48,11 +48,11 @@ function Navbar({ navbarLinks }: NavbarProps) {
 					</Link>
 					<div className="flex items-center justify-end gap-2 md:gap-3 md:w-1/4">
 						<Link href={"/profile"} className="hidden md:flex">
-							<UserCircleIcon className="cursor-pointer" />
+							<UserCircleIcon className="cursor-pointer" strokeWidth={1} />
 						</Link>
 						{/* <CartSheet /> */}
 						<Link href={"/cart"}>
-							<ShoppingBagIcon className="cursor-pointer" />
+							<ShoppingBagIcon className="cursor-pointer" strokeWidth={1} />
 						</Link>
 						<span className="bg-black text-white rounded-full w-7 h-7 flex items-center justify-center">
 							{mounted ? <span className="bg-black text-white w-7 h-7 rounded-full flex items-center justify-center">{getCartLength()}</span> : <Skeleton className="w-7 h-7 rounded-full" />}
