@@ -51,12 +51,12 @@ function Navbar({ navbarLinks }: NavbarProps) {
 							<UserCircleIcon className="cursor-pointer" strokeWidth={1} />
 						</Link>
 						{/* <CartSheet /> */}
-						<Link href={"/cart"}>
+						<Link href={"/cart"} className="flex itmes-center justify-center relative">
 							<ShoppingBagIcon className="cursor-pointer" strokeWidth={1} />
+							<span className="flex items-center justify-center absolute -top-2 -right-2 text-sm">
+								{mounted ? <span>{getCartLength()}</span> : <Skeleton className="w-7 h-7 rounded-full" />}
+							</span>
 						</Link>
-						<span className="bg-black text-white rounded-full w-7 h-7 flex items-center justify-center">
-							{mounted ? <span className="bg-black text-white w-7 h-7 rounded-full flex items-center justify-center">{getCartLength()}</span> : <Skeleton className="w-7 h-7 rounded-full" />}
-						</span>
 					</div>
 				</div>
 			) : (
