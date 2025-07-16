@@ -15,7 +15,7 @@ import { toast } from "react-toastify";
 const formSchema = z.object({
 	name: z.string({ required_error: "Name is required" }).trim().min(2, { message: "Name must be at least 2 characters long" }).max(50, { message: "Name must be at most 50 characters long" }),
 
-	email: z.string({ required_error: "Email is required" }).trim().email({ message: "Please enter a valid email address" }),
+	email: z.string().trim().email({ message: "Please enter a valid email address" }).optional().or(z.literal("")),
 
 	phone_number: z
 		.string({ required_error: "Phone number is required" })
