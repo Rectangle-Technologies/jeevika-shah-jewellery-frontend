@@ -116,7 +116,7 @@ function OrderAccordion({ order, index }: OrderAccordionProps) {
 								{order.products.map((item, index) => (
 									<TableRow key={item._id}>
 										<TableCell>{index + 1}</TableCell>
-										<TableCell>{item.productId.name}</TableCell>
+										<TableCell>{item.productId.name} with {item.karatOfGold}K Gold</TableCell>
 										<TableCell>{item.quantity}</TableCell>
 										<TableCell>{item.size}</TableCell>
 										<TableCell>&#8377; {item.price.toLocaleString("en-IN", { minimumFractionDigits: 0 })}</TableCell>

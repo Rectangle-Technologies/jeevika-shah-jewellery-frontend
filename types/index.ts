@@ -32,6 +32,7 @@ interface IndividualCartItem {
     quantity: number;
     size: string;
     diamondType: string;
+    karatOfGold: number;
     item: Item
 }
 
@@ -48,7 +49,8 @@ interface CartProduct {
     productId: string; // assuming _id from MongoDB, so it's a string
     quantity: number;
     size: string;
-    diamondType?: string;
+    diamondType: string;
+    karatOfGold: string;
 }
 
 interface Cart {
@@ -81,6 +83,7 @@ interface OrderProduct {
         price: number;
         size: string;
         diamondType: string;
+        karatOfGold: number;
         _id: string;
     }>;
     totalAmount: number;

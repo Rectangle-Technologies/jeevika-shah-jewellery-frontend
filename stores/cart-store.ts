@@ -8,7 +8,7 @@ export type CartState = {
 };
 
 export type CartActions = {
-    addToCart: (itemId: string, item: Item, size: string, type: string, count?: number,) => Promise<void>;
+    addToCart: (itemId: string, item: Item, size: string, type: string, count: number, karatOfGold: number) => Promise<void>;
     removeItems: (item: Item, action: string) => Promise<void>;
     removeItemsLocally: (item: Item) => void;
     getCartLength: () => number;
@@ -29,7 +29,7 @@ export const createCartStore = (
             (set, get) => ({
                 ...initState,
 
-                addToCart: async (itemId, item, size, type, count = 1) => {
+                addToCart: async (itemId, item, size, type, count = 1, karatOfGold) => {
                     const existingItem = get().cartItems.find(
                         (i) => i.productId === itemId
                     );
@@ -45,6 +45,7 @@ export const createCartStore = (
                                     quantity: count,
                                     size,
                                     diamondType: type,
+                                    karatOfGold,
                                 },
                                 {
                                     headers: {
@@ -70,7 +71,7 @@ export const createCartStore = (
                         }));
                     } else {
                         set((state) => ({
-                            cartItems: [...state.cartItems, { productId: itemId, quantity: count, size, diamondType: type, item }],
+                            cartItems: [...state.cartItems, { productId: itemId, quantity: count, size, diamondType: type, karatOfGold, item }],
                         }));
                     }
                 },
