@@ -176,7 +176,7 @@ function OrderStatusPage() {
 										<TableBody>
 											{order.products.map((item) => (
 												<TableRow key={item._id}>
-													<TableCell>{item.productId.name}</TableCell>
+													<TableCell>{item.productId.name} with {item.karatOfGold}K Gold</TableCell>
 													<TableCell>&#8377; {item.price.toLocaleString("en-IN", { minimumFractionDigits: 0 })}</TableCell>
 													<TableCell>{item.quantity}</TableCell>
 													<TableCell>{item.size}</TableCell>

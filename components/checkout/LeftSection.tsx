@@ -1,11 +1,10 @@
 "use client";
 import { useCounterStore } from "@/providers/cart-store-providers";
+import { computeDiamondType } from "@/utils/functions/image";
+import { getProductDetails } from "@/utils/functions/product";
+import { calculatePricing } from "js-product-pricing-calculator";
 import React from "react";
 import CheckoutItem from "./CheckoutItem";
-import { centralPricing } from "@/constants";
-import { calculatePricing } from "js-product-pricing-calculator";
-import { getProductDetails } from "@/utils/functions/product";
-import { computeDiamondType } from "@/utils/functions/image";
 
 interface LeftSectionProps {
 	orderItems?: {
@@ -18,6 +17,7 @@ interface LeftSectionProps {
 		price: number;
 		size: string;
 		diamondType: string;
+		karatOfGold: string;
 		_id: string;
 	}[];
 }
@@ -35,10 +35,12 @@ const itemModifier = async (item: IndividualCartItem) => {
 			item.item,
 			details?.metalPrices,
 			item.item.sizes.find((size) => size.displayName === item.size),
-			computeDiamondType(item.diamondType)
+			computeDiamondType(item.diamondType),
+			item.karatOfGold
 		).finalPrice,
 		size: item.size,
 		diamondType: item.diamondType,
+		karatOfGold: item.karatOfGold,
 		_id: item.item._id,
 	};
 	return modifiedItem;
