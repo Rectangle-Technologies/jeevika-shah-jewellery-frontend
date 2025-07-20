@@ -14,6 +14,7 @@ import { calculatePricing } from "js-product-pricing-calculator";
 import { MetalPrices } from "@/utils/functions/product";
 import { computeDiamondType } from "@/utils/functions/image";
 import Link from "next/link";
+import JewelleryMetalTab from "../common/JewelleryMetalTab";
 
 interface MainDisplayProps {
 	jewellery: Item;
@@ -36,6 +37,7 @@ function MainDisplay({ jewellery, metalPrices }: MainDisplayProps) {
 	const [count, setCount] = React.useState(cartItems.find((item) => item.productId === jewellery._id)?.quantity || 1);
 	const [size, setSize] = React.useState(cartItems.find((item) => item.productId === jewellery._id)?.size || jewellery.sizes[0].displayName);
 	const [type, setType] = React.useState(cartItems.find((item) => item.productId === jewellery._id)?.diamondType || determineDiamondType(jewellery.isNaturalDiamond, jewellery.isLabDiamond, jewellery.isCentralisedDiamond));
+	const [karatOfGold, setKaratOfGold] = React.useState(cartItems.find((item) => item.productId === jewellery._id)?.karatOfGold || 14);
 
 	return (
 		<div className="w-full md:w-[95%] mx-auto flex flex-col md:flex-row md:items-center gap-4 text-md mt-5">
@@ -45,9 +47,8 @@ function MainDisplay({ jewellery, metalPrices }: MainDisplayProps) {
 			<div className="text-start w-full md:w-1/2 px-3 flex flex-col items-start gap-6 text-gray-600">
 				<p className="text-3xl font-bold text-gray-800">{jewellery.name}</p>
 				{jewellery.skuId && <p className="text-md">SKU ID: {jewellery.skuId}</p>}
-				<p className="text-xl">&#8377; {calculatePricing(jewellery, metalPrices, jewellery.sizes.filter((jewellerySize) => jewellerySize.displayName === size)[0], computeDiamondType(type)).finalPrice.toLocaleString("en-IN", { maximumFractionDigits: 0 })}</p>
+				<p className="text-xl">&#8377; {calculatePricing(jewellery, metalPrices, jewellery.sizes.filter((jewellerySize) => jewellerySize.displayName === size)[0], computeDiamondType(type), karatOfGold).finalPrice.toLocaleString("en-IN", { maximumFractionDigits: 0 })}</p>
 				<p className="text-md">{jewellery.description}</p>
-				<p className="">Metal: {jewellery.karatOfGold} Karat Gold</p>
 				<p>Weight: Approx {jewellery.weightOfGold} gm (Weight is subject to change depending on the size)</p>
 				<p>We use only premium quality diamonds which are graded VVS and VS unless stated otherwise.</p>
 				{/* <JewewllerySizeTable jewellerySizes={jewellery.sizes} /> */}
@@ -61,6 +62,7 @@ function MainDisplay({ jewellery, metalPrices }: MainDisplayProps) {
 					<div className="flex flex-col gap-6">
 						{jewellery.sizes.length > 1 && <JewellerySizeDropdown jewellerySizes={jewellery.sizes} setSize={setSize} />}
 						{jewellery.sizes.length === 1 && <div className="flex items-center gap-2">Size: {jewellery.sizes[0].displayName}</div>}
+						<JewelleryMetalTab setKaratOfGold={setKaratOfGold} />
 						{jewellery.isLabDiamond && jewellery.isNaturalDiamond && <JewelleryOriginTab setType={setType} />}
 						<div className="w-full flex flex-col justify-between gap-6">
 							<div className="flex items-center lg:justify-between gap-2 lg:gap-6">
@@ -84,7 +86,7 @@ function MainDisplay({ jewellery, metalPrices }: MainDisplayProps) {
 										<MinusIcon />
 									</Button>
 								</div>
-								<Button type="button" onClick={() => addToCart(jewellery._id, jewellery, size, type, count)} className="w-2/3 cursor-pointer">
+								<Button type="button" onClick={() => addToCart(jewellery._id, jewellery, size, type, count, karatOfGold)} className="w-2/3 cursor-pointer">
 									Add to Cart
 								</Button>
 							</div>
@@ -93,7 +95,7 @@ function MainDisplay({ jewellery, metalPrices }: MainDisplayProps) {
 									type="button"
 									className=" cursor-pointer w-[90%]"
 									onClick={async () => {
-										await addToCart(jewellery._id, jewellery, size, type, count);
+										await addToCart(jewellery._id, jewellery, size, type, count, karatOfGold);
 										router.push("/checkout");
 									}}
 								>

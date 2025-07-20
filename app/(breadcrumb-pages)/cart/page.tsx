@@ -21,7 +21,7 @@ function CartPage() {
 				const details = await getProductDetails(item.item._id);
 				const metalPrice = details?.metalPrices;
 				setMetalPrices(metalPrice);
-				const price = calculatePricing(item.item, metalPrice, sizeObj, computeDiamondType(item.diamondType)).finalPrice;
+				const price = calculatePricing(item.item, metalPrice, sizeObj, computeDiamondType(item.diamondType), item.karatOfGold).finalPrice;
 				return item.quantity * price;
 			});
 

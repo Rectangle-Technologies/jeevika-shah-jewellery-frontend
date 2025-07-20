@@ -50,7 +50,8 @@ function CartSheet() {
 												item.item,
 												centralPricing,
 												item.item.sizes.filter((jewellerySize) => jewellerySize.displayName === item.size),
-												computeDiamondType(item.diamondType)
+												computeDiamondType(item.diamondType),
+												item.karatOfGold
 											).finalPrice,
 									0
 								)}

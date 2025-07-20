@@ -23,7 +23,7 @@ function CartSheetItemCard({ cartItem, metalPrices }: CartSheetItemCardProps) {
 			<CircleXIcon className="text-red-500 cursor-pointer absolute right-2 top-2" onClick={() => removeItems(cartItem.item, "delete")} />
 
 			<CardHeader>
-				<CardTitle>{cartItem.item.name}</CardTitle>
+				<CardTitle>{cartItem.item.name} with {cartItem.karatOfGold}K Gold</CardTitle>
 				<CardDescription>{formatDiamondType(cartItem.diamondType)} diamond</CardDescription>
 			</CardHeader>
 			<CardContent className="flex flex-col md:flex-row items-center gap-5 relative">
@@ -38,13 +38,13 @@ function CartSheetItemCard({ cartItem, metalPrices }: CartSheetItemCardProps) {
 
 					<div className={itemDetailStyle}>
 						<p className={columnHeading}>Price</p>₹{" "}
-						{calculatePricing(cartItem.item, metalPrices ? metalPrices : centralPricing, cartItem.item.sizes.filter((size) => size.displayName === cartItem.size)[0], computeDiamondType(cartItem.diamondType)).finalPrice.toLocaleString("en-IN", { maximumFractionDigits: 0 })}
+						{calculatePricing(cartItem.item, metalPrices ? metalPrices : centralPricing, cartItem.item.sizes.filter((size) => size.displayName === cartItem.size)[0], computeDiamondType(cartItem.diamondType), cartItem.karatOfGold).finalPrice.toLocaleString("en-IN", { maximumFractionDigits: 0 })}
 					</div>
 
 					<div className={itemDetailStyle}>
 						<p className={columnHeading}>Qty</p>
 						<div className="flex items-center gap-3 my-2">
-							<PlusIcon onClick={() => addToCart(cartItem.item._id, cartItem.item, cartItem.size, cartItem.diamondType, 1)} className="text-black border border-black rounded-full cursor-pointer hover:shadow" />
+							<PlusIcon onClick={() => addToCart(cartItem.item._id, cartItem.item, cartItem.size, cartItem.diamondType, 1, cartItem.karatOfGold)} className="text-black border border-black rounded-full cursor-pointer hover:shadow" />
 							<p>{cartItem.quantity}</p>
 							<MinusIcon onClick={() => removeItems(cartItem.item, "reduce")} className="text-black border border-black rounded-full cursor-pointer hover:shadow" />
 						</div>
@@ -52,7 +52,7 @@ function CartSheetItemCard({ cartItem, metalPrices }: CartSheetItemCardProps) {
 
 					<div className={itemDetailStyle}>
 						<p className={columnHeading}>Total</p>₹{" "}
-						{(cartItem.quantity * calculatePricing(cartItem.item, metalPrices ? metalPrices : centralPricing, cartItem.item.sizes.filter((size) => size.displayName === cartItem.size)[0], computeDiamondType(cartItem.diamondType)).finalPrice).toLocaleString("en-IN", {
+						{(cartItem.quantity * calculatePricing(cartItem.item, metalPrices ? metalPrices : centralPricing, cartItem.item.sizes.filter((size) => size.displayName === cartItem.size)[0], computeDiamondType(cartItem.diamondType), cartItem.karatOfGold).finalPrice).toLocaleString("en-IN", {
 							maximumFractionDigits: 0,
 						})}
 					</div>

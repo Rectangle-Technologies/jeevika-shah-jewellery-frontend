@@ -1,9 +1,7 @@
-import { getProducts } from "@/utils/functions/collection";
-import JewelleryGrid from "@/components/landing-page/JewelleryGrid";
-import SortDropdown from "@/components/collections-page/SortDropDown";
 import FilterSheet from "@/components/collections-page/FilterSheet";
-import { centralPricing } from "@/constants";
-import { calculatePricing } from "js-product-pricing-calculator";
+import SortDropdown from "@/components/collections-page/SortDropDown";
+import JewelleryGrid from "@/components/landing-page/JewelleryGrid";
+import { getProducts } from "@/utils/functions/collection";
 import { MetalPrices } from "@/utils/functions/product";
 
 function sortItems(items: any[], metalPrices: MetalPrices | undefined, sortBy: string) {
@@ -13,9 +11,9 @@ function sortItems(items: any[], metalPrices: MetalPrices | undefined, sortBy: s
 		case "z-a":
 			return [...items].sort((a, b) => b.name.localeCompare(a.name));
 		case "low-to-high":
-			return [...items].sort((a, b) => Number(calculatePricing(a, metalPrices, a.sizes[0]).finalPrice.toFixed(2)) - Number(calculatePricing(b, metalPrices, b.sizes[0]).finalPrice.toFixed(2)));
+			return [...items].sort((a, b) => Number(a?.calculatedPrice?.toFixed(2)) - Number(b?.calculatedPrice?.toFixed(2)));
 		case "high-to-low":
-			return [...items].sort((a, b) => Number(calculatePricing(b, metalPrices, b.sizes[0]).finalPrice.toFixed(2)) - Number(calculatePricing(a, metalPrices, a.sizes[0]).finalPrice.toFixed(2)));
+			return [...items].sort((a, b) => Number(b?.calculatedPrice?.toFixed(2)) - Number(a?.calculatedPrice?.toFixed(2)));
 		case "new-to-old":
 			return [...items].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 		case "old-to-new":
@@ -43,7 +41,7 @@ export default async function CollectionsPage({ params, searchParams }: { params
 
 	// Filter based on price range
 	items = items.filter((item) => {
-		const totalCost = Number(calculatePricing(item, details.metalPrices, item.sizes[0]).finalPrice.toFixed(2));
+		const totalCost = Number(item?.calculatedPrice?.toFixed(2));
 		return totalCost >= minPrice && totalCost <= maxPrice;
 	});
 

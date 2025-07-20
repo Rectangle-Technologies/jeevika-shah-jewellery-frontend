@@ -13,10 +13,10 @@ interface JewellerySizeDropdownProps {
 function JewellerySizeDropdown({ jewellerySizes, setSize }: JewellerySizeDropdownProps) {
 	return (
 		<div className="w-full">
-			<Label className="mb-2 text-md">Select Jewellery Size:</Label>
+			<Label className="mb-2 text-md">Select size:</Label>
 			<Select onValueChange={(value) => setSize(value)} defaultValue={jewellerySizes[0].displayName}>
 				<SelectTrigger className="w-full">
-					<SelectValue placeholder="Select Jewellery Size" />
+					<SelectValue placeholder="Select size" />
 				</SelectTrigger>
 				<SelectContent className="">
 					{jewellerySizes.map((jewellerySize) => (

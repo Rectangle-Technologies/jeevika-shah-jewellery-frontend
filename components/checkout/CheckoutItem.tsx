@@ -14,6 +14,7 @@ interface CheckoutItemProps {
 		price: number;
 		size: string;
 		diamondType: string;
+		karatOfGold: number;
 		_id: string;
 	};
 }
@@ -31,7 +32,7 @@ function CheckoutItem({ item }: CheckoutItemProps) {
 				</div>
 				{/* item details */}
 				<div className="">
-					<p className="text-lg font-semibold">{item.productId.name}</p>
+					<p className="text-lg font-semibold">{item.productId.name} with {item.karatOfGold}K Gold</p>
 					<p>{formatDiamondType(item.diamondType)} Diamond</p>
 					<p>{item.size}</p>
 					{/* price */}

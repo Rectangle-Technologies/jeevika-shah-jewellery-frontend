@@ -3,7 +3,8 @@ declare module 'js-product-pricing-calculator' {
 	item: any,
 	pricing: any,
 	size: any,
-  diamondType?: any
+  diamondType: any,
+  karatOfGold: number
   ): { finalPrice: number; [key: string]: any };
 
   export type CentralPricing = { [key: string]: number };
