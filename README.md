@@ -99,7 +99,7 @@ List of tasks:
 - [x] In the mobile view, in the personalized pieces carousel, remove the bottom navigation and make it auto-scroll. Keep the arrows
 - [x] On the cart page, the product image is stretched. ![alt text](image-8.png)
 - [ ] Product image zoom issue.
-- [ ] Add instagram icon in social share.
+- [ ] Add instagram icon in social share. (*halted*)
 - [x] On the all collections page, it is only showing the first 20 products. Once we scroll, it should fetch more products.
 
 
