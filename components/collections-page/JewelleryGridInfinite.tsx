@@ -96,7 +96,7 @@ export default function JewelleryGridInfinite({ slug, sort, minPrice, maxPrice, 
 	return (
 		<>
 			<JewelleryGrid jewelleryItems={sortedItems} metalPrices={metalPrices} />
-			{loading && <p className="text-center mt-4">Loading more...</p>}
+			{loading && <p className="text-center mt-4">Loading...</p>}
 			<div ref={loaderRef} className="h-10 w-full" />
 		</>
 	);

@@ -44,9 +44,9 @@ export async function getProducts(pageNo: number, pageSize: number, category: st
       category = '';
     }
     if (isLandingPageProduct) {
-      url = `${process.env.API_URL}/products?pageNo=${pageNo}&pageSize=${pageSize}&category=${category}&isLandingPageProduct=${isLandingPageProduct}`;
+      url = `${process.env.API_URL}/products?page=${pageNo}&pageSize=${pageSize}&category=${category}&isLandingPageProduct=${isLandingPageProduct}`;
     } else {
-      url = `${process.env.API_URL}/products?pageNo=${pageNo}&pageSize=${pageSize}&category=${category}`
+      url = `${process.env.API_URL}/products?page=${pageNo}&pageSize=${pageSize}&category=${category}`
     }
     const res = await fetch(url);
     const data = await res.json();

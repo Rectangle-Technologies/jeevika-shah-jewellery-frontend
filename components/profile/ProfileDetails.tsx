@@ -114,7 +114,7 @@ function ProfileDetails({ userDetails }: ProfileDetailsProps) {
 	};
 
 	return (
-		<div className="w-full flex flex-col gap-4 lg:gap-8 my-5">
+		<div className="w-full flex flex-col gap-4 lg:gap-8 my-5 px-2 lg:px-0">
 			<p className="text-2xl">Customer Details</p>
 			{editMode ? (
 				<Form {...form}>
@@ -266,7 +266,7 @@ function ProfileDetails({ userDetails }: ProfileDetailsProps) {
 				</Form>
 			) : (
 				<>
-					<div className="flex flex-col md:flex-row items-start md:items-center justify-between w-full md:w-3/5 lg:w-2/5">
+					<div className="flex flex-row items-startitems-center justify-between w-4/5 md:w-3/5 lg:w-2/5">
 						<div className="">
 							<p>First Name:</p>
 							{!userDetails ? <Skeleton className="h-6 w-24" /> : <p className="text-gray-700">{userDetails?.name ? userDetails.name.split(" ")[0] : ""}</p>}
