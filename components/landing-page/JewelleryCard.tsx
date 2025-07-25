@@ -44,14 +44,19 @@ function JewelleryCard({ jewelleryItem, metalPrices }: JewelleryCardProps) {
 
 					<div className="p-3">
 						<CardTitle className="text-center font-normal lg:text-sm text-xs">{jewelleryItem.name}</CardTitle>
-						{jewelleryItem.calculatedPrice !== undefined && (
-							<CardDescription className="text-center mt-5 lg:text-sm text-xs">
-								From ₹
-								{jewelleryItem.calculatedPrice.toLocaleString("en-IN", {
-									maximumFractionDigits: 0,
-								})}
-							</CardDescription>
-						)}
+						{(jewelleryItem.calculatedPrice !== undefined && !jewelleryItem.isChatWithUs)
+							? (
+								<CardDescription className="text-center mt-5 lg:text-sm text-xs">
+									From ₹
+									{jewelleryItem.calculatedPrice.toLocaleString("en-IN", {
+										maximumFractionDigits: 0,
+									})}
+								</CardDescription>
+							) : (
+								<CardDescription className="text-center mt-5 lg:text-sm text-xs">
+									Click to know more
+								</CardDescription>
+							)}
 					</div>
 				</Link>
 			</CardContent>

@@ -50,7 +50,7 @@ interface CartProduct {
     quantity: number;
     size: string;
     diamondType: string;
-    karatOfGold: string;
+    karatOfGold: number;
 }
 
 interface Cart {

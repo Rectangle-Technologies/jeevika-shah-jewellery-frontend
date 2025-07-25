@@ -47,7 +47,7 @@ function MainDisplay({ jewellery, metalPrices }: MainDisplayProps) {
 			<div className="text-start w-full md:w-1/2 px-3 flex flex-col items-start gap-6 text-gray-600">
 				<p className="text-3xl font-bold text-gray-800">{jewellery.name}</p>
 				{jewellery.skuId && <p className="text-md">SKU ID: {jewellery.skuId}</p>}
-				<p className="text-xl">&#8377; {calculatePricing(jewellery, metalPrices, jewellery.sizes.filter((jewellerySize) => jewellerySize.displayName === size)[0], computeDiamondType(type), karatOfGold).finalPrice.toLocaleString("en-IN", { maximumFractionDigits: 0 })}</p>
+				{!jewellery.isChatWithUs && <p className="text-xl">&#8377; {calculatePricing(jewellery, metalPrices, jewellery.sizes.filter((jewellerySize) => jewellerySize.displayName === size)[0], computeDiamondType(type), karatOfGold).finalPrice.toLocaleString("en-IN", { maximumFractionDigits: 0 })}</p>}
 				<p className="text-md">{jewellery.description}</p>
 				<p>Weight: Approx {jewellery.weightOfGold} gm (Weight is subject to change depending on the size)</p>
 				<p>We use only premium quality diamonds which are graded VVS and VS unless stated otherwise.</p>
