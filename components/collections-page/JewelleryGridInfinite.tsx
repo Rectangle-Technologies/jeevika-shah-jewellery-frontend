@@ -42,7 +42,6 @@ export default function JewelleryGridInfinite({ slug, sort, minPrice, maxPrice, 
 
 	// Fetch data when `page` updates
 	useEffect(() => {
-		console.log(page, slug, minPrice, maxPrice, hasMore);
 		const fetchData = async () => {
 			if (loadingRef.current || !hasMore) return;
 			loadingRef.current = true;
