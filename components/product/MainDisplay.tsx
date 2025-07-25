@@ -40,7 +40,7 @@ function MainDisplay({ jewellery, metalPrices }: MainDisplayProps) {
 	const [karatOfGold, setKaratOfGold] = React.useState(cartItems.find((item) => item.productId === jewellery._id)?.karatOfGold || 14);
 
 	return (
-		<div className="w-full md:w-[95%] mx-auto flex flex-col md:flex-row md:items-center gap-4 text-md mt-5">
+		<div className="w-full md:w-[95%] mx-auto flex flex-col md:flex-row gap-4 text-md mt-7">
 			<div className="w-full  md:w-1/2">
 				<JewelleryDialogCarousel imageList={jewellery.images} />
 			</div>

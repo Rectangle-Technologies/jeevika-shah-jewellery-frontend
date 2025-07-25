@@ -50,7 +50,7 @@ function ProfilePage() {
 					<p className="">No previous orders found.</p>
 				</div>
 			) : (
-				<div className=" w-full flex flex-col gap-2">
+				<div className=" w-full flex flex-col gap-2" id="orders">
 					{previousOrders.map((order, index) => (
 						<div className="" key={order._id}>
 							<OrderAccordion order={order} index={previousOrders.length - index} />
