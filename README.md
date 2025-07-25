@@ -100,7 +100,7 @@ List of tasks:
 - [x] On the cart page, the product image is stretched. ![alt text](image-8.png)
 - [ ] Product image zoom issue.
 - [ ] Add instagram icon in social share.
-- [ ] On the all collections page, it is only showing the first 20 products. Once we scroll, it should fetch more products.
+- [x] On the all collections page, it is only showing the first 20 products. Once we scroll, it should fetch more products.
 
 
 

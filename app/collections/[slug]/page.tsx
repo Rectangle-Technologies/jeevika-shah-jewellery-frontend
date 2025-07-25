@@ -1,53 +1,20 @@
 import FilterSheet from "@/components/collections-page/FilterSheet";
 import SortDropdown from "@/components/collections-page/SortDropDown";
-import JewelleryGrid from "@/components/landing-page/JewelleryGrid";
+import JewelleryGridInfinite from "@/components/collections-page/JewelleryGridInfinite";
 import { getProducts } from "@/utils/functions/collection";
-import { MetalPrices } from "@/utils/functions/product";
-
-function sortItems(items: any[], metalPrices: MetalPrices | undefined, sortBy: string) {
-	switch (sortBy) {
-		case "a-z":
-			return [...items].sort((a, b) => a.name.localeCompare(b.name));
-		case "z-a":
-			return [...items].sort((a, b) => b.name.localeCompare(a.name));
-		case "low-to-high":
-			return [...items].sort((a, b) => Number(a?.calculatedPrice?.toFixed(2)) - Number(b?.calculatedPrice?.toFixed(2)));
-		case "high-to-low":
-			return [...items].sort((a, b) => Number(b?.calculatedPrice?.toFixed(2)) - Number(a?.calculatedPrice?.toFixed(2)));
-		case "new-to-old":
-			return [...items].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-		case "old-to-new":
-			return [...items].sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
-		default:
-			return items;
-	}
-}
 
 export default async function CollectionsPage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
 	const { slug } = await params;
 	const sp = await searchParams;
-	const sort = sp.sort;
 
+	const sort = typeof sp.sort === "string" ? sp.sort : "";
 	const minPrice = typeof sp.minPrice === "string" ? parseFloat(sp.minPrice) : 0;
 	const maxPrice = typeof sp.maxPrice === "string" ? parseFloat(sp.maxPrice) : Infinity;
 
-	// make the first letter of slug capital
-	let modifiedSlug = slug.charAt(0).toUpperCase() + slug.slice(1);
-	let details = await getProducts(1, 20, modifiedSlug, false);
+	const modifiedSlug = slug.charAt(0).toUpperCase() + slug.slice(1);
 
-	let items = details.products;
-
+	const preview = await getProducts(1, 1, modifiedSlug, false); // To extract metalPrices
 	const originalMaxValue = 700000;
-
-	// Filter based on price range
-	items = items.filter((item) => {
-		const totalCost = Number(item?.calculatedPrice?.toFixed(2));
-		return totalCost >= minPrice && totalCost <= maxPrice;
-	});
-
-	// Sort
-	const sortOption = typeof sort === "string" ? sort : "";
-	const sortedJewellery = sortItems(items, details.metalPrices, sortOption);
 
 	return (
 		<section className="pt-28 md:pt-40 flex flex-col items-center px-3">
@@ -55,7 +22,7 @@ export default async function CollectionsPage({ params, searchParams }: { params
 				<FilterSheet maxPrice={originalMaxValue} />
 				<SortDropdown />
 			</div>
-			<JewelleryGrid jewelleryItems={sortedJewellery} metalPrices={details.metalPrices} />
+			<JewelleryGridInfinite slug={modifiedSlug} sort={sort} minPrice={minPrice} maxPrice={maxPrice} metalPrices={preview.metalPrices} />
 		</section>
 	);
 }
