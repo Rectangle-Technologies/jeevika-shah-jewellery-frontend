@@ -101,7 +101,7 @@ List of tasks:
 - [ ] Product image zoom issue.
 - [ ] Add instagram icon in social share. (*halted*)
 - [x] On the all collections page, it is only showing the first 20 products. Once we scroll, it should fetch more products.
-- [ ] Handle video on Jewllery Detail page
+- [x] Handle video on Jewllery Detail page
 
 
 
