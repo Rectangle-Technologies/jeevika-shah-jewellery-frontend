@@ -17,7 +17,7 @@ function JewelleryDialogCarousel({ imageList }: JewelleryDialogProps) {
 		imageList.forEach((src) => {
 			if ((src.includes("mp4") || src.includes("mov")) && !videoThumbs[src]) {
 				const video = document.createElement("video");
-				video.src = imgSrcModifier(src);
+				video.src = `/api/video-proxy?url=${encodeURIComponent(src)}`;
 				video.crossOrigin = "anonymous";
 				video.muted = true;
 				video.currentTime = 0;
@@ -50,23 +50,8 @@ function JewelleryDialogCarousel({ imageList }: JewelleryDialogProps) {
 						: imgSrcModifier(src);
 
 					return (
-						<div
-							key={"thumb-" + src + index.toString()}
-							className="relative w-16 h-16 bg-gray-200"
-						>
-							{thumbSrc ? (
-								<Image
-									src={thumbSrc}
-									alt="Jewellery thumbnail"
-									fill
-									sizes="64px"
-									className="object-cover rounded mx-auto"
-								/>
-							) : (
-								<div className="w-full h-full flex items-center justify-center text-xs text-gray-500">
-									Loading...
-								</div>
-							)}
+						<div key={"thumb-" + src + index.toString()} className="relative w-16 h-16 bg-gray-200">
+							{thumbSrc ? <Image src={thumbSrc} alt="Jewellery thumbnail" fill sizes="64px" className="object-cover rounded mx-auto" /> : <div className="w-full h-full flex items-center justify-center text-xs text-gray-500">Loading...</div>}
 						</div>
 					);
 				})
@@ -78,26 +63,13 @@ function JewelleryDialogCarousel({ imageList }: JewelleryDialogProps) {
 				if (isVideo) {
 					return (
 						<div key={src + index.toString()} className="relative w-full h-full flex items-center">
-							<video
-								src={imgSrcModifier(src)}
-								controls
-								autoPlay
-								muted
-								loop
-								playsInline
-								className="w-full h-full mx-auto rounded-xl shadow-md"
-							/>
+							<video src={imgSrcModifier(src)} controls autoPlay muted loop playsInline className="w-full h-full mx-auto rounded-xl shadow-md" />
 						</div>
 					);
 				} else {
 					return (
 						<div key={src + index.toString()} className="relative w-full">
-							<InnerImageZoom
-								src={imgSrcModifier(src)}
-								zoomSrc={imgSrcModifier(src)}
-								zoomType="hover"
-								fullscreenOnMobile={true}
-							/>
+							<InnerImageZoom src={imgSrcModifier(src)} zoomSrc={imgSrcModifier(src)} zoomType="hover" fullscreenOnMobile={true} />
 						</div>
 					);
 				}
