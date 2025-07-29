@@ -139,7 +139,7 @@ function CheckoutForm({ userDetails, isOrderPaymentPending, orderId }: CheckoutF
 				rzp.on("payment.failed", function (response: any) {
 					rzp.close();
 					// move to order-status page with appropriate error message with windows object
-					window.location.href = `/order-status?warning=${encodeMsg("There was an error completing the payment. Don't worry your order has been successfully placed, you can complete your payment here.")}&orderId=${orderRes.orderId}`;
+					window.location.href = `/order-status?warning=${encodeMsg("There was an error completing the payment. Don't worry your order has been successfully placed, please complete the payment within 24 hours to confirm the order.")}&orderId=${orderRes.orderId}`;
 				});
 				rzp.open();
 			};

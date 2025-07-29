@@ -136,7 +136,7 @@ function OrderAccordion({ order, index }: OrderAccordionProps) {
 					<div className="flex flex-col gap-2">
 						<p>Order Status: {order.status}</p>
 						<p>Payment Status: {order.paymentStatus}</p>
-						{order.paymentStatus.toLowerCase() === "pending" && (
+						{order.paymentStatus.toLowerCase() === "pending" && order.status.toLowerCase() == 'placed' && (
 							<Button
 								onClick={() => {
 									paymentHandler(order._id);
