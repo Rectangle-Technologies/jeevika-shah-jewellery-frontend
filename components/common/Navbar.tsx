@@ -119,7 +119,7 @@ function Navbar({ navbarLinks }: NavbarProps) {
 														<div className="flex flex-col md:flex-row mt-5">
 															<div className="w-full md:w-1/2 mt-4">
 																<Image
-																	src="/assets/bracelet-size-chart.png"
+																	src="/assets/bracelet-size.jpeg"
 																	alt="Bracelet Size Chart"
 																	width={500}
 																	height={500}
