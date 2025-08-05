@@ -1,10 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import Image from "next/image";
 import { imgSrcModifier } from "@/utils/functions/image";
-import InnerImageZoom from "react-inner-image-zoom";
-import "inner-image-zoom/lib/styles.min.css";
+import PinchZoomImage from "./PinchZoomImage";
 
 interface JewelleryDialogProps {
 	imageList: string[];
@@ -67,11 +66,7 @@ function JewelleryDialogCarousel({ imageList }: JewelleryDialogProps) {
 						</div>
 					);
 				} else {
-					return (
-						<div key={src + index.toString()} className="relative w-full">
-							<InnerImageZoom src={imgSrcModifier(src)} zoomSrc={imgSrcModifier(src)} zoomType="hover" fullscreenOnMobile={true} />
-						</div>
-					);
+					return <PinchZoomImage src={src} key={src + index.toString()} />;
 				}
 			})}
 		</Carousel>

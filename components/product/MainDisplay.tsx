@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import JewelleryDialogCarousel from "../common/JewelleryDialogCarousel";
+import JewelleryDialogCarousel from "./JewelleryDialogCarousel";
 // import JewewllerySizeTable from "../common/JewewllerySizeTable";
 import { Button } from "../ui/button";
 import { HeartIcon, MinusIcon, PlusIcon } from "lucide-react";
