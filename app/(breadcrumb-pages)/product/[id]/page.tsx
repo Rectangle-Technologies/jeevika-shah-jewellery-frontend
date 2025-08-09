@@ -13,7 +13,7 @@ async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
 	return (
 		<div className=" pb-3 md:px-3">
 			{product && <MainDisplay metalPrices={metalPrices} jewellery={product} />}
-			<YouMayAlsoLike suggestedItems={relatedProducts} />
+			{relatedProducts.length > 0 && <YouMayAlsoLike suggestedItems={relatedProducts} />}
 		</div>
 	);
 }
