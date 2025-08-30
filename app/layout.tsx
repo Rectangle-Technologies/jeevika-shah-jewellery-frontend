@@ -75,6 +75,14 @@ export default async function RootLayout({
 						}),
 					}}
 				/>
+				<Script async src="https://www.googletagmanager.com/gtag/js?id=G-J6JD3EVRT4"></Script>
+				<Script>
+					{`window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+
+					gtag('config', 'G-J6JD3EVRT4');`}
+				</Script>
 			</head>
 			<body className={`${santral.variable} antialiased`}>
 				<Suspense fallback={<Loading />}>
