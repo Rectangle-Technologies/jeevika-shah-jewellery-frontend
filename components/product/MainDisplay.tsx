@@ -49,7 +49,7 @@ function MainDisplay({ jewellery, metalPrices }: MainDisplayProps) {
 				{jewellery.skuId && <p className="text-md">SKU ID: {jewellery.skuId}</p>}
 				{!jewellery.isChatWithUs && <p className="text-xl">&#8377; {calculatePricing(jewellery, metalPrices, jewellery.sizes.filter((jewellerySize) => jewellerySize.displayName === size)[0], computeDiamondType(type), karatOfGold).finalPrice.toLocaleString("en-IN", { maximumFractionDigits: 0 })}</p>}
 				<p className="text-md">{jewellery.description}</p>
-				<p>Weight: Approx {jewellery.weightOfGold} gm (Weight is approximate as the product is made to order)</p>
+				<p>Net Wt.: Approx {jewellery.weightOfGold} gm (Weight is approximate as the product is made to order)</p>
 				<p>We use only premium quality diamonds which are graded VVS and VS unless stated otherwise.</p>
 				{/* <JewewllerySizeTable jewellerySizes={jewellery.sizes} /> */}
 				{jewellery.isChatWithUs ? (
