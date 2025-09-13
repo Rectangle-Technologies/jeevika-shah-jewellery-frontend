@@ -48,6 +48,8 @@ export async function getProducts(pageNo: number, pageSize: number, category: st
     } else {
       url = `${process.env.API_URL}/products?page=${pageNo}&pageSize=${pageSize}&category=${category}`
     }
+    // Add dynamic parameters to avoid caching
+    url += `&t=${Date.now()}`;
     const res = await fetch(url);
     const data = await res.json();
     if (data.result && data.result.toLocaleLowerCase() === 'success') {
