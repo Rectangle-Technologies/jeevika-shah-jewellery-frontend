@@ -35,6 +35,10 @@ const santral = localFont({
 	variable: "--font-santral",
 });
 
+// Pages are prerendered; regenerate them every 5 minutes so the footer year and the
+// home content (banner, products) from the API don't stay frozen at build time.
+export const revalidate = 300;
+
 export const metadata: Metadata = {
 	title: "Jeevika Shah Jewellery",
 	description: "Discover jewelry that you will be proud to wear, exactly the way you want them",

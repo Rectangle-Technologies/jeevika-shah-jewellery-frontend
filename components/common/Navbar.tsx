@@ -17,26 +17,19 @@ interface NavbarProps {
 function Navbar({ navbarLinks }: NavbarProps) {
 	const { getCartLength } = useCounterStore((state) => state);
 	const path = usePathname();
-	const [scrolled, setScrolled] = React.useState(false);
-	const [hovered, setHovered] = React.useState(false);
 	const [mounted, setMounted] = React.useState(false);
 	const [isModalOpen, setIsModalOpen] = React.useState(false);
 	const [activeTab, setActiveTab] = React.useState("rings");
 
 	React.useEffect(() => {
 		setMounted(true);
-		const handleScroll = () => {
-			setScrolled(window.scrollY > 100);
-		};
-		window.addEventListener("scroll", handleScroll);
 		return () => {
-			window.removeEventListener("scroll", handleScroll);
 			setMounted(false);
 		};
 	}, []);
 
 	return (
-		<nav onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} className={` ${scrolled || hovered || path !== "/" ? "bg-white text-black shadow-md" : "bg-transparent text-white"} z-50 fixed w-full  top-0 transition-colors duration-300`}>
+		<nav className="bg-white text-black shadow-md z-50 fixed w-full top-0">
 			{path !== "/login" && path !== "/sign-up" ? (
 				<div className="flex items-center justify-between py-2 px-4 md:w-[90%] mx-auto">
 					<div className="flex md:hidden">
