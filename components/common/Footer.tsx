@@ -7,8 +7,8 @@ import React from "react";
 function Footer() {
 
 	return (
-		<footer className="w-full flex flex-col items-center justify-center py-2 bg-[#3A0519] text-white px-4 md:px-10 mt-10">
-			<Image src="/assets/logo-primary.png" alt="Jeevika Shah Jewellery logo" width={150} height={150} />
+		<footer className="w-full flex flex-col items-center justify-center py-2 bg-[#204E29] text-white px-4 md:px-10 mt-10">
+			<Image src="/assets/logo-primary.png" alt="Jeevika Shah Jewellery logo" width={56} height={110} className="my-3" />
 			<div className="grid grid-cols-1 md:grid-cols-3 gap-2 lg:text-sm text-xs">
 				{footerOptions.map((option, index) => (
 					<Link key={option.title + index.toString()} href={option.link} className="hover:underline py-1 text-center">
